@@ -1,0 +1,183 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="Keywords" content="">
+		<meta name="Description" content="">
+		<title></title>
+		
+		<style type="text/css">
+			body,div,p,h1,h2,h3,h4,h5,h6,ul,ol,dl,dd{margin:0;}
+			ul,ol,input{padding:0;}
+			li{list-style:none;}
+			body{font:12px "微软雅黑";}
+			a{text-decoration:none;}
+			img,button{border:none;}
+			
+		</style>
+	</head>
+<body>
+	
+</body>
+<script>
+	//创建字符串 字符串必须用引号括起来(单双引号都可以)
+	//1.直接量赋值
+	/*var str = 'hello小明';
+	console.log(str);
+	//2.new 方式
+	var str2 = new String("hello小花"); //new方式会创建一个不同于给定字符串值得对象
+	console.log(str2);
+	//3.函数式
+	var str3 = String('hello小白');
+	console.log(str3); */
+
+	/*var str = "hello"; 
+	var str2 = str;
+	str2 = 'world';
+	console.log(str); //hello */
+	/*var str = new String('hello');
+	var str2 = str;
+	str2 += ' world';
+	console.log(str); //hello
+	console.log(str2); //hello world */
+	/*var str = String('hello');
+	var str2 = str;
+	str2 += ' world';
+	console.log(str); //hello
+	console.log(str2); //hello world */
+
+	//length属性获取字符串的长度 不论中英文字符都算一个长度
+	/*var str = 'hello大神';
+	console.log(str.length); //7
+	//尝试修改length
+	str.length = 5;
+	console.log(str); //hello大神
+	console.log(str.length); //还是7 说明字符串的length属性是只读的 */
+
+	//charAt(index) 返回字符串中指定索引处的字符
+	//var str = 'X君A';
+	//console.log(str.charAt(1)); //君
+	//可以通过数组的形式获取 因为我们在打印new出来的字符串时我们发现它的以每个所以为属性 对应的值该索引处的字符
+	//console.log(str[1]);//君
+	//charCodeAt(index) 返回指定索引处的字符的unicode编码
+	//console.log(str.charCodeAt(1)); //21531
+	//console.log(str.charCodeAt(2)); //65
+
+	//stringObj.concat(string1,string2,...) 
+	//将多个字符串一次连接到当前字符串的默认 并返回连接后的字符串 不改变原字符串
+	/*var str = 'hello';
+	var str2 = str.concat(' world',' aha',123); //如果参数不是字符串则转换为字符串
+	console.log(str2);//hello world aha123
+	console.log(str);//hello
+	str2 = str.concat(); //如果不提供参数 则返回原字符串
+	console.log(str2); //hello
+	console.log(str2===str); //true */
+
+	//stringObject.slice(start,end)
+	//slice方法截取字符串中从索引start(包括)到end(不包括)间的子字符串并返回
+	//参数可以为负数 
+	/*var str = 'hello';
+	var str2 = str.slice(1,3);
+	console.log(str2); //el
+	str2 = str.slice(1); //如果省略第二个参数则表示截取到末尾
+	console.log(str2); //ello
+	str2 = str.slice(-3,-1);
+	console.log(str2); //ll 
+	str2 = str.slice(3,1); //如果第一个参数的所指位置没有在第二个的左边则返回空字符串
+	console.log(str2==='');//true */
+
+	//stringObject.substring(start,stop) 
+	//substring方法与slice类似 但是它不接受负数 并且当第二个参数小于第一个时会自动调换
+	/*var str = 'hello';
+	console.log(str.substring(1,3)); //el
+	console.log(str.substring(1)); //ello
+	console.log(str.substring(3,1)); //el
+	console.log(str.substring(-3,-1)===''); //返回空字符串 */
+
+	//stringObject.substr(start,length) ECMAscript 没有对该方法进行标准化，因此反对使用它。
+	//substr提取从指定索引处开始指定长度的子串
+	/*var str = 'hello';
+	console.log(str.substr(1,3));//ell
+	console.log(str.substr(1,10));//ello
+	console.log(str.substr(1));//ello
+	console.log(str.substr(-4,2));//el */
+
+	//stringObject.indexOf(searchvalue[,fromindex])
+	//从指定的位置起查找给定的字符串第一次出现的位置 如果没有则返回-1
+	/*var str = 'thinking';
+	console.log(str.indexOf('in')); //2
+	console.log(str.indexOf('in',3)); //5
+	console.log(str.indexOf('abc')); //-1 */
+
+	//stringObject.lastIndexOf(searchvalue[,fromindex])
+	//从指定的位置起从后向前查找给定的字符串第一次出现的位置 如果没有则返回-1
+	/*var str = 'thinking';
+	console.log(str.lastIndexOf('in')); //5
+	console.log(str.lastIndexOf('in',4)); //2
+	console.log(str.lastIndexOf('abc')); //-1 */
+
+	//大小写转换：toUpperCase,toLowerCase
+	/*var str = '我Love小明';
+	console.log(str.toUpperCase());
+	console.log(str.toLowerCase());
+	console.log(str); //不改变原字符串 */
+
+	//stringObject.match(searchvalue)
+	//stringObject.match(regexp)
+	//match方法在字符串内检索与指定的字符串或正则表达式匹配的子串
+	//如果没有匹配的则返回null 
+	//如果有匹配的且是不正则表达式的全局模式 则返回一个数组 数组中的元素依次是第一个匹配的文本 与子模式匹配的子串 此外数组的index属性表示文本匹配的位置 input表示被匹配的字符串
+	//如果有匹配的且是正则表达式的全局模式 则返回的数组只包含所有匹配的文本
+	//var str = 'abcd 123 bcd 456 aha';
+	/*var arr = str.match('bc');
+	console.log(arr);
+	console.log(arr[0]);//bc
+	console.log(arr.index); //1
+	console.log(arr.input); //abcd 123 bcd 456 aha */
+	/*var arr = str.match(/\d+/);
+	console.log(arr);
+	console.log(arr[0]);//123
+	console.log(arr.index); //5
+	console.log(arr.input); //abcd 123 bcd 456 aha */
+	/*var arr = str.match(/\d+/g);
+	console.log(arr);
+	console.log(arr[0]);//123
+	console.log(arr[1]);//456 */
+	//var arr = str.match('xx');
+	//console.log(arr); //null
+
+	//stringObject.replace(regexp/substr,replacement)
+	//替换字符串中的指定的子串或与正则表达式匹配的子串为指定的字符串 并返回替换后的结果
+	//var str = 'You love her, but she does not love you';
+	//var newStr = str.replace('love','...');
+	//console.log(newStr); //You ... her, but she does not love you
+	//console.log(str.replace(/love/,'...')); //You ... her, but she does not love you
+	//console.log(str.replace(/love/g,'...')); //You ... her, but she does not ... you 
+	//$在replacement中有特殊的含义 $n表示与第n个子表达式匹配的文本 $&表示匹配的文本 $$才表示$
+	//console.log(str.replace(/love/g,'$&*')); //You love* her, but she does not love* you
+	//第二个参数也可以是一个函数 函数的参数依次为匹配的文本即与子表达式匹配的串 用函数的返回值替换
+	/*console.log(str.replace(/love/g,function(txt){
+		return txt.toUpperCase();
+	})); //You LOVE her, but she does not LOVE you */
+
+	//stringObject.search(regexp)
+	//search方法与indexOf类似但是它总是从字符串的开始出检索 且它支持正则表达式
+	/*var str = 'thin123kin34g';
+	console.log(str.search('in'));//2
+	console.log(str.search(/\d+/));//4
+	console.log(str.search('x'));//-1 */
+
+	//stringObject.split(separator,howmany)
+	//把字符串分割为字符串数组
+	/*var str = 'abc123def126hijk';
+	console.log(str.split('1')); //["abc", "23def", "26hijk"]
+	console.log(str.split('12')); //["abc", "3def", "6hijk"]
+	console.log(str.split(/\d+/)); //["abc", "def", "hijk"]
+	console.log(str.split('x'));//["abc123def126hijk"]
+	console.log(str.split('')); //分割出所有字符
+	console.log(str.split());//["abc123def126hijk"] */
+
+
+
+</script>
+</html>

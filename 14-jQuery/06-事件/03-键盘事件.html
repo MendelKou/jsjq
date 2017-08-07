@@ -1,0 +1,48 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="Keywords" content="">
+		<meta name="Description" content="">
+		<title></title>
+		
+		<style type="text/css">
+			body,div,p,h1,h2,h3,h4,h5,h6,ul,ol,dl,dd,fieldset{margin:0;}
+			ul,ol,input,textarea,th,td,fieldset,legend{padding:0;}
+			li{list-style:none;}
+			body{font:12px "微软雅黑";}
+			a{text-decoration:none;}
+			img,button{border:none;}
+			table{border-collapse:collapse;}
+			.clearfix:after{content:" ";display:block;clear:both;height:0;visibility:hidden;}
+			
+		</style>
+	</head>
+<body>
+	<input id="input1" type="text"/>
+
+<script type="text/javascript" src="../jquery-1.8.3/jquery.min.js"></script>
+<script type="text/javascript">
+	
+	$(function(){
+		//keydown 键盘按键被按下时触发 如果按下不放 则会被连续触发
+		/*$('#input1').keydown(function(e){
+			console.log(e.keyCode);
+		});*/
+
+		//keyup 键盘按键被释放时触发
+		/*$('#input1').keyup(function(e){
+			console.log(e.keyCode);
+		});*/
+
+		//keypress 与keydown类似 只是只有按下字符键是才有效
+		/*$('#input1').keypress(function(e){
+			console.log(e.keyCode);
+		});*/
+
+	});
+
+
+</script>
+</body>
+</html>

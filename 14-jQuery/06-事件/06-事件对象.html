@@ -1,0 +1,76 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="Keywords" content="">
+		<meta name="Description" content="">
+		<title></title>
+		
+		<style type="text/css">
+			body,div,p,h1,h2,h3,h4,h5,h6,ul,ol,dl,dd,fieldset{margin:0;}
+			ul,ol,input,textarea,th,td,fieldset,legend{padding:0;}
+			li{list-style:none;}
+			body{font:12px "微软雅黑";height:3000px;}
+			a{text-decoration:none;}
+			img,button{border:none;}
+			table{border-collapse:collapse;}
+			.clearfix:after{content:" ";display:block;clear:both;height:0;visibility:hidden;}
+			
+			#div1{width:200px;height:150px;margin:20px auto 0;padding-top:50px;background:red;}
+			#div1 div{width:100px;height:100px;margin:0 auto;background:green;}
+		</style>
+	</head>
+<body>
+	<div id="div1">
+		<div id="div2"></div>
+	</div>
+	<p><a id="a1" href="http://www.baidu.com">百度</a></p>
+
+
+
+<script type="text/javascript" src="../jquery-1.8.3/jquery.min.js"></script>
+<script type="text/javascript">
+	
+	$(function(){
+		//事件处理函数可以接受一个参数 这个参数是事件对象
+		/*$(document).click(function(e){ //名字随便起
+			//pageX,pageY表示鼠标在页面上的坐标 注意不是相对于浏览器可视窗口 页面滚动时也会影响
+			//console.log(e.pageX+','+e.pageY);
+		});*/
+
+		//event.target 最初触发事件的DOM元素。 
+		//通常用于比较 event.target 和 this 来确定事件是不是由于冒泡而触发的
+		//event.currentTarget 在事件冒泡阶段中的当前DOM元素 
+
+		/*$('#div1').click(function(e){
+			//console.log(e.target === document.getElementById('div1'));
+			//console.log(e.target === this);
+			//console.log(e.currentTarget === this); //总是为true
+		});*/
+
+		//event.preventDefault() 阻止默认事件行为的触发
+		/*$('#a1').click(function(e){
+			e.preventDefault();
+			//e.type表示事件类型
+			$(this).after('Default '+e.type+' is prevented.');
+		});*/
+
+		/*$('#div1').click(function(){
+			$(this).css('background','#f60');
+		});
+		$('#div2').click(function(e){
+			$(this).css('background','blue');
+			e.stopPropagation(); //禁止事件冒泡
+		});*/
+
+		//event.timeStamp 事件触发时距离1970年1月1日的毫秒数。
+		/*$('#div1').click(function(e){
+			console.log(e.timeStamp);
+		});*/
+
+	});
+
+
+</script>
+</body>
+</html>

@@ -1,0 +1,51 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="Keywords" content="">
+		<meta name="Description" content="">
+		<title></title>
+		
+		<style type="text/css">
+			body,div,p,h1,h2,h3,h4,h5,h6,ul,ol,dl,dd,fieldset{margin:0;}
+			ul,ol,input,textarea,th,td,fieldset,legend{padding:0;}
+			li{list-style:none;}
+			body{font:12px "微软雅黑";}
+			a{text-decoration:none;}
+			img,button{border:none;}
+			table{border-collapse:collapse;}
+			.clearfix:after{content:" ";display:block;clear:both;height:0;visibility:hidden;}
+			
+		</style>
+	</head>
+<body>
+<script type="text/javascript">
+	//var xhr = new XMLHttpRequest(); //测试后发现Chrome,FF,IE8均支持
+	//console.log(xhr);
+
+	//封装一个兼容性较好的获取xhr的方法
+	/*function createXhr(){
+		if(typeof XMLHttpRequest != 'undefined'){
+			return new XMLHttpRequest();
+		}else if(typeof ActiveXObject != 'undefined'){
+			var versions = ['MSXML2.XMLHttp.6.0','MSXML2.XMLHttp.3.0','MSXML2.XMLHttp'];
+			for(var i = 0; i < version2.length; ++i){
+				try{
+					return new ActiveXObject(versions[i]);
+				}catch(e){
+					//处理异常：跳过异常
+				}
+			}
+		}else{
+			throw new Error('你的浏览器不支持XHR对象');
+		}
+	}
+	alert(createXhr()); */
+</script>
+<!--将封装的createXhr方法放入单独的js文件中 通过引入来让多个页面可用-->
+<script type="text/javascript" src="01-createXhr.js"></script>
+<script type="text/javascript">
+	console.log(createXhr());
+</script>
+</body>
+</html>

@@ -1,0 +1,87 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="Keywords" content="">
+		<meta name="Description" content="">
+		<title></title>
+		
+		<style type="text/css">
+			body,div,p,h1,h2,h3,h4,h5,h6,ul,ol,dl,dd,fieldset{margin:0;}
+			ul,ol,input,textarea,th,td,fieldset,legend{padding:0;}
+			li{list-style:none;}
+			body{font:12px "微软雅黑";}
+			a{text-decoration:none;}
+			img,button{border:none;}
+			table{border-collapse:collapse;}
+			.clearfix:after{content:" ";display:block;clear:both;height:0;visibility:hidden;}
+			
+		</style>
+	</head>
+<body>
+	<form action="http://www.baidu.com" target="_blank">
+		姓名：<input id="input-name" name="name" type="text"/><br>
+		简介：<textarea id="textarea-introduction" name="introduction"></textarea><br>
+		省份：
+		<select id="select-province" name="province">
+			<option value="BeiJing">北京</option>
+			<option value="ShangHai">上海</option>
+			<option value="GuangDong">广东</option>
+			<option value="HeBei">河北</option>
+			<option value="ShannXi">陕西</option>
+		</select><br>
+		<input type="submit" value="提交"/>
+	</form>
+
+<script type="text/javascript" src="../jquery-1.8.3/jquery.min.js"></script>
+<script type="text/javascript">
+	
+	$(function(){
+		//focus 获取焦点事件 当元素或获取到焦点是触发 有些元素是没有焦点事件的
+		//当页面上只有一个可以获得焦点的元素时 页面加载时默认将获得焦点
+		/*$('#input-name').focus(function(){
+			console.log('我获得了焦点');
+		});*/
+
+		//blur 失去焦点事件
+		/*$('#input-name').blur(function(){
+			console.log('我失去了焦点');
+		});*/
+
+		//change 元素的值发生改变时触发
+		//change事件只适用于输入框，文本域，select元素 并且对于输入框与文本域 只有在失去焦点后触发
+		/*$('#input-name').change(function(){
+			console.log($(this).val());
+		});*/
+		/*$('#textarea-introduction').change(function(){
+			console.log($(this).val());
+		});*/
+		/*$('#select-province').change(function(){
+			console.log($(this).val());
+		});*/
+
+		//select 当textarea或input中的文本被选中时触发
+		/*$('#input-name').select(function(){
+			console.log($(this).val());
+		});*/
+	
+		//submit　表单提交是触发
+		/*$('form').submit(function(){
+			return confirm('确定要提交吗?');
+		});*/
+
+		//绑定事件时 还可以传递参数供事件处理函数使用
+		/*$('#input-name').change('abc',function(event){ //event名字是任意的 但都是表示事件对象
+			console.log(event.data); //abc
+			console.log(event);
+		});*/
+		/*$('#input-name').change({name:'kmd',age:24},function(event){ //event名字是任意的 但都是表示事件对象
+			console.log(event.data);
+		});*/
+
+	});
+
+
+</script>
+</body>
+</html>

@@ -1,0 +1,40 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="Keywords" content="">
+		<meta name="Description" content="">
+		<title></title>
+		
+		<style type="text/css">
+			body,div,p,h1,h2,h3,h4,h5,h6,ul,ol,dl,dd{margin:0;}
+			ul,ol,input{padding:0;}
+			ul,ol{list-style:none;}
+			body{font:12px "微软雅黑";}
+			a{text-decoration:none;color:#000;}
+			img,button{border:none;}
+
+			.box1{width:100px;height:100px;background:red;}
+			#box2{width:100px;height:100px;background:green;margin-top:10px;}
+		</style>
+	</head>
+<body>
+	<!--内联模型-->
+	<div class="box1" onclick="alert('hello');"></div> 
+	<div id="box2"></div>
+</body>
+<script type="text/javascript">
+/*
+	事件模型
+		1.内联模型：事件处理代码写在html的属性当中 例如：<div onclick="alert('hello');"></div>
+		  内联模型将html与js代码混合 违背了html与js分离的原则
+		2.脚本模型：js代码写在脚本中 利于html与js代码分离
+*/
+//脚本模型
+var oDiv = document.getElementById('box2');
+oDiv.onclick = function(){
+	alert('hi');
+};
+
+</script>
+</html>

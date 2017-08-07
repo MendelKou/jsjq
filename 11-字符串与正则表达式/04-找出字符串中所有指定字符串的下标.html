@@ -1,0 +1,59 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="Keywords" content="">
+		<meta name="Description" content="">
+		<title></title>
+		
+		<style type="text/css">
+			body,div,p,h1,h2,h3,h4,h5,h6,ul,ol,dl,dd{margin:0;}
+			ul,ol,input{padding:0;}
+			li{list-style:none;}
+			body{font:12px "微软雅黑";}
+			a{text-decoration:none;}
+			img,button{border:none;}
+			
+		</style>
+	</head>
+<body>
+	
+</body>
+<script>
+	//找出字符串中所有指定字符串的小标
+	//1.自己实现
+	var str = 'fred fed ted bread,ted fed fred bread';
+	var arr = [];
+	//var searchVal = 'ed';
+	/*var flag = true;
+	for(var i=0; i<str.length; ++i){
+		flag = true;
+		for(var j=0,k=i; j<searchVal.length && k<str.length; ++j,++k){
+			if(str[k] != searchVal[j]){
+				flag = false;
+				break;
+			}
+		}
+		if(k==str.length && j<searchVal.length){
+			flag = false;
+		}
+		if(flag){
+			arr.push(i);
+		}
+	}
+	console.log(arr);*/
+
+
+	//借助indexOf方法
+	/*var index = -1;
+	while((index = str.indexOf('d',index+1)) > 0){
+		arr.push(index);
+	}
+	console.log(arr);*/
+
+	//测试
+	//console.log('abc'.indexOf('a',100)); //-1
+
+
+</script>
+</html>

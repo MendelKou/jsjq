@@ -1,0 +1,121 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="Keywords" content="">
+		<meta name="Description" content="">
+		<title></title>
+		
+		<style type="text/css">
+			body,div,p,h1,h2,h3,h4,h5,h6,ul,ol,dl,dd,fieldset{margin:0;}
+			ul,ol,input,textarea,th,td,fieldset,legend{padding:0;}
+			li{list-style:none;}
+			body{font:12px "微软雅黑";}
+			a{text-decoration:none;}
+			img,button{border:none;}
+			table{border-collapse:collapse;}
+			.clearfix:after{content:" ";display:block;clear:both;height:0;visibility:hidden;}
+
+		</style>
+	</head>
+<body>
+<script type="text/javascript">
+
+	//console.log(window.document === document); //true
+	//console.log(document.charset);
+	//console.log(document.characterSet);
+	//console.log(window.location === document.location); //true
+	//console.log(window.location);
+	/*
+	console.log(document.location); //地址对象
+	//document.location.href = 'http://www.baidu.com/'; //转到新的地址
+	console.log(document.location.href); //url
+	console.log(document.location.origin);
+	console.log(document.location.pathname); //文件路径
+	console.log(document.location.protocol); //协议
+	console.log(document.doctype);
+	console.log(document.domain);
+	console.log(document.xmlEncoding);
+	console.log(document.xmlVersion);
+	console.log(document.xmlStandalone);
+	*/
+	
+
+	//节点类型常量
+	/*
+	console.log(document.ELEMENT_NODE);//1
+	console.log(document.ATTRIBUTE_NODE);//2
+	console.log(document.TEXT_NODE);//3
+	console.log(document.COMMENT_NODE);//8
+	*/
+	
+	//document的事件会冒泡到window
+	//通过禁止默认事件或返回false来禁止默认右键菜单
+	/*document.oncontextmenu = function(ev){
+		var e = ev || window.event;
+		console.log('document.oncontextmenu');
+		e.preventDefault();
+	};
+	window.oncontextmenu = function(ev){
+		var e = ev || window.event;
+		console.log('window.oncontextmenu');
+		e.preventDefault();
+	};*/
+	
+	/*for(var k in window){
+		console.log(k);
+	}*/
+	
+	//触发顺序 onkeydown->onkeypress->onkeyup
+	/*document.onkeydown = function(ev){
+		var e = ev || window.event;
+		console.log('onkeydown');
+		console.log(e.altKey);
+		console.log(e.shiftKey);
+		console.log(e.ctrlKey);
+	};
+	document.onkeypress = function(){
+		console.log('onkeypress');
+	};
+	document.onkeyup = function(){
+		console.log('onkeyup');
+	};*/
+
+	//触发顺序 onmousedown->onmouseup->onclick
+	/*document.onmousedown = function(){
+		console.log('onmousedown');
+	};
+	document.onmouseup = function(){
+		console.log('onmouseup');
+	};
+	document.onclick = function(ev){
+		var e = ev || window.event;
+		console.log('onclick');
+		console.log(e.button);
+		console.log(e.altKey);
+		console.log(e.shiftKey);
+		console.log(e.ctrlKey);
+	};*/
+
+	//var a = prompt('请输入','ss');
+	//console.log(a);
+	
+</script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

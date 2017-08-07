@@ -1,0 +1,46 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="Keywords" content="">
+		<meta name="Description" content="">
+		<title></title>
+		
+		<style type="text/css">
+			body,div,p,h1,h2,h3,h4,h5,h6,ul,ol,dl,dd{margin:0;}
+			ul,ol{padding:0;list-style:none;}
+			body{font-size:12px;font-family:"微软雅黑";}
+			a{text-decoration:none;color:#000;}
+			img,button{border:none;}
+			
+			#div1{
+				border:4px solid red;
+			}
+		</style>
+	</head>
+<body>
+	<div id="div1">我是div1<p>我是段落1</p><p id="p2">我是段落<span>2</span></p><p>我是段落3</p></div>
+</body>
+<script>
+	/*
+		firstChild 第一个子节点
+		lastChild 最后一个子节点
+		previousSibling 上一个同级节点
+		nextSibling 下一个同级节点
+	*/
+	var oDiv = document.getElementById('div1');
+	//console.log(oDiv.firstChild);
+	console.log(oDiv.firstChild.nodeType);
+	console.log(oDiv.firstChild.nodeName);
+	console.log(oDiv.firstChild.nodeValue);
+	//console.log(oDiv.lastChild);
+	console.log(oDiv.lastChild.nodeType);
+	console.log(oDiv.lastChild.nodeName);
+	console.log(oDiv.lastChild.nodeValue);
+
+	/*var oP = document.getElementById('p2');
+	console.log(oP.previousSibling);
+	console.log(oP.nextSibling); */
+	
+</script>
+</html>

@@ -1,0 +1,97 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="Keywords" content="">
+		<meta name="Description" content="">
+		<title></title>
+		
+		<style type="text/css">
+			body,div,p,h1,h2,h3,h4,h5,h6,ul,ol,dl,dd,fieldset{margin:0;}
+			ul,ol,input,textarea,th,td,fieldset,legend{padding:0;}
+			li{list-style:none;}
+			body{font:12px "微软雅黑";}
+			a{text-decoration:none;}
+			img,button{border:none;}
+			table{border-collapse:collapse;}
+			.clearfix:after{content:" ";display:block;clear:both;height:0;visibility:hidden;}
+			
+			
+		</style>
+	</head>
+<body>
+	
+<script type="text/javascript">
+	/*var obj = {};
+	console.log(obj.constructor === Object);//true
+	//ES5新的Object.getPrototypeOf方法用于获取对象的原型
+	console.log(obj.constructor.prototype === Object.getPrototypeOf(obj));//true 
+	//有些浏览器对外暴露了__proto__属性，它直接指向对象的原型
+	console.log(obj.__proto__ === Object.prototype);
+
+	//isPrototypeOf方法可检测一个对象是否是另一个对象的原型或它的祖先原型 */
+	/*var o = {x:1};
+	var p = Object.create(o);
+	console.log(o.isPrototypeOf(p));
+	console.log(Object.prototype.isPrototypeOf(p)); //true */
+
+	/*var obj = {};
+	console.log(obj.toString());
+
+	//获取对象的类属性
+	function classOf(obj){
+		if(obj === null) return "Null";
+		if(obj === undefined) return "undefined";
+		return Object.prototype.toString.call(obj).slice(8,-1);
+	}
+
+	var str = "abc";
+	console.log(str.toString()); //字符串类String重写了toString方法 它返回字符串本身 
+	console.log(classOf(str)); */
+
+	//ES5定义了查询与设置对象可扩展性的方法 注：可扩展性指的是是否可以给对象添加新的属性
+	/*var obj = {};
+	console.log(Object.isExtensible(obj)); //true 我们创建的对象默认是可扩展的
+	obj.a = 'a';
+	console.log(obj.a);
+	Object.preventExtensions(obj); //可扩展性一旦设置为false 则无法改为true
+	console.log(Object.isExtensible(obj)); //false 
+	obj.b = 'b';//失效
+	console.log(obj.b);//undefined */
+
+	//Object.seal方法不仅将对象设置为不可扩展 还将对象的自由属性设置为不可配置
+	/*var obj = {a:1,b:2};
+	console.log(Object.isSealed(obj));//false
+	delete obj.b;
+	console.log(obj.b);//undefined
+	Object.seal(obj);
+	console.log(Object.isSealed(obj));//true
+	delete obj.a;//不可配置
+	console.log(obj.a);//1 */
+
+	//Object.freeze方法更严格地“冻结”对象 处理seal的功能外 还将自有属性设置为只读 但存取器的setter不受影响
+	/*var obj = {a:1,b:1,
+		get c(){return this.b;},
+		set c(v){this.b = v;}
+	};
+	console.log(Object.isFrozen(obj));
+	obj.a = 2;
+	obj.c = 2;
+	console.log(obj);
+	Object.freeze(obj);
+	console.log(Object.isFrozen(obj));
+	obj.a = 3;
+	obj.c = 3;
+	console.log(obj); */
+
+	/*var obj = Object.create({a:1},{x:{value:'xxx',writable:false}});
+	console.log(obj);
+	console.log(Object.getOwnPropertyNames(obj));
+	console.log(Object.getOwnPropertyDescriptor(obj,'x'));
+	console.log(obj.a); */
+
+
+
+</script>
+</body>
+</html>

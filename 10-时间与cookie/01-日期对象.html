@@ -1,0 +1,114 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="Keywords" content="">
+		<meta name="Description" content="">
+		<title></title>
+		
+		<style type="text/css">
+			body,div,p,h1,h2,h3,h4,h5,h6,ul,ol,dl,dd{margin:0;}
+			ul,ol,input{padding:0;}
+			li{list-style:none;}
+			body{font:12px "微软雅黑";}
+			a{text-decoration:none;color:#000;}
+			img,button{border:none;}
+			
+		</style>
+	</head>
+<body>
+<script>
+	/*
+		js内置的Date函数 可以创建出表示日期的对象
+	*/
+
+	//无参
+	//var date = new Date(); //不给参数时 表示当前本地时间
+	//console.log(date); 
+
+	//有参
+	//1.字符串 时:分:秒 月/日/年
+	//var date = new Date('12:50:59 3/1/2017');
+	//console.log(date); //Wed Mar 01 2017 12:50:59 GMT+0800 (中国标准时间)
+	//未指定的时间默认为00:00:00
+	//var date = new Date('7/7/2017'); //Fri Jul 07 2017 00:00:00 GMT+0800 (中国标准时间)
+	//console.log(date);
+	//var date = new Date('23:59:59'); //报错 Invalid Date
+	//var date = new Date('3/2017'); //报错 Invalid Date
+	//console.log(date);
+	//2.数字 年 月 日 时 分 秒
+	//var date = new Date(2017,1,2,3,4,5); //注意此时表示月份的数字从0开始 即0表示一月
+	//console.log(date); //Thu Feb 02 2017 03:04:05 GMT+0800 (中国标准时间)
+	//可以省略后面的参数
+	//var date = new Date(2017,1,2,3,4); 
+	//console.log(date);//Thu Feb 02 2017 03:04:00 GMT+0800 (中国标准时间)
+	//var date = new Date(2017,1,2,3); 
+	//console.log(date);//Thu Feb 02 2017 03:00:00 GMT+0800 (中国标准时间)
+	//var date = new Date(2017,1,2); 
+	//console.log(date);//Thu Feb 02 2017 00:00:00 GMT+0800 (中国标准时间)
+
+
+	//使用getXXX方法获取时间分量
+	//var d = new Date();
+	/*var year = d.getFullYear();
+	console.log(year);
+	var month = d.getMonth(); //注意：月份从0开始
+	console.log(month);
+	var date = d.getDate();
+	console.log(date);
+	var hours = d.getHours();//0~23
+	console.log(hours);
+	var day = d.getDay(); //返回星期(0~6 依次表示周日~周六)
+	console.log('星期'+day);
+	var minutes = d.getMinutes();
+	console.log(minutes);
+	var seconds = d.getSeconds();
+	console.log(seconds);
+	var milliseconds = d.getMilliseconds(); //获取秒中的毫秒(0~999)
+	console.log(milliseconds);
+	var time = d.getTime(); //返回 1970 年 1 月 1 日至今的毫秒数
+	console.log(time);
+	//getTimezoneOffset() 方法可返回格林威治时间和本地时间之间的时差，以分钟为单位。
+	var timezoneOffset = d.getTimezoneOffset();
+	console.log(timezoneOffset); //返回的是格林威治时间-本地时间的分钟数 */
+
+	//getUTCXXX系列方法 根据UTC时间返回时间分量
+	/*console.log('hours:'+d.getHours());
+	console.log('UTCHours:'+d.getUTCHours());*/
+
+
+	//使用setXXX系列方法设置时间分量
+	/*d.setFullYear(2016); //设置年 其它分量不变
+	console.log(d);
+	d.setMonth(4); //月份从0开始
+	console.log(d);
+	d.setDate(33); //如果超出范围 则自动调整
+	console.log(d);
+	d.setHours(23);
+	console.log(d);
+	d.setMinutes(50);
+	console.log(d);
+	d.setSeconds(59);
+	console.log(d);*/
+
+	//parse方法将一个表示时间的字符串解析为1970/1/1 00:00:00到此时间的毫秒数
+	//该方法时Date函数的静态方法
+	/*var ms = Date.parse('2017/3/8 14:49:00');
+	console.log(ms);
+	console.log(new Date().getTime()); */
+	//console.log(Date.parse()); //NaN
+	//console.log(Date.parse('ok')); //NaN
+
+	//一系列的toString方法
+	/*var d = new Date();
+	console.log(d.toString());
+	console.log(d.toDateString());
+	console.log(d.toTimeString());
+	console.log(d.toLocaleString()); //根据本地时间格式转换为字符串
+	console.log(d.toLocaleDateString());
+	console.log(d.toLocaleTimeString());
+	console.log(d.toUTCString()); //根据世界时把Date对象转换为字符串 */
+
+</script>
+</body>
+</html>

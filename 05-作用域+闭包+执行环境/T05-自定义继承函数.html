@@ -1,0 +1,42 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="Keywords" content="">
+		<meta name="Description" content="">
+		<title></title>
+		
+		<style type="text/css">
+			body,div,p,h1,h2,h3,h4,h5,h6,ul,ol,dl,dd,fieldset{margin:0;}
+			ul,ol,input,textarea,th,td,fieldset,legend{padding:0;}
+			li{list-style:none;}
+			body{font:12px "微软雅黑";}
+			a{text-decoration:none;}
+			img,button{border:none;}
+			table{border-collapse:collapse;}
+			.clearfix:after{content:" ";display:block;clear:both;height:0;visibility:hidden;}
+			
+		</style>
+	</head>
+<body>
+<script type="text/javascript">
+	function inherit(p){
+		if(p == null) throw TypeError();
+		if(Object.create){
+			return Object.create(p); //ES5中的Object.create方法以指定的对象为原型创建对象
+		}
+		if(typeof p != 'object' && typeof p != 'function') throw TypeError();
+		function f(){}
+		f.prototype = p;
+		return new f();
+	}
+
+	var p = {'a':'1'};
+	var obj = inherit(p);
+	console.log(obj.a);	
+
+
+	
+</script>
+</body>
+</html>

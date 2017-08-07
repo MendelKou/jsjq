@@ -1,0 +1,33 @@
+<!doctype html>
+<html>
+	<head>
+		<title></title>
+		<meta charset="utf-8">
+		<meta name="keywords" content="">
+		<meta name="description" content="">
+		<style type="text/css">
+			*{margin:0;padding:0;}
+			body{padding-top:1px;}
+			#div1{width:200px;height:200px;margin:50px auto 0;background:red;}
+		</style>
+	</head>
+	<body>
+		<div id="div1">dfadf</div>
+	</body>
+<script>
+	window.onload = function(){
+		var div1 = document.getElementById('div1');
+
+		function fn(){
+			alert(this); 
+		};
+
+		if(div1.addEventListener){
+			div1.addEventListener('click',fn,false);
+		}else{
+			div1.attachEvent('onclick',fn,false);//ie10以下把fn中的this解释为window
+		}
+
+	};
+</script>
+</html>

@@ -1,0 +1,83 @@
+<!doctype html>
+<html>
+<script>
+	/*
+		顺序:
+		readyState=uninitialized //XML对象被产生 但文件尚未开始解析
+		readyState=loading  //加载程序进行中 但文件尚未开始解析
+		readyState=loaded //部分文件已经加载且被解析 但对象模型尚未生成
+		readyState=interactive  //文档完成加载 但是诸如图像、样式表之类的资源仍在加载 此情况下文档模型是有效但是只读的
+		DOMContentLoaded事件 //形成的完整DOM 不理会图像,js,css等资源文件是否加载完毕 这是给元素添加事件的好时机 JQuery$(document).ready就是在这个阶段执行的
+		readyState=complete //对象加载完毕
+		onload事件
+	*/
+	document.onreadystatechange = function(){
+		console.log('readyState='+document.readyState);
+		if(document.readyState === 'interactive'){
+			var imgDom = document.getElementById('img1');
+			console.log(imgDom);
+		}
+	};
+	document.addEventListener('DOMContentLoaded',function(){
+		console.log('DOMContentLoaded');
+	},false);
+	window.onload = function(){
+		console.log('onload');
+	};
+</script>
+	<head>
+		<meta charset="utf-8">
+		<meta name="Keywords" content="">
+		<meta name="Description" content="">
+		<title></title>
+		
+		<style type="text/css">
+			body,div,p,h1,h2,h3,h4,h5,h6,ul,ol,dl,dd,fieldset{margin:0;}
+			ul,ol,input,textarea,th,td,fieldset,legend{padding:0;}
+			li{list-style:none;}
+			body{font:12px "微软雅黑";}
+			a{text-decoration:none;}
+			img,button{border:none;}
+			table{border-collapse:collapse;}
+			.clearfix:after{content:" ";display:block;clear:both;height:0;visibility:hidden;}
+			
+		</style>
+		
+
+	</head>
+<body>
+	<div id="box">啦啦啦</div>
+	<img src="images/photo-1.jpg" id="img1"/>
+
+	
+<script type="text/javascript">
+	
+	/*for(var k in document){
+		//console.log(k);
+		if(k.indexOf('on') === 0){
+			console.log(k);
+		}
+	}*/
+
+	//如果compatMode为CSS1Compat则说明浏览器工作在标准模式 
+	//如果为BackCompat或undefined则为怪异模式
+	//console.log(document.compatMode);
+</script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

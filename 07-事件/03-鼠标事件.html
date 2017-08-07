@@ -1,0 +1,73 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="Keywords" content="">
+		<meta name="Description" content="">
+		<title></title>
+		
+		<style type="text/css">
+			body,div,p,h1,h2,h3,h4,h5,h6,ul,ol,dl,dd{margin:0;}
+			ul,ol,input{padding:0;}
+			ul,ol{list-style:none;}
+			body{font:12px "微软雅黑";}
+			a{text-decoration:none;color:#000;}
+			img,button{border:none;}
+
+			.box1{width:100px;height:100px;position:absolute;background:red;}
+		</style>
+	</head>
+<body>
+	<div class="box1" id="div1"></div> 
+</body>
+<script type="text/javascript">
+/*
+	鼠标事件：与鼠标相关的事件
+	onmousedown 鼠标按下(包括右键)
+	onmouseup 鼠标释放(包括右键)
+	onclick 鼠标左键单击(顺序：onmousedown onmouseup onclick)
+	onmouseover 鼠标移入
+	onmouseout 鼠标移出
+	onmousemove 鼠标在元素上移动是触发
+	ondblclick 双击鼠标主键时触发
+*/
+var oDiv = document.getElementById('div1');
+
+/*oDiv.onmousedown = function(){
+	this.style.width = this.clientWidth+10+'px';
+	console.log('onmousedown');
+};*/
+
+/*oDiv.onclick = function(){
+	this.style.height = this.clientHeight+10+'px';
+	console.log('onclick');
+};*/
+
+/*oDiv.onmouseup = function(){
+	var r = parseInt(Math.random()*256);
+	var g = parseInt(Math.random()*256);
+	var b = parseInt(Math.random()*256);
+	this.style.background = 'rgb('+r+','+g+','+b+')';
+	console.log('onmouseup');
+};*/
+
+/*oDiv.onmouseover = function(){
+	this.style.background = 'yellow';
+	console.log('onmouseover');
+};
+oDiv.onmouseout = function(){
+	this.style.background = 'green';
+	console.log('onmouseout');
+};*/
+
+/*oDiv.onmousemove = function(){
+	console.log('mousemove');
+};*/
+
+/*oDiv.ondblclick = function(){
+	console.log('ondblclick');
+};*/
+
+
+</script>
+</html>

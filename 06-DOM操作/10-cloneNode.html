@@ -1,0 +1,41 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="Keywords" content="">
+		<meta name="Description" content="">
+		<title></title>
+		
+		<style type="text/css">
+			body,div,p,h1,h2,h3,h4,h5,h6,ul,ol,dl,dd{margin:0;}
+			ul,ol{padding:0;list-style:none;}
+			body{font-size:12px;font-family:"微软雅黑";}
+			a{text-decoration:none;color:#000;}
+			img,button{border:none;}
+
+			
+			
+		</style>
+	</head>
+<body>
+	<ul id="list"><li style="color:red;">item<p>段落</p></li></ul>
+</body>
+<script>
+	/*
+		element.cloneNode(true/false); 克隆元素
+		true:克隆节点及其属性与后代
+		false:克隆节点及其属性 默认值
+	*/
+	
+	var oList = document.getElementById('list');
+	var oLi = oList.childNodes[0];
+	var oLiCopy = oLi.cloneNode();
+	var oLiCopy2 = oLi.cloneNode(true);
+	console.log(oLiCopy);
+	console.log(oLiCopy2);
+	oList.appendChild(oLiCopy);
+	oList.appendChild(oLiCopy2);
+	
+
+</script>
+</html>

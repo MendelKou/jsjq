@@ -1,0 +1,43 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="Keywords" content="">
+		<meta name="Description" content="">
+		<title></title>
+		
+		<style type="text/css">
+			body,div,p,h1,h2,h3,h4,h5,h6,ul,ol,dl,dd{margin:0;}
+			ul,ol{padding:0;list-style:none;}
+			body{font-size:12px;font-family:"微软雅黑";}
+			a{text-decoration:none;color:#000;}
+			img,button{border:none;}
+			
+		</style>
+	</head>
+<body>
+	<ul id="list">
+		<li>item1</li>
+		<li id="li2">item2</li>
+	</ul>
+</body>
+<script>
+	var oLi = document.getElementById('li2');
+	var newLi = document.createElement('li');
+	newLi.innerHTML = '我是新创建的节点';
+	newLi.style.color = 'red';
+
+	//实现1
+	/*Element.prototype.insertAfter = function(newObj,obj){
+		this.insertBefore(newObj,obj);
+		this.insertBefore(obj,newObj);
+	};*/
+	//oLi.parentNode.insertAfter(newLi,oLi);
+
+	//实现2
+	/*function insertAfter(newObj,obj){
+		obj.parentNode.insertBefore(newObj,obj.nextSibling);
+	}
+	insertAfter(newLi,oLi);*/
+</script>
+</html>

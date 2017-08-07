@@ -1,0 +1,38 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="Keywords" content="">
+		<meta name="Description" content="">
+		<title></title>
+		
+		<style type="text/css">
+			body,div,p,h1,h2,h3,h4,h5,h6,ul,ol,dl,dd{margin:0;}
+			ul,ol{padding:0;list-style:none;}
+			body{font-size:12px;font-family:"微软雅黑";}
+			a{text-decoration:none;color:#000;}
+			img,button{border:none;}
+
+			
+			
+		</style>
+	</head>
+<body>
+	<ul id="list">
+		<li style="color:red;">item段落</li>
+	</ul>
+</body>
+<script>
+	/*
+		appendChild() 向当前元素追加新的子节点
+	*/
+	var oList = document.getElementById('list');
+	var newLi = document.createElement('li');
+	newLi.innerHTML = '我是新添加的li';
+	newLi.style.background = 'red';
+	oList.appendChild(newLi);
+	
+	
+
+</script>
+</html>

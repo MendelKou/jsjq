@@ -1,0 +1,37 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="Keywords" content="">
+		<meta name="Description" content="">
+		<title></title>
+		
+		<style type="text/css">
+			body,div,p,h1,h2,h3,h4,h5,h6,ul,ol,dl,dd,fieldset{margin:0;}
+			ul,ol,input,textarea,th,td,fieldset,legend{padding:0;}
+			li{list-style:none;}
+			body{font:12px "微软雅黑";}
+			a{text-decoration:none;}
+			img,button{border:none;}
+			table{border-collapse:collapse;}
+			.clearfix:after{content:" ";display:block;clear:both;height:0;visibility:hidden;}
+			
+			
+		</style>
+	</head>
+<body>
+	
+<script type="text/javascript">
+	var obj = {a:'aaa',b:true,c:null,d:[1,2,3],e:{x:'xxx'},f:undefined,g:NaN,h:Infinity,
+	date:new Date(),reg:/\d+/};
+	//不支持的NaN,undefined,Infinity,-Infinity会被序列化为null
+	var jsonStr = JSON.stringify(obj); //序列化
+	console.log(jsonStr);//{"a":"aaa","b":true,"c":null,"d":[1,2,3],"e":{"x":"xxx"},"g":null,"h":null,"date":"2017-03-29T11:01:05.303Z","reg":{}}
+
+	var obj2 = JSON.parse(jsonStr);//反序列化 日期字符串不会被还原为日期对象 仍为字符串
+	console.log(obj2);
+
+
+</script>
+</body>
+</html>

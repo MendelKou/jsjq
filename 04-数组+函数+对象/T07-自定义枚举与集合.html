@@ -1,0 +1,306 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="Keywords" content="">
+		<meta name="Description" content="">
+		<title></title>
+		
+		<style type="text/css">
+			body,div,p,h1,h2,h3,h4,h5,h6,ul,ol,dl,dd,fieldset{margin:0;}
+			ul,ol,input,textarea,th,td,fieldset,legend{padding:0;}
+			li{list-style:none;}
+			body{font:12px "微软雅黑";}
+			a{text-decoration:none;}
+			img,button{border:none;}
+			table{border-collapse:collapse;}
+			.clearfix:after{content:" ";display:block;clear:both;height:0;visibility:hidden;}
+			
+			
+		</style>
+	</head>
+<body>
+<script type="text/javascript">
+	//Set值的任意集合
+	/*function Set(){
+		this.values = {}; //这是一个构造函数
+		this.n = 0; //集合中的元素数保存在对象的属性里
+		this.add.apply(this,arguments); //把所有的参数都添加进这个集合
+	}
+	//将每个参数都添加进集合中
+	Set.prototype.add = function(){
+		for(var i=0; i<arguments.length; ++i){
+			var val = arguments[i];
+			var str = Set._v2s(val);
+			if(!this.values.hasOwnProperty(str)){
+				this.values[str] = val;
+				this.n++; //集合元素计数增1
+			}
+		}
+		return this;
+	};
+	//从集合删除元素 这些元素由参数指定
+	Set.prototype.remove = function(){
+		for(var i=0; i<arguments.length; ++i){ //遍历每个参数
+			var str = Set._v2s(arguments[i]);//将字符串和值对应起来
+			if(this.values.hasOwnProperty(str)){ //如果它在集合中
+				delete this.values[str];
+				this.n--; //集合元素计数减1
+			}
+		}
+		return this;
+	};
+
+	//如果集合包含这个值 则返回true 否则返回false
+	Set.prototype.contains = function(value){
+		return this.values.hasOwnProperty(Set._v2s(value));
+	};
+
+	//返回集合的大小
+	Set.prototype.size = function(){
+		return this.n;
+	};
+
+	//返回集合中的所有元素 在指定的上下文中调用f
+	Set.prototype.foreach = function(f,context){
+		for(var s in this.values){
+			if(this.values.hasOwnProperty(s)){
+				f.call(context,this.values[s]);
+			}
+		}
+	};
+
+	//这是一个内部函数 用以将任意JavaScript值和唯一的字符串对应起来
+	Set._v2s = function(val){
+		switch(val){
+			case undefined: return 'u'; //特殊的原始值
+			case null: return 'n';
+			case true: return 't';
+			case false: return 'f';
+			default:switch(typeof val){
+				case 'number': return '#'+val; //数字都带有#前缀
+				case 'string': return '"'+val; //字符串都带有"前缀
+				default: return '@'+objectId(val); //Objs and funcs get @
+			}
+		}
+
+		//对任意对象来说 都会返回一个字符串
+		//针对不同的对象 这个函数会返回不同的字符串
+		//对于同一个对象的多次调用 总是返回相同的字符串
+		//为了做到这一点 它给o创建了一个属性 在ES5中 这个属性是不可枚举且是只读的
+		function objectId(o){
+			var prop = '|**objectid**|'; //私有属性 用以存放id
+			if(!o.hasOwnProperty(prop)){
+				o[prop] = Set._v2s.next++; //将下一个值赋给它
+			}
+			return o[prop];
+		}
+	};
+	Set._v2s.next = 100; //设置初始id的值 */
+
+	//测试发现可以枚举到|**objectid**|属性
+	/*var obj = {'|**objectid**|':'id',a:'aaa'};
+	for(var p in obj){
+		console.log(obj[p]);
+	} */
+
+	//测试Set._v2s
+	/*console.log(Set._v2s(1));
+	console.log(Set._v2s('abc'));
+	var obj = {a:'aaaa'};
+	console.log(Set._v2s(obj));
+	console.log(Set._v2s(obj));
+	console.log(Set._v2s({}));
+	console.log(Set._v2s({})); */
+
+	
+	//var mySet = new Set(1,true,false,null,undefined);
+	/*console.log(mySet.size()); //5
+	console.log(mySet.contains(null)); //true
+	console.log(mySet.contains(undefined)); //true
+ 
+	var p = {name:'Tom',age:23};
+	mySet.add(null).add(p);
+	console.log(mySet.size()); //6
+	console.log(mySet.contains(p)); //true
+
+	mySet.remove(p);
+	console.log(mySet.size()); //5
+	console.log(mySet.contains(p)); //false */
+
+	/*mySet.foreach(function(v){
+		console.log(v);
+	},null); */
+
+	//测试in判断与hasOwnProperty的区别
+	/*function A(a){
+		this.a = a;
+	}
+	A.prototype.getA = function(){return this.a;};
+	
+	function B(a,b){
+		A.call(this,a);
+		this.b = b;
+	}
+
+	(function(){
+		function F(){}
+		F.prototype = A.prototype;
+		var o = new F();
+		B.prototype = o;
+		B.prototype.constructor = B;
+	})();
+
+	B.prototype.getB = function(){return this.b;};
+
+	var obj = new B(1,2);
+	console.log(obj.getA());
+	console.log(obj.getB());
+
+	console.log('getA' in obj); //true
+	console.log(obj.hasOwnProperty('getA')); //false */
+
+	//自定义一个继承函数
+	/*function inherit(p){
+		if(p == null) throw new TypeError();
+		if(Object.create){
+			return Object.create(p);
+		}
+		if(typeof p != 'object' && typeof p !='function') throw new TypeError();
+		function f(){}
+		f.prototype = p;
+		return new f();
+	}*/
+
+	//自定义一个枚举类型
+	//这个函数创建一个新的枚举类型 实参对象表示类的每个实例的名字和值
+	//返回值是一个构造函数 它表示这个新类
+	//注意 这个构造函数也会抛出异常 不能使用它来创建该类型的新实例
+	//返回的构造函数包含名/值对的映射表
+	//包括由值组成的数组 以及一个foreach()迭代器函数
+	/*function enumeration(namesToValues){
+		//这个虚拟的构造函数是返回值
+		var enumeration = function(){throw "Can't Instantiate Enumerations";};
+		//枚举值继承自这个对象
+		var proto = enumeration.prototype = {
+			constructor:enumeration, //标识类型
+			toString:function(){return this.name;}, //返回名字
+			valueOf:function(){return this.value;}, //返回值
+			toJSON:function(){return this.name;} //转换为JSON
+		};
+		enumeration.values = []; //用以存放枚举对象的数组
+		//现在创建新类型的实例
+		for(name in namesToValues){ //遍历每个值
+			var e = inherit(proto);
+			e.name = name;
+			e.value = namesToValues[name];
+			enumeration[name] = e;
+			enumeration.values.push(e);
+		}
+		//一个类方法 用来对类的实例进行迭代
+		enumeration.foreach=function(f,c){
+			for(var i=0; i<this.values.length; i++){
+				f.call(c,this.values[i]);
+			}
+		};
+
+		//返回表示这个新类型的构造函数
+		return enumeration;
+	}*/
+
+	/*function f(){
+		var f = 1;
+		console.log(f);
+	}
+	f();//1 */
+
+	//使用4个值创建新的Coin类：Coin.Penny, Coin.Nickel等
+	/*var Coin = enumeration({Penny:1,Nickel:5,Dime:10,Quarter:25});
+	var c = Coin.Dime; //这是新类的实例
+	console.log(c instanceof Coin); 
+	console.log(c.constructor == Coin);
+	console.log(c);
+	console.log(Coin.Quarter+3*Coin.Nickel);
+	console.log(Coin.Dime == 10);
+	console.log(Coin.Dime > Coin.Nickel);
+	console.log(String(Coin.Dime)+':'+Coin.Dime);*/
+
+	//定义一个表示"玩牌"的类
+	/*function Card(suit,rank){
+		this.suit = suit; //每张牌都有花色
+		this.rank = rank; //以及点数
+	}
+	//使用枚举类型定义花色和点数
+	Card.Suit = enumeration({Clubs:1,Diamonds:2,Hearts:3,Spades:4});
+	Card.Rank = enumeration({Two:2,Three:3,Four:4,Five:5,Six:6,Seven:7,Eight:8,Nine:9,Ten:10,
+	Jack:11,Queen:12,King:13,Ace:14});
+	//定义用以描述牌面的文本
+	Card.prototype.toString = function(){
+		return this.rank.toString()+" of "+this.suit.toString();
+	};
+	//比较扑克牌中两张牌的大小
+	Card.prototype.compareTo = function(that){
+		if(this.rank < that.rank) return -1;
+		if(this.rank > that.rank) return 1;
+		return 0;
+	};
+	//以扑克牌的玩法规则对牌进行排序的函数
+	Card.orderByRank = function(a,b){return a.compareTo(b);};
+	//以桥牌的规则对牌进行排序的函数
+	Card.orderBySuit = function(a,b){
+		if(a.suit < b.suit) return -1;
+		if(a.suit > b.suit) return 1;
+		if(a.rank < b.rank) return -1;
+		if(a.rank > b.rank) return 1;
+		return 0;
+	};
+	//定义用以表示一副标准扑克牌的类
+	function Deck(){
+		var cards = this.cards = []; //一副牌就是由牌组成的数组
+		Card.Suit.foreach(function(s){ //初始化这个数组
+			Card.Rank.foreach(function(r){
+				cards.push(new Card(s,r));
+			});
+		});
+	}
+	//洗牌的方法：重新洗牌并返回洗好的牌
+	Deck.prototype.shuffle = function(){
+		//遍历数组中的每个元素，随机找出一张牌并与之(当前遍历的元素)交换
+		var deck = this.cards, len = deck.length;
+		for(var i=len-1; i>0; i--){
+			var r = parseInt(Math.random()*len),temp;
+			temp = deck[i],deck[i]=deck[r],deck[r]=temp;
+		}
+		return this;
+	};
+
+	//发牌的方法: 返回牌的数组
+	Deck.prototype.deal = function(n){
+		if(this.cards.length < n) throw 'Out of cards';
+		return this.cards.splice(this.cards.length-n,n);
+	};
+	
+	//创建一副新扑克牌 洗牌并发牌
+	var deck = new Deck();
+	deck.shuffle();
+	console.log(deck.deal(3).toString()); */
+
+</script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,107 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="Keywords" content="">
+		<meta name="Description" content="">
+		<title></title>
+		
+		<style type="text/css">
+			body,div,p,h1,h2,h3,h4,h5,h6,ul,ol,dl,dd,fieldset{margin:0;}
+			ul,ol,input,textarea,th,td,fieldset,legend{padding:0;}
+			li{list-style:none;}
+			body{font:12px "微软雅黑";}
+			a{text-decoration:none;}
+			img,button{border:none;}
+			table{border-collapse:collapse;}
+			.clearfix:after{content:" ";display:block;clear:both;height:0;visibility:hidden;}
+			
+			#div1{width:100px;height:100px;margin:50px auto 0;background:red;}
+			#div2{width:300px;height:100px;margin:20px auto 0;background:green;}
+			#div3{width:200px;height:150px;margin:20px auto 0;background:red;padding-top:50px;}
+			#div3 div{width:100px;height:100px;margin:0 auto;background:green;}
+		</style>
+	</head>
+<body>
+	<div id="div1"></div>
+	<div id="div2">
+		<input type="text"/>
+	</div>
+	<div id="div3">
+		<div></div>
+	</div>
+
+<script type="text/javascript" src="../jquery-1.8.3/jquery.min.js"></script>
+<script type="text/javascript">
+	
+	$(function(){
+		//click 鼠标单击事件 当鼠标左键按下并释放是触发
+		/*$('#div1').click(function(){
+			//$(this).html(parseInt(Math.random()*100));
+		});*/
+
+		//dblclick 鼠标双击事件
+		/*$('#div1').dblclick(function(){
+			$(this).html(parseInt(Math.random()*100));
+		});*/
+
+		//focusin 元素或子元素获得焦点时触发
+		/*$('#div2').focusin(function(){
+			console.log('获得了焦点');
+		});*/
+		//focusout 元素或子元素失去焦点时触发
+		/*$('#div2').focusout(function(){
+			console.log('失去了焦点');
+		});*/
+
+		//mousedown 鼠标键按下时触发 右键按下也可触发
+		/*$('#div1').mousedown(function(){
+			console.log(Math.random()*100);
+		});*/
+
+		//mouseup 鼠标左键释放是触发 右键释放也可以触发
+		/*$('#div1').mouseup(function(){
+			console.log(Math.random()*100);
+		});*/
+
+		//mousemove 鼠标在元素上面移动是触发 子元素也可触发
+		/*$('#div3').mousemove(function(e){
+			console.log(e.pageX+','+e.pageY);
+		});*/
+
+		//mouseover 鼠标移到元素上是触发 由于事件冒泡 子元素的mouseover也可触发
+		/*$('#div3').mouseover(function(){
+			console.log(parseInt(Math.random()*100));
+		});*/
+
+		//mouseenter与mouseover类似 只是取消了冒泡
+		/*$('#div3').mouseenter(function(){
+			console.log(parseInt(Math.random()*100));
+		});*/
+
+		//mouseout 鼠标移出元素是触发 由于事件冒泡 子元素的mouseout也可触发 特别的是移入子元素时可能会触发父元素的mouseout事件
+		/*$('#div3').mouseout(function(){
+			console.log(parseInt(Math.random()*100));
+		});*/
+
+		//mouseleave与mouseout类似 只是禁止了冒泡
+		/*$('#div3').mouseleave(function(){
+			console.log(parseInt(Math.random()*100));
+		});*/
+
+		//hover 鼠标移入移出 相当于mouseover与mouseleave的组合
+		/*$('#div3').hover(
+			function(){
+				$(this).css('background','yellow');
+			},
+			function(){
+				$(this).css('background','blue');
+			}
+		);*/
+
+	});
+
+
+</script>
+</body>
+</html>

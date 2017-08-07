@@ -1,0 +1,100 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="Keywords" content="">
+		<meta name="Description" content="">
+		<title></title>
+		
+		<style type="text/css">
+			body,div,p,h1,h2,h3,h4,h5,h6,ul,ol,dl,dd{margin:0;}
+			ul,ol,input{padding:0;}
+			ul,ol{list-style:none;}
+			body{font:12px "微软雅黑";}
+			a{text-decoration:none;color:#000;}
+			img,button{border:none;}
+
+			.box1{width:100px;height:100px;position:absolute;background:red;}
+		</style>
+		<script>
+			/*var oTxt = document.getElementById('tt'); //此时文档还未加载完毕 还没有加载元素
+			alert(oTxt); //null */
+			/*window.onload = function(){
+				var oTxt = document.getElementById('tt');
+				alert(oTxt);
+			};*/
+			//window可以省略不写
+			/*onload = function(){
+				var oTxt = document.getElementById('tt');
+				alert(oTxt);
+			};*/
+		</script>
+	</head>
+<body>
+	<!--<textarea id="tt" rows="10" cols="40"></textarea>-->
+	<!--<input type="text" id="input1"/>-->
+	<!--<form>
+		<input type="text" name="name"/><br/>
+		<input type="submit" value="提交"/> 
+		<input type="reset" value="重置"/>
+	</form>-->
+	<div id="div1" style="width:200px;height:100px;border:1px solid red;overflow:auto;">
+		快捷快递代付款的看法看到啊大啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊安抚aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+		快捷快递代付款的看法看到啊大啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊安抚快捷快递代付款的看法看到啊大啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊安抚快捷快递代付款的看法看到啊大啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊安抚快捷快递代付款的看法看到啊大啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊安抚快捷快递代付款的看法看到啊大啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊安抚
+	</div>
+</body>
+<script type="text/javascript">
+/*
+	html事件:
+		onload 文档完全加载完成时触发
+		onchange 当文本框或文本域内容改变并且失去焦点后触发
+		onfocus 当元素获取焦点时触发
+		onblur 当元素失去焦点时触发
+		onsubmit form表单提交时触发
+		onresize 窗口或框架的大小改变时在window或框架上触发
+		onscroll 滚动条滚动式触发
+*/
+/*var oTxt = document.getElementById('tt');
+alert(oTxt); */
+
+window.onload = function(){
+
+	/*var textarea = document.getElementById('tt');
+	textarea.onchange = function(){
+		console.log('onchange');
+	};*/
+
+
+	/*oInput = document.getElementById('input1');
+	oInput.onfocus = function(){
+		this.style.background = '#eee';
+	};
+	oInput.onblur = function(){
+		this.style.background = '#ccc';
+	};*/
+
+	//var oForm = document.getElementsByTagName('form')[0];
+	/*oForm.onsubmit = function(){
+		alert('submit');
+	}; */
+	/*oForm.onreset = function(){
+		alert('reset');
+	};*/
+	
+	/*window.onresize = function(){
+		console.log(document.documentElement.clientWidth+','+
+		document.documentElement.clientHeight);
+	};*/
+
+	var obj = document.getElementById('div1');
+	obj.onscroll = function(){
+		console.log('scrollLeft='+this.scrollLeft+',scrollTop='+this.scrollTop);
+	};
+	
+	
+};
+
+
+
+</script>
+</html>

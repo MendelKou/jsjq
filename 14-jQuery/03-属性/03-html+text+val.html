@@ -1,0 +1,93 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="Keywords" content="">
+		<meta name="Description" content="">
+		<title></title>
+		
+		<style type="text/css">
+			body,div,p,h1,h2,h3,h4,h5,h6,ul,ol,dl,dd,fieldset{margin:0;}
+			ul,ol,input,textarea,th,td,fieldset,legend{padding:0;}
+			li{list-style:none;}
+			body{font:12px "微软雅黑";}
+			a{text-decoration:none;}
+			img,button{border:none;}
+			table{border-collapse:collapse;}
+			.clearfix:after{content:" ";display:block;clear:both;height:0;visibility:hidden;}
+			
+			
+		</style>
+	</head>
+<body>
+
+	<div id='div1'>我是div1<p>我是div1中的段落</p></div>
+	<div id='div2'>我是div2<p>我是div2中的段落</p></div>
+
+	<ul class="list">
+		<li>111</li>
+		<li>222</li>
+		<li>333</li>
+	</ul>
+	
+	<input type="hidden" name="id" value="1"/><br>
+	<input type="text" name="name" value="Jack"/><br>
+	<input type="password" name="pwd" value="123"/><br>
+	<select name="province">
+		<option value="Beijing">北京</option>
+		<option value="ShangHai">上海</option>
+		<option value="GuangDong">广东</option>
+	</select><br>
+	<textarea rows="10" cols="40">个人简介</textarea><br>
+	<select id="multiSel" multiple="multiple" size="3">
+		<option value="Beijing" selected="selected">北京</option>
+		<option value="ShangHai" selected="selected">上海</option>
+		<option value="GuangDong">广东</option>
+		<option value="HeNan">河南</option>
+		<option value="ShanDong">山东</option>
+	</select>
+	
+<script src="../jquery-1.8.3/jquery.js"></script>
+<script type="text/javascript">
+	$(function(){
+		//html([val|fn]) 取得或设置第一个匹配元素的html内容
+		//console.log($('#div1').html());
+		//console.log($('div').html()); 
+		//$('#div1').html('<a href="http://www.baidu.com" target="_blank">百度</a>');
+		//html函数可以接受一个函数 此函数返回一个HTML字符串。接受两个参数，index为元素在集合中的索引位置，html为原先的HTML值。
+		/*
+		$('.list li').html(function(index){
+			return 'item'+(index+1);
+		});
+		*/
+
+		//text([val|fn]) 取得或设置所有匹配元素的内容
+		//console.log($('#div1').text()); //我是div1我是div1中的段落
+		//console.log($('div').text()); //我是div1我是div1中的段落我是div2我是div2中的段落
+		//$('#div2').text('div2<p>段落</p>'); //标签视为文本
+		//text可以接受一个参数
+		//此函数返回一个字符串。接受两个参数，index为元素在集合中的索引位置，text为原先的text值
+		/*
+		$('.list li').text(function(index,text){
+			return text+'-'+index;
+		});
+		*/
+
+		//val([val|fn|arr]) 获得或设置匹配元素的当前值。
+		//获取value
+		/*console.log($('input[type=hidden]').val());
+		console.log($('input[type=text]').val());
+		console.log($('input[type=password]').val());
+		console.log($('select').val());
+		console.log($('textarea').val());*/
+		//在 jQuery 1.2 中,可以返回任意元素的值了。包括select。如果多选，将返回一个数组，其包含所选的值
+		//console.log($('#multiSel').val()); //["Beijing", "ShangHai"]
+		//console.log($('input').val()); //只返回第一个匹配元素的值
+		//设置value
+		//$('input[type=text]').val('Rose');
+		//$('#multiSel').val(["ShanDong", "GuangDong"]);
+
+	});
+</script>
+</body>
+</html>

@@ -1,0 +1,55 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="Keywords" content="">
+		<meta name="Description" content="">
+		<title></title>
+		
+		<style type="text/css">
+			body,div,p,h1,h2,h3,h4,h5,h6,ul,ol,dl,dd,fieldset{margin:0;}
+			ul,ol,input,textarea,th,td,fieldset,legend{padding:0;}
+			li{list-style:none;}
+			body{font:12px "微软雅黑";}
+			a{text-decoration:none;}
+			img,button{border:none;}
+			table{border-collapse:collapse;}
+			.clearfix:after{content:" ";display:block;clear:both;height:0;visibility:hidden;}
+			
+		</style>
+	</head>
+<body>
+	<div id="div1"></div>
+	<img src="../images/6.jpg" alt="" width="400"/>
+<script type="text/javascript" src="../jquery-1.8.3/jquery.min.js"></script>
+<script type="text/javascript">
+	//ready(fn) 在页面DOM加载完成时执行函数fn 
+	//请确保body元素的onload的事件没有注册函数 否则$(document).ready()无效
+	/*$(document).ready(function(){
+		$('#div1').html(new Date().toString());
+		alert('dom加载完毕了');
+	}); */
+
+	//ready中的函数会被传入一个jQuery的应用 可以给这个参数任意起一个名字 然后就可以用这个名字表示jQuery的引用
+	/*$(document).ready(function(jq){
+		jq('#div1').css({width:'200px',height:'200px',background:'red'});
+	}); */
+
+	//ready的简写 $(fn)
+	/*$(function(){
+		$('#div1').html(Math.random());
+	});*/
+	/*$(function(jq){
+		jq('#div1').append($('img'));
+	});*/
+
+	//jQuery的ready与body的onload的区别：
+	//onload在页面内包括图片的所有元素加载完毕时执行
+	//ready在dom结构绘制完毕时就执行 因此可以避免因图片加载时间过长而延迟js代码的执行
+
+	//如果实际情况要求所有元素加载完毕时才执行函数 则推荐使用$(window).load(fn) 相当于window.onload = fn;
+
+
+</script>
+</body>
+</html>

@@ -1,0 +1,117 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="Keywords" content="">
+		<meta name="Description" content="">
+		<title></title>
+		
+		<style type="text/css">
+			body,div,p,h1,h2,h3,h4,h5,h6,ul,ol,dl,dd{margin:0;}
+			ul,ol{padding:0;list-style:none;}
+			body{font-size:12px;font-family:"微软雅黑";}
+			a{text-decoration:none;color:#000;}
+			img,button{border:none;}
+			
+			#div1{
+				border:4px solid red;
+			}
+		</style>
+	</head>
+<body>
+	<div id="div1">我是div1</div>
+	<p>我是段落1</p>
+	<p>我是段落2</p>
+	<p>我是段落3</p>
+	<div name="ok">ok div</div>
+	<p name="ok">ok p</p>
+	<a name="ok">ok a</a>
+	<div id="div2" title="divTwo">div2</div>
+</body>
+<script>
+	/*
+		浏览器会将html文件解析为节点构成的树结构 称为DOM(文档对象模型)
+		document对象就表示整个文档对象
+	*/
+
+	//getElementById返回对拥有指定 id 的第一个对象的引用。
+	/*var oDiv1 = document.getElementById('div1');	
+	//alert(oDiv1);
+	console.log(oDiv1);
+	console.log(typeof oDiv1); */
+
+	//getElementsByTagName 返回带有指定标签名的对象集合
+	/*var oPCol = document.getElementsByTagName('p');
+	alert(oPCol); //HTMLCollection
+	console.log(typeof oPCol); //object
+	console.log(oPCol.length);
+	console.log(oPCol.constructor===Array); //false
+	console.log(oPCol instanceof Array); //false
+	console.log(oPCol[0]);
+	console.log(oPCol[1]);
+	console.log(oPCol[2].innerHTML); //innerHTML是节点的内容 */
+
+	//getElementsByName 返回带有指定名称的对象集合。
+	/*var oCol = document.getElementsByName('ok');
+	alert(oCol); //NodeList
+	console.log(typeof oCol); //object
+	console.log(oCol.length);
+	console.log(typeof oCol);
+	console.log(oCol[0]);
+	console.log(oCol[1]);
+	console.log(oCol[2]); */
+
+	/*
+	元素节点的属性
+		tagName 标签名
+		innerHTML 内容
+	*/
+	/*var oDiv1 = document.getElementById('div1');
+	console.log(oDiv1.tagName);//DIV
+	console.log(oDiv1.innerHTML); */
+
+	//获取HTML标签属性
+	//var oDiv2 = document.getElementById('div2');
+	/*console.log(oDiv2.id);
+	console.log(oDiv2.title);
+	console.log(oDiv2.style);
+	console.log(oDiv2.className);
+	console.log(oDiv2.className===''); //true
+	//设置或修改属性
+	oDiv2.id = 'div02'; //id不建议修改
+	oDiv2.title = 'div2'; //id不建议修改
+	oDiv2.style.color = 'red';
+	oDiv2.className = 'box';
+	console.log(oDiv2.id);
+	console.log(oDiv2.title);
+	console.log(oDiv2.style);
+	//注意：这里是className 而不是class
+	console.log(oDiv2.className); */
+	//添加属性 不会在标签中显示
+	/*oDiv2.a = 1;
+	oDiv2.index = 3;
+	console.log(oDiv2.a);
+	console.log(oDiv2.index); */
+
+	//三个操作元素对象属性的方法
+	//var oDiv = document.getElementById('div2');
+	//获取属性值 getAttribute(属性名)
+	/*console.log(oDiv.getAttribute('id')); //div2
+	console.log(oDiv.getAttribute('title')); //divTwo
+	console.log(oDiv.getAttribute('class')); //null */
+	//设置属性 setAttribute(属性名，属性值)
+	/*oDiv.setAttribute('title','title-div2');
+	console.log(oDiv.title);
+	oDiv.setAttribute('class','box1');
+	console.log(oDiv.className); //box1
+	console.log(oDiv.getAttribute('class')); //box1 */
+	//删除属性 removeAttribute(属性名)
+	/*console.log(oDiv.title);
+	oDiv.removeAttribute('title');
+	console.log(oDiv.title);
+	console.log(oDiv.title==''); //true */
+
+
+
+</script>
+</html>

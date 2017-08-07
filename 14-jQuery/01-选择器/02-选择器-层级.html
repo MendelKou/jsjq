@@ -1,0 +1,70 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="Keywords" content="">
+		<meta name="Description" content="">
+		<title></title>
+		
+		<style type="text/css">
+			body,div,p,h1,h2,h3,h4,h5,h6,ul,ol,dl,dd,fieldset{margin:0;}
+			ul,ol,input,textarea,th,td,fieldset,legend{padding:0;}
+			li{list-style:none;}
+			body{font:12px "微软雅黑";}
+			a{text-decoration:none;}
+			img,button{border:none;}
+			table{border-collapse:collapse;}
+			.clearfix:after{content:" ";display:block;clear:both;height:0;visibility:hidden;}
+
+			#box2{position:relative;width:100px;height:100px;background:red;}
+			
+		</style>
+	</head>
+<body>
+	<ul class="list">
+		<li>我是条目1</li>
+		<li>我是条目2</li>
+		<li>我是条目3
+			<ul>
+				<li>&nbsp;&nbsp;我是条目3下的条目1</li>
+				<li>&nbsp;&nbsp;我是条目3下的条目2</li>
+				<li>&nbsp;&nbsp;我是条目3下的条目3</li>
+			</ul>
+		</li>
+		<li>我是条目4</li>
+	</ul>
+
+	<div>box1之前的div</div>
+	<div class="box1">我是div</div>
+	<p>我是段落</p>
+	<p>我是段落</p>
+	<div>我是div</div>
+	<p>我是段落</p>
+	<div>我是div
+		<div>&nbsp;&nbsp;我是子div</div>
+		<div>&nbsp;&nbsp;我是子div</div>
+	</div>
+
+
+<script src="../jquery-1.8.3/jquery.min.js"></script>
+<script type="text/javascript">
+	$(function(){
+		
+		//后代选择器
+		//console.log($('.list li').length);
+		//$('.list li').css('color','red');
+
+		//子代选择器
+		//console.log($('.list>li').length);
+		//$('.list>li').css('border','1px solid red');
+
+		//prev+next 匹配紧挨在prev元素后的next元素
+		//$('.box1+p').css('color','red');
+		//$('.box1+div').css('color','blue'); //没有匹配的元素
+
+		//prev+siblings 匹配所有prev之后的同级siblings元素
+		//$('.box1~div').css('border','1px solid red');
+	});
+</script>
+</body>
+</html>

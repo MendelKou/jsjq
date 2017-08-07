@@ -1,0 +1,44 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="Keywords" content="">
+		<meta name="Description" content="">
+		<title></title>
+		
+		<style type="text/css">
+			body,div,p,h1,h2,h3,h4,h5,h6,ul,ol,dl,dd{margin:0;}
+			ul,ol{padding:0;list-style:none;}
+			body{font-size:12px;font-family:"微软雅黑";}
+			a{text-decoration:none;color:#000;}
+			img,button{border:none;}
+			
+			
+		</style>
+	</head>
+<body>
+	<ul id="list01">
+		<li>111111</li>
+		<li>222222</li>
+		<li>333333</li>
+	</ul>
+</body>
+<script type="text/javascript">
+	//element.querySelector(css选择器) 返回与选择器匹配的第一个元素
+	/*var li = document.querySelector('li');
+	console.log(li);
+	console.log(typeof li);//object
+	li.style.backgroundColor = 'red'; */
+
+	//element.querySelectorAll(css选择器) 返回与选择器匹配的第一个元素
+	var lis = document.querySelectorAll('li');
+	console.log(lis);
+	console.log(typeof lis);
+	console.log(lis.length);
+
+	for(var i = 0; i < lis.length; ++i){
+		lis[i].innerHTML = 'item-' + (i+1);
+	}
+</script>
+
+</html>

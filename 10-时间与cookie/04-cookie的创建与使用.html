@@ -1,0 +1,51 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="Keywords" content="">
+		<meta name="Description" content="">
+		<title></title>
+		
+		<style type="text/css">
+			body,div,p,h1,h2,h3,h4,h5,h6,ul,ol,dl,dd{margin:0;}
+			ul,ol,input{padding:0;}
+			li{list-style:none;}
+			body{font:12px "微软雅黑";}
+			a{text-decoration:none;color:#000;}
+			img,button{border:none;}
+			strong{font-size:30px;}
+
+		</style>
+	</head>
+<body>
+	<button id="btn">获取cookie的信息</button>
+<script>
+	//cookie是用来保存客户端与服务器会话的客户端变量
+	//创建一个cookie document.cookie = '键名=键值'; //多个键值对间用分号分隔开
+	/*document.cookie = 'username=Jack杰克'; //如果原先存在cookie 且不存在username 则会在后面追加
+	//获取cookie的信息
+	console.log(document.cookie); //Chrome浏览器中没反应 FF与IE8打印username=Jack杰克
+	document.cookie = 'password=jack123'; 
+	console.log(document.cookie); */
+
+	window.onload = function(){
+		var btn = document.getElementById('btn');
+		btn.onclick = function(){
+			alert(document.cookie);
+		};
+	};
+
+	//cookie的有效期设置 默认的过期时间为到浏览器关闭
+	var oDate = new Date();
+	oDate.setSeconds(oDate.getSeconds()+30);
+	document.cookie = 'username=小明;expires='+oDate;
+
+	//修改cookie的值 只要重写设置同名cookie的值 就会覆盖之前的值
+	document.cookie = 'username=小花;expires='+oDate;
+
+	//删除cookie 只需要把过期时间设置为过去
+	document.cookie = 'username=小花;expires='+new Date(new Date().getFullYear()-1);
+
+</script>
+</body>
+</html>

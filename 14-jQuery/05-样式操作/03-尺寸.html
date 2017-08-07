@@ -1,0 +1,66 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="Keywords" content="">
+		<meta name="Description" content="">
+		<title></title>
+		
+		<style type="text/css">
+			body,div,p,h1,h2,h3,h4,h5,h6,ul,ol,dl,dd,fieldset{margin:0;}
+			ul,ol,input,textarea,th,td,fieldset,legend{padding:0;}
+			li{list-style:none;}
+			body{font:12px "微软雅黑";}
+			a{text-decoration:none;}
+			img,button{border:none;}
+			table{border-collapse:collapse;}
+			.clearfix:after{content:" ";display:block;clear:both;height:0;visibility:hidden;}
+			
+			.box{
+				border:1px solid red;
+				margin:10px;
+			}
+			#div1{
+				width:100px;
+				height:100px;
+				padding:10px;
+				border:5px solid red;
+			}
+			#div2{
+				width:200px;
+				height:100px;
+				padding:10px;
+				border:5px solid red;
+			}
+			
+			
+		</style>
+	</head>
+<body>
+	<div class="box" id="div1">div1</div>
+	<div class="box" id="div2">div2</div>
+	
+<script src="../jquery-1.8.3/jquery.js"></script>
+<script type="text/javascript">
+	$(function(){
+		//width([val|fn]) 取得第一个匹配元素或设置所有匹配元素的width属性 height([val]|fn)同理
+		//console.log($('div').width());//100
+		//$('div').width(300);
+		/*$('div').on('click',function(){
+			$(this).width(function(index,w){
+				return w+10;
+			});
+		});*/
+
+		//innerWidth() 获取第一个匹配元素内部区域宽度（包括补白、不包括边框）。innerHeight()同理
+		//console.log($('div').innerWidth()); //120
+
+		//outerWidth([options]) 获取第一个匹配元素外部宽度（默认包括补白和边框) 如果options为true则包括margin
+		//console.log($('div').outerWidth());//130
+		//console.log($('div').outerWidth(true));//150
+
+
+	});
+</script>
+</body>
+</html>

@@ -1,0 +1,70 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="Keywords" content="">
+		<meta name="Description" content="">
+		<title></title>
+		
+		<style type="text/css">
+			body,div,p,h1,h2,h3,h4,h5,h6,ul,ol,dl,dd{margin:0;}
+			ul,ol{padding:0;list-style:none;}
+			body{font-size:12px;font-family:"微软雅黑";}
+			img,button{border:none;}
+
+			.wrap{
+				width:1120px;
+				height:154px;
+				margin:50px auto 0;
+				border:1px solid #333;
+				position:relative;
+				overflow:hidden;
+			}
+			#list{
+				position:absolute;
+				left:-1120px;
+			}
+			#list li{
+				float:left;
+			}
+			#list li img{
+				vertical-align:bottom;
+			}
+		</style>
+	</head>
+<body>
+	<div class="wrap">
+		<ul id="list">
+			<li>
+				<img src="img/img2/1.jpg" alt="图片" width="224" height="154"/>
+			</li>
+			<li>
+				<img src="img/img2/2.png" alt="图片" width="224" height="154"/>
+			</li>
+			<li>
+				<img src="img/img2/3.jpg" alt="图片" width="224" height="154"/>
+			</li>
+			<li>
+				<img src="img/img2/4.jpg" alt="图片" width="224" height="154"/>
+			</li>
+			<li>
+				<img src="img/img2/5.jpg" alt="图片" width="224" height="154"/>
+			</li>
+		</ul>
+	</div>
+</body>
+<script>
+	window.onload = function(){
+		var oList = document.getElementById('list');
+		oList.innerHTML += oList.innerHTML;
+		oList.style.width = oList.clientWidth*2+'px'; //如果没有这句 右边会有空白
+		setInterval(function(){	
+			if(oList.offsetLeft <= -1120 ){
+				oList.style.left = '0px';
+			}
+			oList.style.left = oList.offsetLeft-10+'px';
+		},40);
+		
+	};
+</script>
+</html>

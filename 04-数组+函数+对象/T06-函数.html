@@ -1,0 +1,1043 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="Keywords" content="">
+		<meta name="Description" content="">
+		<title></title>
+		
+		<style type="text/css">
+			body,div,p,h1,h2,h3,h4,h5,h6,ul,ol,dl,dd,fieldset{margin:0;}
+			ul,ol,input,textarea,th,td,fieldset,legend{padding:0;}
+			li{list-style:none;}
+			body{font:12px "微软雅黑";}
+			a{text-decoration:none;}
+			img,button{border:none;}
+			table{border-collapse:collapse;}
+			.clearfix:after{content:" ";display:block;clear:both;height:0;visibility:hidden;}
+			
+			
+		</style>
+	</head>
+<body>
+<script type="text/javascript">
+	/*var obj = {x:'xxx',y:'yy'};
+	printProps(obj);
+	//函数声明语句 会被提前 所在前面的代码也可以调用该函数
+	function printProps(o){
+		for(var p in o){
+			console.log(p+'='+o[p]);
+		}
+	}
+
+	//变量square的声明虽然会被提前 但赋值不会被提前 所以在函数定义表达式之前该函数不可调用
+	var square = function(x){return x*x;}; //函数定义表达式
+
+	var factorial = function f(n){ //函数定义表达式的函数名称用于在函数体中指定函数本身
+		if(n<=1) return 1;
+		else return n*f(n-1);
+	};
+	console.log(square(3));
+	console.log(factorial(4)); */
+
+	
+	//嵌套函数 可以在函数中定义函数 此时这个函数只能的作用域便是它所在的函数
+	//hypotenuse 已知Rt三角形的直角边计算斜边
+	/*function hypotenuse(a,b){
+		function square(x){return x*x;}
+		return Math.sqrt(square(a)+square(b));
+	}
+	console.log(hypotenuse(3,4)); */
+
+	//在ES3和非严格模式下的ES5 普通函数调用时的上下文this是全局对象 而严格模式下是undefined
+	//判断是否为严格模式
+	/*var strict = function(){return !this;}();
+	console.log(strict); */
+
+	//作为对象属性的函数成为方法 方法调用的上下文this指定时调用方法的对象
+	/*var calculator = {
+		operand1:1,
+		operand2:2,
+		add:function(){
+			this.result = this.operand1+this.operand2;
+		}
+	};
+	//calculator.add(); 
+	//由于方法也是对象的属性所以可以使用方括号的形式调用方法
+	calculator['add']();
+	console.log(calculator.result); */
+
+	//调用嵌套函数时 它的this与普通函数调用的this相同 而不是外围函数的this
+	/*var o = {
+		f:function(){
+			var self = this; //保存外部函数的this 以供嵌套函数使用
+			console.log(this === o); //true
+			g();
+			function g(){
+				console.log(this === o); //false
+				console.log(self === o); //true
+			}
+		}
+	};
+	o.f(); */
+
+	//如果构造函数没有实参 则可以省略圆括号
+	//var o = new Object(); //等价于var o = new Object;
+
+	//构造函数如果用return语句返回了一个对象 那么它就返回这个对象 返回返回创建的对象
+	/*function F1(){
+		
+	}
+	function F2(){
+		return;
+	}
+	function F3(){
+		return 1;
+	}
+	function F4(){
+		return {x:'xxx'};
+	}
+	var o1 = new F1();
+	var o2 = new F2();
+	var o3 = new F3();
+	var o4 = new F4();
+	console.log(o1);
+	console.log(o2);
+	console.log(o3);
+	console.log(o4); */
+
+	/*console.log(Number.MAX_VALUE);
+	console.log(Number.MIN_VALUE);
+	console.log(Number.NEGATIVE_INFINITY);
+	console.log(Number.POSITIVE_INFINITY); */
+
+	//调用函数或方法时 会有一个arguments对象 它是一个类数组对象 保存传给函数的实参
+	/*function myAdd(){
+		if(arguments.length == 0){throw new Error('至少需要一个参数');}
+		var sum = 0;
+		for(var i=0,len=arguments.length; i<len; ++i){
+			sum += arguments[i];
+		}
+		return sum;
+	}
+	//console.log(myAdd());
+	console.log(myAdd(1));
+	console.log(myAdd(1,2)); */
+
+	//arguments引用的实参与形参引用的实参是同一个
+	/*function f(x){
+		console.log(x);
+		arguments[0] = null; //相当于x = null;
+		console.log(x);
+	}
+	//f(1);
+	//f([1,2]); */
+
+	//实参对象arguments还定义了callee与caller(非标准)属性
+	//callee指代当执行的函数
+	/*var factorial = function(n){
+		if(n <= 1) return 1;
+		return n*arguments.callee(n-1);
+	};
+	console.log(factorial(5)); */
+
+	//当函数的参数很多时 最好将实参包装到对象中 将对象传给函数 这样实参的顺序就无所谓了
+	//普通方式
+	/*function arraycopy(from,fromStart,to,toStart,length){
+		for(var i=0; i<length; ++i){
+			to[toStart+i] = from[fromStart+i];
+		}
+	}
+	//对象作为参数
+	function easycopy(args){
+		arraycopy(args.from,
+		args.fromStart||0,
+		args.to,
+		args.toStart||0,
+		args.length||args.from.length);
+	}
+
+	var arr = [1,2,3,4,5,6];
+	var arr2 = [];
+	var arr3 = [];
+	easycopy({'from':arr,'to':arr2});
+	easycopy({'from':arr,'fromStart':1,'to':arr3,'toStart':1,'length':3});
+	console.log(arr2);
+	console.log(arr3); */
+
+	//下面是一个检测数组或类数组对象的方法
+	//字符串和函数有length属性 可以用typeof检测将其排除
+	//在客户端js中 DOM文本节点也有length属性 可以用o.nodeType != 3将其排除
+	/*function isArrayLike(o){
+		return o && typeof o === 'object' && isFinite(o.length) && o.length >= 0 
+		&& o.length === Math.floor(o.length) && o.length < 4294967296 && o.nodeType !== 3;
+	}*/
+
+	//js中对函数参数不做检查 这样当传入的参数不合法时可能会导致一些错误 因此通常需要编写参数检查的代码
+	/*function sumOfArray(arr){
+		if(isArrayLike(arr)){
+			if(arr.length == 0){
+				return undefined;
+			}
+			var sum = 0,i,element;
+			for(i=0,len=arr.length; i<len; ++i){
+				element = arr[i];
+				if(typeof element == 'number' && isFinite(element)){
+					sum += element;
+				}
+			}
+			return sum;
+		}else{
+			throw new TypeError('参数必须为数组或类数组对象');
+		}
+	}
+	console.log(sumOfArray([1,null,undefined,Infinity,NaN,2]));//3
+	console.log(sumOfArray([1,2,3]));//6
+	var arr = {'0':100,'1':200,'2':300,'length':3};
+	console.log(sumOfArray(arr));//600
+	console.log(sumOfArray([]));
+	//console.log(sumOfArray({})); */
+
+	//一个更灵活的数组求和函数
+	/*function flexArraySum(args){
+		var total = 0,element,n,i;
+		for(i=0; i<arguments.length; ++i){
+			element = arguments[i];
+			if(element != null){
+				if(isArrayLike(element)){
+					n = flexArraySum.apply(this,element); //注意这里必须使用apply 不能使用call
+				}else if(typeof element == 'function'){
+					n = Number(element());
+				}else{
+					n = Number(element);
+				}
+				if(isNaN(n)){ //无法转换为数字 抛出异常
+					throw new TypeError('Cannot convert '+element+' to number');
+				}else{
+					total += n;
+				}
+			}
+		}
+		return total;
+	}
+
+	var arr = [1,null,undefined,function(){return 2;}];
+	var arr2 =  {'0':1,'1':100,'length':3};
+	console.log(flexArraySum(1,arr,arr2)); */
+
+	//函数可以赋给变量 然后通过这个变量调用函数
+	//var square = function(x){return x*x;};
+	//console.log(square(3));
+
+	//当函数作为对象的属性时 则称为方法
+	//var o = {square:function(x){return x*x;}};
+	//console.log(o.square(4));
+
+	//设置直接作为数组的元素
+	//var arr = [function(x){return x*x;},2];
+	//console.log(arr[0](arr[1]));
+
+	//将函数作为参数传递
+	/*function add(x,y){return x+y;}
+	function subtract(x,y){return x-y;}
+	function multiply(x,y){return x*y;}
+	function divide(x,y){return x/y;}
+
+	function operate(operation,operand1,operand2){
+		return operation(operand1,operand2);
+	}
+
+	console.log(operate(add,operate(add,2,3),operate(multiply,4,5))); */
+
+	//另一种实现
+	/*var operators = {
+		add:function(x,y){return x+y;},
+		subtract:function(x,y){return x-y;},
+		multiply:function(x,y){return x*y;},
+		divide:function(x,y){return x/y;},
+		pow:Math.pow
+	};
+
+	function operate(operator,operand1,operand2){
+		if(typeof operators[operator] == 'function'){
+			return operators[operator](operand1,operand2);
+		}else{
+			throw new Error('Unkown operator'+operator);
+		}
+	}
+	console.log(operate('add',operate('add',2,3),operate('multiply',4,5))); 
+	console.log(operate('pow',2,3)); */
+
+	//当函数需要用到一些“静态”的持久保存的值 可以把它作为函数的属性
+	/*uniqueInteger.count = 0; //由于函数声明提前 所以可以在这里使用
+	function uniqueInteger(){
+		return uniqueInteger.count++;
+	}
+	for(var i=0; i<3; ++i){
+		console.log(uniqueInteger());
+	}*/
+
+	/*function factorial(n){
+		if(isFinite(n) && n>=0 && n==Math.round(n)){
+			if(n in factorial){
+				return factorial[n];
+			}else{
+				factorial[n] = n*factorial[n-1];
+				return factorial[n];
+			}
+		}else{
+			return NaN;
+		}
+	}
+	factorial[0] = 1; //初始化缓存值
+	
+	for(var i=0; i<10; ++i){
+		console.log(factorial(i));
+	} */
+
+	//IE中的一个bug 当对象中自定义的属性与对象中不可枚举的属性同名时 for/in循环遍历不到此属性
+	/*var o = {x:'xxx',toString:null};
+	for(var p in o){
+		console.log(p+'='+o[p]);
+	}*/
+
+	//定义一个扩展函数 将第二个参数及其之后的参数复制到第一个参数中 如果存在上面的IE bug则返回修正后的版本
+	/*var extend = (function(){
+		//首次通过for/in检测是否存在bug 如果进行for/in则表明不存在那个bug
+		for(var p in {toString:null}){
+			return function extend(o){
+				for(var i=1; i<arguments.length; ++i){
+					var obj = arguments[i];
+					for(var prop in obj){
+						o[prop] = obj[prop];
+					}
+				}
+				return o;
+			};
+		}
+
+		var protoprops = ["toString","valueOf","constructor","hasOwnProperty",
+		"isPrototypeOf","propertyIsEnumerable","toLocaleString"];
+
+		return function patched_extend(o){
+			for(var i=1; i<arguments.length; ++i){
+				var obj = arguments[i];
+				for(var prop in obj){
+					o[prop] = obj[prop];
+				}
+
+				//检查特殊属性
+				for(var j=0; j<protoprops.length; ++j){
+					prop = protoprops[j];
+					if(obj.hasOwnProperty(prop)){
+						o[prop] = obj[prop];
+					}
+				}
+			}
+			return o;
+		};
+	})(); */
+
+	/*var o = {a:'aaa',b:'bbb',c:'ccc',toString:'str'};
+	var o1 = {b:'bbb2',toLocaleString:'localeStr'};
+	var o2 = {c:'ccc2',toLocaleString:'localeStr2'};
+	extend(o,o1,o2);
+	console.log(o.toString);
+	console.log(o.toLocaleString); */
+
+	//使用闭包的特性来重新定义uniqueInteger函数 使count属性不能被外界修改
+	/*var uniqueInteger = (function(){
+		var count = 0;
+		return function(){
+			return count++;
+		};
+	})();
+	for(var i=0; i<3; ++i){
+		console.log(uniqueInteger());
+	} */
+
+	//同一函数返回的多个内部函数拥有各自的独立的作用域链与私有变量
+	/*function counterFactory(){
+		var count = 0;
+		return {
+			count:function(){return count++;},
+			reset:function(){count = 0;}
+		};
+	}
+	//两个计数器拥有各自的count 互不干扰
+	var counter1 = counterFactory(), counter2 = counterFactory();
+	console.log(counter1.count());//0
+	console.log(counter2.count());//0
+	counter1.reset(); //计数器1重置为0
+	console.log(counter1.count());//0
+	console.log(counter2.count());//1 */
+
+	//作为存取器实现计数器
+	/*function counter(n){
+		return {
+			get	count(){return n++;},
+			set	count(m){
+				if(m>=n){
+					n = m;
+				}else{
+					throw Error('count can only be set to a larger number');
+				}
+			}
+		};
+	}
+
+	var c1 = counter(0);
+	var c2 = counter(1);
+	console.log(c1.count);//0
+	console.log(c2.count);//1
+	c1.count = 4;
+	console.log(c1.count);//4
+	console.log(c2.count);//2
+	//c1.count = 3; */
+
+	//利用闭包实现一个为对象添加私有属性存取器的方法
+	/*function addPrivateProperty(o,name,check){
+		var value;
+		o['get'+name] = function(){return value;};
+		o['set'+name] = function(v){
+			if(check && !check(v)){
+				throw new Error('illegal value');
+			}else{
+				value = v;
+			}
+		};
+	}
+	var o = {};
+	addPrivateProperty(o,'Name',function(v){return typeof v === 'string'});
+	o.setName('Tom');
+	console.log(o.getName());
+	o.setName(1); */
+
+	//定义一个返回返回常数的函数
+	/*function constFunc(v){
+		return function(){return v;};
+	}
+	var funcs = []; //定义一个数组用来保存常数函数
+	for(var i=0; i<10; ++i){
+		funcs[i] = constFunc(i);
+	}
+	console.log(funcs[5]()); */
+
+	//下面展示一个易犯的错误
+	/*function constFuncs(){
+		var funcs = [];
+		for(var i=0; i<10; ++i){
+			funcs.push(function(){return i;}); //这些函数是在同一次方法调用中创建的 所以它们使用的是同一个i
+		}
+		return funcs;
+	}
+	var funcs = constFuncs();
+	console.log(funcs[0]()); //10 */
+
+	//函数的本身有只读的length属性 它表示函数形参个数
+	//下面定义一个检测函数实参个数与形参是否一致的方法 它使用了非标准属性arguments.callee 因此在严格模式下不能工作
+	/*function check(args){
+		var actual = args.length;
+		var expected = args.callee.length; //arguments.callee表示arguments所属的函数
+		console.log('actual='+actual+',expected='+expected);
+		if(actual != expected){
+			throw new Error('Expected '+expected+' args, not '+actual);
+		}
+	}
+
+	function f(x,y,z){
+		check(arguments);
+		return x+y+z;
+	}
+	f(2,3); */
+
+	//ECMAScript5新增的bind方法可以将某个函数绑定到指定的对象上 然后可以把这个函数作为对象的方法来调用
+	/*function f(y){return this.x+y;}
+	var o = {x:1};
+	//var g = f.bind(o); //bind方法返回一个函数
+	//console.log(g(2));
+
+	//用以下函数模拟bind方法 这样可以兼容低版本的浏览器
+	function bind(f,o){
+		if(f.bind) return f.bind(o);
+		else return function(){
+			return f.apply(o,arguments);
+		};
+	}
+	console.log(bind(f,o)(2)); */
+	
+	//bind还会将传入的其它参数绑定至this
+	/*var sum = function(x,y){return x+y;};
+	//创建一个类似sum的函数 其中this绑定到null 第一个参数绑定到1 返回的函数只期望接受一个参数
+	var addOne = sum.bind(null,1);
+	console.log(addOne(9));*/
+
+	/*function f(y,z){return this.x+y+z;}
+	var g = f.bind({x:1},2);
+	console.log(g(3)); */
+
+	//在ECMAScript3中模拟实现bind方法
+	/*if(!Function.prototype.bind){
+		Function.prototype.bind = function(o){
+			var self = this;
+			var args = arguments;
+			return function(){
+				var arr = [];
+				for(var i=1; i<args.length; ++i){
+					arr.push(args[i]);
+				}
+				for(i=0; i<arguments.length; ++i){
+					arr.push(arguments[i]);
+				}
+				return self.apply(o,arr);
+			};
+		}
+	}
+	
+	function f(y,z){return this.x+y+z;}
+	var g = f.bind({x:1},2);
+	//console.log(g(3));
+	console.log(g.length); //在这里真正的bind方法返回的函数g的length属性值为1而模拟的为0 */
+
+	//函数也是对象 除了用普通的函数声明语句或函数直接量表达式创建函数外 可以用构造函数Function创建函数
+	//构造函数Function可以接受任意数量的字符串 最后一个字符串表示函数体 其它为参数
+	/*var f = new Function(); //空函数 相当于function(){};
+	var hello = new Function("console.log('hello');");
+	var add = new Function("x","y","return x+y;");
+	console.log(f());
+	hello();
+	console.log(add(1,2)); */
+
+	//Function创建的函数并不使用词法作用域
+	/*var scope = 'global';
+	function constructFunc(){
+		var scope = 'local';
+		return new Function("return scope;");
+	}
+	var f = constructFunc();
+	console.log(f());//global */
+
+	//检测一个对象是否诶函数
+	/*function isFunction(o){
+		return Object.prototype.toString.call(o) === '[object Function]';
+	}
+	console.log(isFunction({}));//false
+	console.log(isFunction(function(){}));//true */
+
+	//用普通方法计算数组的平均数与标准差
+	/*var arr = [1,2,3,4,5];
+	var total = 0;
+	for(var i=0; i<arr.length; ++i){
+		total += arr[i];
+	}
+	var average = total/arr.length;
+	console.log(average);
+
+	total = 0;
+	var diff;
+	for(var i=0; i<arr.length; ++i){
+		diff = arr[i]-average;
+		total += diff*diff;
+	}
+	var standardDeviation = Math.sqrt(total/arr.length);
+	console.log(standardDeviation); */
+
+	//使用ES5为数组新增的map,reduce方法实现上面的计算
+	/*var arr = [1,2,3,4,5];
+	//首先定义两个函数
+	function sum(x,y){return x+y;}
+	function square(x){return x*x;}
+	var average = arr.reduce(sum)/arr.length;
+	console.log(average);
+	var sd = Math.sqrt(arr.map(function(x){return x-average;}).map(square).reduce(sum)/arr.length);
+	console.log(sd); */
+
+	//使用自定义的map与reduce方法
+	/*var map = Array.prototype.map
+		? function(a,f){return a.map(f);}
+		: function(a,f){
+			var result = [];
+			for(var i=0; i<a.length; ++i){
+				if(i in a){
+					result.push(f.call(null,a[i],i,a));
+				}
+			}
+			return result;
+		};
+	//console.log(map([1,2,3],function(x){return x*x;}));
+	
+	var reduce = Array.prototype.reduce
+		? function(a,f,initial){
+			if(arguments.length > 2){
+				return a.reduce(f,initial);
+			}else{
+				return a.reduce(f);
+			}
+		}
+		: function(a,f,initial){
+			var accumulator,i=0,len=a.length;
+			if(len == 0){
+				throw new Error("array cannot be empty");
+			}
+			if(arguments.length > 2){
+				accumulator = initial;
+			}else{
+				i = 0;
+				while(i<len){
+					if(i in a){
+						accumulator = a[i];
+						break;
+					}
+					i++;
+				}
+				if(i == len){
+					throw new Error("array cannot be empty");
+				}
+				i++;
+			}
+			for(; i<len; ++i){
+				accumulator = f.call(undefined,accumulator,a[i],i,a);
+			}
+			return accumulator;
+		};
+
+		//var arr = [1,2,3];
+		//console.log(reduce(arr,function(x,y){return x+y;}));
+		//console.log(reduce(arr,function(x,y){return x+y;},100));
+
+		//使用自定义的map与reduce实现数组平均数与标准差的计算
+		var arr = [1,2,3,4,5];
+		function sum(x,y){return x+y;}
+		function square(x){return x*x;}
+		var average = reduce(arr,sum)/arr.length;
+		console.log(average);
+		var sd = Math.sqrt(reduce(map(map(arr,function(x){return x-average;}),square),sum)/arr.length);
+		console.log(sd); */
+
+		//高阶函数就是操作函数的函数
+		//not函数返回一个新的函数 它返回f的返回值的逻辑非
+		/*function not(f){
+			return function(){
+				return !f.apply(this,arguments);
+			};
+		}
+		var even = function(n){return n%2==0;};
+		console.log(even(2));//true
+		var odd = not(even);
+		console.log(odd(2));//false */
+
+		//下面的compose函数接受两个函数f,g 返回一个用以计算f(g())的函数
+		/*function compose(f,g){
+			return function(){
+				return f.call(this,g.apply(this,arguments));
+			};
+		}
+		function sum(x,y){return x+y;}
+		function square(x){return x*x;}
+		var squareOfSum = compose(square,sum);
+		console.log(squareOfSum(2,3)); */
+
+		//实现一个工具函数 将类数组对象转换为真正的函数
+		/*function array(args,n){ //可选的参数n为截取的起始位置
+			return Array.prototype.slice.call(args,n||0);
+		}
+		//不完全函数
+		//这个函数的实参传递至左侧
+		function partialLeft(f){
+			var args = arguments; //保存外部的实参数组
+			return function(){
+				var a = array(args,1);
+				a = a.concat(array(arguments));
+				return f.apply(this,a);
+			};
+		}
+		//这个函数的实参传递至右侧
+		function partialRight(f){
+			var args = arguments;
+			return function(){
+				var a = array(arguments);
+				a = a.concat(array(args,1));
+				return f.apply(this,a);
+			};
+		}
+		//这个函数的实参被用作模板 实参中的undefined值被内部实参填充
+		function partial(f){
+			var args = arguments;
+			return function(){
+				var a = array(args,1),j=0;
+				for(var i=0; i<a.length; ++i){
+					if(a[i] === undefined){
+						a[i] = arguments[j++];
+					}
+				}
+				a = a.concat(array(arguments,j));
+				return f.apply(this,a);
+			};
+		}
+
+		function f(x,y,z){
+			return x*(y-z);
+		}
+		console.log(partialLeft(f,2)(3,4));//-2
+		console.log(partialRight(f,2)(3,4));//6
+		console.log(partial(f,undefined,2)(3,4));//-6 */
+
+		//实现带记忆功能的函数
+		/*function memorize(f){
+			var cache = {};
+			return function(a){
+				var key = arguments.length+Array.prototype.join.call(arguments,',');
+				if(key in cache) return cache[key];
+				else return cache[key] = f.apply(this,arguments);
+			};
+		}
+
+		//求两个数的最大公约数
+		function gcd(a,b){
+			console.log("调用了gcd");
+			if(a<b){ //保证a>=b
+				var t = a;
+				a = b;
+				b = t;
+			}
+			while(b!=0){
+				t = b;
+				b = a%b;
+				a = t;
+			}
+			return a;
+		}
+
+		//返回一个带记忆功能的求最大公约数的函数
+		var gcdmemo = memorize(gcd);
+		console.log(gcdmemo(85,187));
+		console.log(gcdmemo(85,187)); */
+
+	//自定义继承函数
+	/*function inherit(p){
+		if(p == null) throw TypeError();
+		if(Object.create){
+			return Object.create(p);
+		}
+		if(typeof p != 'object' && typeof p != 'function') throw TypeError();
+		function f(){}
+		f.prototype = p;
+		return new f();
+	}
+
+	//这个工厂方法返回一个新的表示某个范围的对象
+	function range(from,to){
+		var obj = inherit(range.methods);
+		obj.from = from;
+		obj.to = to;
+		return obj;
+	}
+	range.methods = {
+		//判断给定的值是否在此范围
+		includes:function(x){
+			return this.from <= x && x<= this.to;
+		},
+		//对范围内的所有整数调用一个函数
+		foreach:function(f){
+			for(var i=Math.ceil(this.from); i<=this.to; ++i){
+				f(i);
+			}
+		},
+		//返回范围的字符串表示
+		toString:function(){
+			return this.from+'~'+this.to;
+		}
+	};
+
+	var r = range(0.5,5);
+	console.log(r.includes(2));
+	console.log(r.toString());
+	console.log(r.foreach(function(v){console.log(v);})); */
+
+	//使用构造函数实现范围类
+	/*function Range(from,to){
+		this.from = from;
+		this.to = to;
+	}
+	Range.prototype = {
+		includes:function(x){
+			return this.from <= x && x <= this.to;
+		},
+		foreach:function(f){
+			for(var i=Math.ceil(this.from); i<=this.to; ++i){
+				f(i);
+			}
+		},
+		toString:function(){
+			return this.from+'~'+this.to;
+		}
+	};
+	var r = new Range(0.5,5);
+	console.log(r);
+	console.log(r.toString());
+	console.log(r.includes(1.5));
+	r.foreach(function(v){
+		console.log(v);
+	}); */
+
+	//一个用以定义简单的类的函数
+	/*function defineClass(constructor,methods,statics){
+		if(methods) extend(constructor.prototype,methods); //extend函数来自305行
+		if(statics) extend(constructor,statics);
+		return constructor;
+	}
+
+	//Range类的另一个实现
+	var SimpleRange = defineClass(
+		function(from,to){
+			this.from = from;
+			this.to = to;
+		},
+		{
+			includes:function(v){
+				return this.from <= v && v <= this.to;
+			},
+			foreach:function(f){
+				for(var i=Math.ceil(this.from); i<=this.to; ++i){
+					f(i);
+				}
+			},
+			toString:function(){
+				return 'Range['+this.from+'~'+this.to+']';
+			}
+		},
+		{
+			upto:function(t){
+				return new SimpleRange(0,t);
+			}
+		}
+	);
+
+	var r = new SimpleRange(0.5,5);
+	console.log(r);
+	console.log(r.toString());
+	console.log(r.includes(2.5));
+	console.log(r.foreach(function(v){
+		console.log(v);
+	}));
+
+	var r2 = SimpleRange.upto(3);
+	console.log(r2.toString()); */
+
+	//定义一个复数类
+	/*function Complex(r,i){
+		if(isNaN(r) || isNaN(i)){
+			throw new TypeError("实部与虚部必须为数字");
+		}
+		this.r = r;
+		this.i = i;
+	}
+	//为类添加实例方法
+	//复数加法
+	Complex.prototype.add = function(c){
+		return new Complex(this.r+c.r,this.i+c.i);
+	};
+	//复数减法
+	Complex.prototype.subtract = function(c){
+		return new Complex(this.r-c.r,this.i-c.i);
+	};
+	//复数乘法 (a+bi)(c+di) = ac-bd + (ad+bc)i
+	Complex.prototype.multiply = function(c){
+		return new Complex(this.r*c.r-this.i*c.i,this.r*c.i+this.i*c.r);
+	};
+	//复数除法 (a+bi)/(c+di) = (a+bi)(c-di)/(c*c+d*d) = [(ac+bd)+(bc-ad)i]/(c^2+d^2)
+	Complex.prototype.dividedBy = function(c){
+		if(c.equals(Complex.ZERO)){
+			throw new Error('除数不能为0');
+		}
+		var t = c.r*c.r+c.i*c.i;
+		return new Complex(
+			(this.r*c.r+this.i*c.i)/t,
+			(this.i*c.r-this.r*c.i)/t
+		);
+
+	};
+	//比较复数相等
+	Complex.prototype.equals = function(c){
+		return c != null && c.constructor == Complex && this.r==c.r && this.i==c.i;
+	};
+	//相反数
+	Complex.prototype.neg = function(c){
+		return new Complex(-this.r,-this.i);
+	};
+	//返回复数的字符串表示 虚数单位用i表示
+	Complex.prototype.toString = function(){
+		if(this.equals(Complex.ZERO)){
+			return '0';
+		}
+		if(this.r ==0 && this.i != 0){
+			if(this.i == 1){
+				return 'i';
+			}
+			if(this.i == -1){
+				return '-i';
+			}
+			return this.i+'i';
+		}
+		if(this.r != 0 && this.i == 0){
+			return this.r;
+		}
+		if(this.i == 1){
+				return this.r+'+'+'i';
+		}
+		if(this.i == -1){
+			return this.r+'-i';
+		}
+		return this.r+(this.i>0?'+':'')+this.i+'i';
+	};
+	//类属性
+	Complex.ZERO = new Complex(0,0);
+	//将复数字符串解析为复数
+	Complex.parse = function(str){
+		if(/^\d+$/.test(str)){
+			return new Complex(parseFloat(str),0);
+		}
+		if(str === 'i'){
+			return new Complex(0,1);
+		}
+		if(str === '-i'){
+			return new Complex(0,-1);
+		}
+		if(/^-?\d+i$/.test(str)){
+			return new Complex(0,parseFloat(str));
+		}
+		var arr = /^(\d+) *[+-] *(\d*)i$/.exec(str);
+		if(arr[2]===''){
+			arr[2] = str.indexOf('+')>-1?'1':'-1';
+		}
+		return new Complex(parseFloat(arr[1]),parseFloat(arr[2]));
+	};
+	//(2+3i)/(2+2i) = (2+3i)(2-2i)/8 = (10+2i)/8 = 1.25+0.25i
+	//console.log(new Complex(2,3).dividedBy(new Complex(2,2)).toString());
+	//console.log(new Complex(2,3).dividedBy(Complex.ZERO).toString());
+	*/
+
+	//原型是动态的 可以随时给原型添加新的属性 这个新的属性也会被先前继承此原型的类共享
+	//ES5中给String增加的trim方法可以去除字符串两端的空白 不修改原字符串
+	/*var str = "  abc  ";
+	console.log(str.trim());
+	console.log(str); */
+	/*String.prototype.trim = String.prototype.trim || function(){return this.replace(/^(\s+)|(\s+)$/g,"");};
+	var str = "   abc  ";
+	str2 = str.trim();
+	console.log(str.trim);
+	console.log(str.trim());
+	console.log(str2);
+	console.log(str2.length);
+	console.log(str2 === 'abc'); */
+
+	/*function f(){}
+	//函数name属性(非标准属性)返回函数的名字 IE8就不支持
+	//console.log(f.name);
+	//给函数原型添加一个getName方法 如果有name属性则返回 否则从函数的字符串中提取
+	Function.prototype.getName = function(){
+		return this.name || this.toString().match(/^function\s+([^() ])\(/)[1];
+	}
+	//console.log(f.getName()); 
+	var g = function(){};
+	console.log(g.getName);
+	console.log(g.getName());//g */
+
+	//返回对象的类
+	/*function classof(o){
+		return Object.prototype.toString.call(o).slice(8,-1);
+	}
+	//返回函数的名字(可能是空字符串) 不是函数的话返回null
+	Function.prototype.getName = function(){
+		if("name" in this) return this.name;
+		return this.name = this.toString().match(/^function\s*([^() ]*)\(/)[1];
+	};
+
+	//可以判断值的类型的type函数
+	function type(o){
+		var t,c,n; //type,class,name
+		//如果是null则返回字符串null
+		if(o===null) return "null";
+		//如果是NaN则返回nan
+		if(o != 0) return "nan";
+		//如果typeof的值不是"object" 则返回这个值 这可以识别出原始值的类型和函数
+		if((t = typeof o) !== "object") return t;
+		//返回对象的类名 除非值为"Object" 这种方式可以识别出大多数的内置对象
+		if((c = classof(o)) !== "Object") return c;
+		//如果对象构造函数的名字存在的话 则返回它
+		if(o.constructor && typeof o.constructor === "function" && (n=o.constructor.getName())) return n;
+		//其它类型都无法识别 一律返回"Object"
+		return "Object";
+	}
+	*/
+
+	//利用鸭式辩型实现的函数
+	//如果o实现了除第一个参数之外的参数所表示的方法 则返回true
+	//如果参数是字符串 则检查第一个对象有没有此名称的方法
+	//如果是函数 则假定它是构造函数 检查对象有没有此函数原型中的方法
+	//如果参数是对象 则检查第一个对象有没有第二个对象中的方法
+	/*function quacks(o){
+		for(var i=1; i<arguments.length; ++i){
+			var arg = arguments[i];
+			switch(typeof arg){
+				case 'string':
+					if(typeof o[arg] != 'function'){
+						return false;
+					}
+					continue;
+				case 'function':
+					arg = arg.ptototype; //获取原型对象 进入下一个case 归结为第三种情况
+				case 'object':
+					for(var m in arg){
+						if(typeof arg[m] !== 'function') continue;
+						if(typeof o[m] !== 'function') return false;
+					}
+			}
+		}
+		return true; //如果能执行到这里 说明实现了所有的方法
+	} */
+
+
+	//注意quacks方法不能用来检测内置类型 比如不能使用quacks方法检查一个对象是否实现Array原型中的方法
+	//因为原型中的方法时不可枚举的
+
+	/*function Person(name,age){
+		this.name = name;
+		this.age = age;
+	}
+	Person.prototype.getName = function(){return this.name;};
+	Person.prototype.getAge = function(){return this.age;};
+	Person.prototype.hello = function(){return 'Hello, 我是'+this.name+',年龄:'+this.age}; */
+
+	//var p = new Person('Tom',23);
+	//console.log(quacks(p,'getName','getAge','hello'));
+	//console.log(quacks(p,'getName','getAge','hello','xxx'));
+	//console.log(quacks(p,Person));
+
+	/*var o = {
+		'getName':function(){return 'Tom';}
+	};
+	console.log(quacks(o,'getName')); //true
+	console.log(quacks(o,'getName','x')); //false  */
+	
+
+
+</script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

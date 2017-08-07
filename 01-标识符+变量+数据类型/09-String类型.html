@@ -1,0 +1,42 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="Keywords" content="">
+		<meta name="Description" content="">
+		<title></title>
+		
+		<style type="text/css">
+			body,div,p,h1,h2,h3,h4,h5,h6,ul,ol,dl,dd{margin:0;}
+			ul,ol{padding:0;list-style:none;}
+			body{font-size:12px;font-family:"微软雅黑";}
+			a{text-decoration:none;color:#000;}
+			img,button{border:none;}
+			
+		</style>
+	</head>
+<body>
+	
+</body>
+<script type="text/javascript">
+	/*
+		String类型表示字符串 包括单个字符
+		可以使用双引号也可以单引号 单必须成对存在
+		字符串与任何类型的值相加结果为字符串
+		任何类型均可转换为字符串 任何对象都有toString函数返回它的字符串表示
+	*/
+	var str1 = 'abc';
+	var str2 = "def";
+	console.log(str1+1+2+str2); //abc12def
+	console.log(1+2+str1+str2); //3abcdef
+
+	//String(x)可将x转换为字符串 实际上调用了x的toString函数
+	console.log(String(12));
+	console.log(String(1.5));
+	console.log(String(false));
+	console.log(String(NaN));
+	console.log(String(null));
+	console.log(String(undefined));
+
+</script>
+</html>

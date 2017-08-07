@@ -1,0 +1,109 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="Keywords" content="">
+		<meta name="Description" content="">
+		<title></title>
+		
+		<style type="text/css">
+			body,div,p,h1,h2,h3,h4,h5,h6,ul,ol,dl,dd,fieldset{margin:0;}
+			ul,ol,input,textarea,th,td,fieldset,legend{padding:0;}
+			li{list-style:none;}
+			body{font:12px "微软雅黑";}
+			a{text-decoration:none;}
+			img,button{border:none;}
+			table{border-collapse:collapse;}
+			.clearfix:after{content:" ";display:block;clear:both;height:0;visibility:hidden;}
+			
+			#album{
+				width:737px;
+				height:283px;
+				background:red;
+				margin:50px auto 0;
+			}
+			#albumList{
+				position:relative;
+				width:100%;
+				height:100%;
+				overflow:hidden;
+			}
+			#albumList li{
+				position:absolute;
+				top:0;
+				left:0;
+				height:100%;
+			}
+			#albumList li span{
+				position:absolute;
+				width:50px;
+				height:100%;
+				font-size:30px;
+				line-height:90px;
+				text-align:center;
+				color:#fff;
+				background:#333;
+				z-index:1;
+			}
+			#albumList li img{
+				position:absolute;
+				width:584px;
+				height:100%;
+			}
+		</style>
+	</head>
+<body>
+	<!--
+		图片缩放后的宽高 584 283
+	-->
+	<div id="album">
+		<ul id="albumList">
+			<li><span>第一张</span><img src="03-img/1.jpg"/></li>
+			<li><span>第二张</span><img src="03-img/2.jpg"/></li>
+			<li><span>第三张</span><img src="03-img/3.jpg"/></li>
+			<li><span>第四张</span><img src="03-img/4.jpg"/></li>
+		</ul>
+	</div>
+<script type="text/javascript" src="../jquery-1.8.3/jquery.min.js"></script>
+<script type="text/javascript" src="../jquery/jquery.easing.1.3.js"></script>
+<script type="text/javascript">
+	$(function(){
+		var dist = 51;
+		//初始靠左排列
+		$('#albumList li').each(function(index){
+			$(this).css('left',index*51+'px');
+			$(this).attr('flag',0);//增加一个标记属性 0表示在左侧折叠 1表示在右侧折叠
+		});
+		
+		//点击事件处理
+		$('#albumList li').on('click',function(){
+			if($(this).attr('flag') == 0){
+				var nextAll = $(this).nextAll();
+				nextAll.each(function(index){
+					//$(this).css('left',$('#albumList').width()-dist*(nextAll.length-index)+'px');
+					$(this).animate(
+						{left:$('#albumList').width()-dist*(nextAll.length-index)+'px'},
+						500,
+						'easeOutElastic'
+					);
+					$(this).attr('flag',1);
+				});
+			}else if($(this).attr('flag') == 1){
+				var prevAll = $(this).prevAll();
+				prevAll.each(function(index){
+					//$(this).css('left',dist*(prevAll.length-index-1)+'px');
+					$(this).animate(
+						{left:dist*(prevAll.length-index-1)+'px'},
+						500,
+						'easeOutElastic'
+					);
+					$(this).attr('flag',0);
+				});
+				$(this).css('left',dist*prevAll.length+'px');
+				//$(this).attr('flag',0); //可不写 设置设置为1也行
+			}
+		});
+	});
+</script>
+</body>
+</html>

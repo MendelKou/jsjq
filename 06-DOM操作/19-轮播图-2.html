@@ -1,0 +1,183 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="Keywords" content="">
+		<meta name="Description" content="">
+		<title></title>
+		
+		<style type="text/css">
+			body,div,p,h1,h2,h3,h4,h5,h6,ul,ol,dl,dd{margin:0;}
+			ul,ol{padding:0;list-style:none;}
+			body{font-size:12px;font-family:"微软雅黑";}
+			a{text-decoration:none;color:#000;}
+			img,button{border:none;}
+			
+			.wrap{
+				width:790px;
+				height:340px;
+				border:1px solid #ccc;
+				margin:50px auto 0;
+				position:relative;
+			}
+			#imgList li{
+				display:none;
+			}
+			#imgList li img{
+				vertical-align:bottom;
+			}
+			.wrap a{
+				display:none;
+				width:30px;
+				height:60px;
+				font-size:28px;
+				font-weight:bold;
+				line-height:60px;
+				text-align:center;
+				background:#ccc;
+				color:#fff;
+				position:absolute;
+				top:140px;
+			}
+			.wrap:hover a{
+				display:block;
+			}
+			.wrap a.prevBtn{
+				left:0;
+			}
+			.wrap a.nextBtn{
+				right:0;
+			}
+			.wrap a:hover{
+				background:red;
+			}
+			.wrap a:active{
+				color:blue;
+			}
+			#btnList{
+				position:absolute;
+				bottom:20px;
+				left:295px;
+				background:rgba(255,255,255,0.4);
+				padding:4px 0 4px 8px;
+				border-radius:12px;
+			}
+			#btnList li{
+				width:16px;
+				height:16px;
+				border-radius:50%;
+				background:#fff;
+				float:left;
+				font-size:12px;
+				line-height:16px;
+				text-align:center;
+				margin-right:8px;
+				cursor:default;
+			}
+			#btnList .cur{
+				background:red;
+				color:#fff;
+			}
+		</style>
+	</head>
+<body>
+	<div class="wrap" id="box1">
+		<ul id="imgList">
+			<li style="display:block;">
+				<img src="img/1.jpg" alt="图片" width="790" height="340"/>
+			</li>
+			<li>
+				<img src="img/2.jpg" alt="图片" width="790" height="340"/>
+			</li>
+			<li>
+				<img src="img/3.jpg" alt="图片" width="790" height="340"/>
+			</li>
+			<li>
+				<img src="img/4.jpg" alt="图片" width="790" height="340"/>
+			</li>
+			<li>
+				<img src="img/5.jpg" alt="图片" width="790" height="340"/>
+			</li>
+			<li>
+				<img src="img/6.jpg" alt="图片" width="790" height="340"/>
+			</li>
+			<li>
+				<img src="img/7.jpg" alt="图片" width="790" height="340"/>
+			</li>
+			<li>
+				<img src="img/8.jpg" alt="图片" width="790" height="340"/>
+			</li>
+		</ul>
+		<a href="javascript:void(0);" class="prevBtn">&lt;</a>
+		<a href="javascript:void(0);" class="nextBtn">&gt;</a>
+		<ul id="btnList">
+			<li class="cur">1</li>
+			<li>2</li>
+			<li>3</li>
+			<li>4</li>
+			<li>5</li>
+			<li>6</li>
+			<li>7</li>
+			<li>8</li>
+		</ul>
+	</div>
+</body>
+<script>
+	window.onload = function(){
+		var imgLiSet = document.getElementById('imgList').getElementsByTagName('li');
+		var btnLiSet = document.getElementById('btnList').getElementsByTagName('li');
+		var wrap = document.getElementById('box1');
+		var prevBtn = wrap.getElementsByTagName('a')[0];
+		var nextBtn = wrap.getElementsByTagName('a')[1];
+		var index = 0; //当前图片索引
+		var isRunning = true; //是否正在轮播
+		//左右单击切换图片
+		function change(){
+			for(var i=0; i<imgLiSet.length; ++i){
+				imgLiSet[i].style.display = 'none';
+				btnLiSet[i].className = '';
+			}
+			imgLiSet[index].style.display = 'block';
+			btnLiSet[index].className = 'cur';
+		}
+		prevBtn.onclick = function(){
+			--index;
+			if(index<0){
+				index = imgLiSet.length-1;
+			}
+			change();
+		};
+		function next(){
+			++index;
+			if(index>=imgLiSet.length){
+				index = 0;
+			}
+			change();
+		};
+		nextBtn.onclick = next;
+		//启动定时器轮播图片
+		setInterval(function(){
+			if(isRunning){
+				next();
+			}
+		},1000);
+		//鼠标移到图片上时停止轮播
+		wrap.onmouseover = function(){
+			isRunning = false;
+		};
+		//鼠标移出图片上时继续轮播
+		wrap.onmouseout = function(){
+			isRunning = true;
+		};
+		//鼠标移到某个序号显示该序号对应的图片
+		for(var i=0; i<btnLiSet.length; ++i){
+			//btnLiSet[i].index = i;
+			btnLiSet[i].onclick = function(){
+				//index = this.index;
+				index = parseInt(this.innerHTML)-1;
+				change();
+			};
+		}
+	};
+</script>
+</html>

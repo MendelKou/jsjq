@@ -1,0 +1,50 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="Keywords" content="">
+		<meta name="Description" content="">
+		<title></title>
+		
+		<style type="text/css">
+			body,div,p,h1,h2,h3,h4,h5,h6,ul,ol,dl,dd,fieldset{margin:0;}
+			ul,ol,input,textarea,th,td,fieldset,legend{padding:0;}
+			li{list-style:none;}
+			body{font:12px "微软雅黑";}
+			a{text-decoration:none;}
+			img,button{border:none;}
+			table{border-collapse:collapse;}
+			.clearfix:after{content:" ";display:block;clear:both;height:0;visibility:hidden;}
+
+			
+		</style>
+	</head>
+<body>
+	
+	<div id="div1">我是一个div元素</div>
+<script src="../jquery-1.8.3/jquery.min.js"></script>
+<script type="text/javascript">
+	$(function(){
+		//var oDiv = document.getElementById('div1'); //原生js的到的是dom对象
+		//alert(oDiv); //[object HTMLDivElement]
+		//console.log(oDiv.innerHTML);
+		//console.log(oDiv.html()); //报错 dom对象没有html方法
+
+		//var $Div = $('#div1'); //jQuery选择器得到的是jQuery对象
+		//alert($Div); //[object Object]
+		//console.log($Div.innerHTML); //undefined 因为jQuery对象没有innerHTML属性
+		//console.log($Div.html());
+
+		//jQuery改写了dom对象的一些属性与方法 所以jQuery对象可以使用这些属性与方法
+		//console.log($Div.length);
+		//console.log($Div.toString());
+
+		//dom对象与jQuery对象的转换
+		/*console.log($(oDiv).html());
+		console.log($Div.get(0).innerHTML);
+		console.log($Div[0].innerHTML); */
+		
+	});
+</script>
+</body>
+</html>

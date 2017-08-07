@@ -1,0 +1,165 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="Keywords" content="">
+		<meta name="Description" content="">
+		<title></title>
+		
+		<style type="text/css">
+			body,div,p,h1,h2,h3,h4,h5,h6,ul,ol,dl,dd,fieldset{margin:0;}
+			ul,ol,input,textarea,th,td,fieldset,legend{padding:0;}
+			li{list-style:none;}
+			body{font:12px "微软雅黑";}
+			a{text-decoration:none;}
+			img,button{border:none;}
+			table{border-collapse:collapse;}
+			.clearfix:after{content:" ";display:block;clear:both;height:0;visibility:hidden;}
+			
+		</style>
+	</head>
+<body>
+<script type="text/javascript">
+	//定义不可枚举的属性
+	/*(function(){
+		Object.defineProperty(Object.prototype,'objectId',{
+			get:getObjectId,
+			enumerable:false,
+			configurable:false
+		});
+		var idProp = '**objectId**';
+		var nextId = 1;
+		function getObjectId(){
+			if(!(idProp in this)){
+				if(!Object.isExtensible(this)){
+					throw new Error('Cannot define id for nonextensible objects.');
+				}
+				Object.defineProperty(this,idProp,{
+					value:nextId++,
+					writable:false,
+					enumerable:false,
+					configurable:false
+				});
+			}
+			return this[idProp];
+		}
+	})();
+	var obj1 = {name:'Tom'};
+	var obj2 = {name:'Rose'};
+	console.log(obj1.objectId);
+	console.log(obj2.objectId);
+	console.log(obj2.objectId); */
+
+	//定义一个不可变的Range类
+	/*function Range(from,to){
+		var props = {
+			from:{value:from,enumerable:true},
+			to:{value:to,enumerable:true}
+		};
+		if(this instanceof Range){//作为构造函数调用
+			Object.defineProperties(this,props);
+		}else{ //作为普通函数调用
+			return Object.create(Range.prototype,props);
+		}
+	}
+	Object.defineProperties(Range.prototype,{
+		includes:{
+			value:function(x){
+				return this.from<=x && x<=this.to;
+			}
+		},
+		foreach:{
+			value:function(f){
+				for(var i=Math.ceil(this.from); i<=this.to; ++i){
+					f(i);
+				}
+			}
+		},
+		toString:{
+			value:function(){return "Range["+this.from+"~"+this.to+"]";}
+		}
+	});
+	
+	var r1 = new Range(20,100);
+	var r2 = Range(3,10);
+	console.log(r1);
+	console.log(r2);
+	console.log(r2.includes(5));
+	r2.foreach(function(x){
+		console.log(x);
+	});
+	console.log(r1.toString()); */
+
+	//属性描述符工具函数
+	//将o的指定名字(或所有的属性设置为不可写或不可配置的)
+	/*function freezeProps(o){
+		var props = (arguments.length==1) //如果只有一个参数
+			? Object.getOwnPropertyNames(o) //使用所有属性
+			: Array.prototype.slice.call(arguments,1); //指定属性的名字
+		props.forEach(function(prop){
+			if(!Object.getOwnPropertyDescriptor(o,prop).configurable) return; //忽略不可配置的属性
+			Object.defineProperty(o,prop,{writable:false,configurable:false});
+		});
+		return o;
+	}
+	//将o的指定名字(或所有的属性设置为不可枚举的)
+	function hideProps(o){
+		var props = (arguments.length==1) //如果只有一个参数
+			? Object.getOwnPropertyNames(o) //使用所有属性
+			: Array.prototype.slice.call(arguments,1); //指定属性的名字
+		props.forEach(function(prop){
+			if(!Object.getOwnPropertyDescriptor(o,prop).configurable) return; //忽略不可配置的属性
+			Object.defineProperty(o,prop,{enumerable:false});
+		});
+		return o;
+	}*/
+
+	//var obj = {a:1};
+	//freezeProps(obj);
+	//obj.a = 2;
+	//console.log(obj.a);
+	/*hideProps(obj);
+	for(var p in obj){
+		console.log(p+'='+obj[p]);
+	}*/
+
+	//一个简单的不可变类
+	/*function Range(from,to){
+		this.from = from;
+		this.to = to;
+		freezeProps(this);//将属性设置为不可变
+	}
+	Range.prototype = hideProps({ //设置不可枚举的原型属性
+		constructor:Range,
+		includes:function(x){
+				return this.from<=x && x<=this.to;
+		},
+		foreach:function(f){
+			for(var i=Math.ceil(this.from); i<=this.to; ++i){
+				f(i);
+			}
+		},
+		toString:function(){return "Range["+this.from+"~"+this.to+"]";}
+	});
+	var r1 = new Range(10,20);
+	console.log(r1.toString()); */
+
+</script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

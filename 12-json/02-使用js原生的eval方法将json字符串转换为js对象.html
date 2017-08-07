@@ -1,0 +1,56 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="Keywords" content="">
+		<meta name="Description" content="">
+		<title></title>
+		
+		<style type="text/css">
+			body,div,p,h1,h2,h3,h4,h5,h6,ul,ol,dl,dd,fieldset{margin:0;}
+			ul,ol,input,textarea,th,td,fieldset,legend{padding:0;}
+			li{list-style:none;}
+			body{font:12px "微软雅黑";}
+			a{text-decoration:none;}
+			img,button{border:none;}
+			table{border-collapse:collapse;}
+			.clearfix:after{content:" ";display:block;clear:both;height:0;visibility:hidden;}
+			
+		</style>
+	</head>
+<body>
+<script>
+/*
+js中的eval可以执行代码片段 eval就像一个js解释器
+*/
+
+/*
+var r = eval('var a = 1;var b = 2;var c = a + b;alert(c);'); //执行代码片段
+alert(c); //可以访问到c
+alert(r); //undefined 
+*/
+
+/*
+var r = eval('1+2'); //求表达式的值
+console.log(r); //3
+*/
+
+//我们使用json的一个场景是 后台以json格式返回数据 我们在前台要把后台传来的json字符串转换为js对象
+//把json字符串转换为对象 成为json的解析
+/*
+var jsonStr = '{"name":"Tom","age":23,"isMarried":false}'; //假设这是后台传来的json格式的数据
+var obj = eval('('+jsonStr+')'); //注意这里要加括号 否则eval会把花括号包围的部分当中代码块来执行 加上括号后强制把其作为表达式来求值
+console.log(obj);
+console.log(typeof obj);
+console.log(obj.name);
+console.log(obj.age);
+console.log(obj.isMarried);
+*/
+
+var jsonStr = '[{"name":"Tom","age":23},{"name":"Jack","age":22}]';
+var arr = eval(jsonStr);
+console.log(arr.length); //2
+console.log(arr[1].name); //Jack
+</script>
+</body>
+</html>

@@ -1,0 +1,82 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="Keywords" content="">
+		<meta name="Description" content="">
+		<title></title>
+		
+		<style type="text/css">
+			body,div,p,h1,h2,h3,h4,h5,h6,ul,ol,dl,dd,fieldset{margin:0;}
+			ul,ol,input,textarea,th,td,fieldset,legend{padding:0;}
+			li{list-style:none;}
+			body{font:12px "微软雅黑";padding-top:1px;}
+			a{text-decoration:none;}
+			img,button{border:none;}
+			table{border-collapse:collapse;}
+			.clearfix:after{content:" ";display:block;clear:both;height:0;visibility:hidden;}
+		
+			#box{
+				width:302px;
+				height:340px;
+				border:1px solid #000;
+				margin:50px auto;
+			}
+			#box .titleList{
+				height:40px;
+				line-height:40px;
+			}
+			#box .titleList li{
+				float:left;
+				width:100px;
+				height:100%;
+				border-right:1px solid #000;
+				font-size:20px;
+				text-align:center;
+				background:green;
+			}
+			#box .titleList li:last-child{
+				border-right:none;
+			}
+			#box .titleList li.cur{
+				background:red;
+			}
+			#box .conList{
+				width:302px;
+				height:300px;
+				font-size:30px;
+				line-height:300px;
+				text-align:center;
+				background:#eee;
+			}
+			#box .conList li{
+				display:none;
+			}
+		</style>
+	</head>
+<body>
+	<div id="box">
+		<ul class="titleList">
+			<li class="cur">javascript</li>
+			<li>java</li>
+			<li>jsp</li>
+		</ul>
+		<ul class="conList">
+			<li style="display:block;">javascript....</li>
+			<li>java...</li>
+			<li>jsp...</li>
+		</ul>
+	</div>
+<script type="text/javascript" src="../jquery-1.8.3/jquery.min.js"></script>
+<script type="text/javascript">
+	$(function(){
+		$('#box>.titleList').children().on('click',function(){
+			/*$(this).addClass('cur').siblings().removeClass('cur');
+			$(this).parent().next().children().eq($(this).index()).show().siblings().hide();*/
+			$(this).addClass('cur').siblings().removeClass('cur').end().
+			parent().next().children().eq($(this).index()).show().siblings().hide();
+		});
+	});
+</script>
+</body>
+</html>

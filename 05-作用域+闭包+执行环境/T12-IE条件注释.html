@@ -1,0 +1,77 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="Keywords" content="">
+		<meta name="Description" content="">
+		<title></title>
+		
+		<style type="text/css">
+			body,div,p,h1,h2,h3,h4,h5,h6,ul,ol,dl,dd,fieldset{margin:0;}
+			ul,ol,input,textarea,th,td,fieldset,legend{padding:0;}
+			li{list-style:none;}
+			body{font:12px "微软雅黑";}
+			a{text-decoration:none;}
+			img,button{border:none;}
+			table{border-collapse:collapse;}
+			.clearfix:after{content:" ";display:block;clear:both;height:0;visibility:hidden;}
+		</style>
+		<!--IE引入了条件注释-->
+		<!--[if IE 6]>
+			这里的html内容仅在IE6下被解析
+		<![endif]-->
+
+		<!--[if lte IE 7]>
+			这里的html内容仅在IE7或IE下以下被解析
+			lte表示 less than or equal
+			还有：lt,gt,gte
+		<![endif]-->
+
+		<!--[if !IE]> <-->
+			非IE下
+		<!--> <![endif]-->
+
+		<!--以下为一个html条件注释应用实例-->
+		<!--[if IE]><script src="excanvas.js"></script><![endif]-->
+
+
+	</head>
+<body>
+	
+<script type="text/javascript">
+	//IE的js条件注释
+	/*@cc_on
+		@if(@_jscript)
+			//禁止IE下执行的代码
+		@end
+	@*/
+
+	
+	/*@cc_on
+		@if(@_jscript)
+			//禁止IE下执行的代码
+			alert('IE');
+		@else*/
+			//非IE下执行的代码
+			alert('not IE');
+		/*@end
+	@*/
+</script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,56 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="Keywords" content="">
+		<meta name="Description" content="">
+		<title></title>
+		
+		<style type="text/css">
+			body,div,p,h1,h2,h3,h4,h5,h6,ul,ol,dl,dd,fieldset{margin:0;}
+			ul,ol,input,textarea,th,td,fieldset,legend{padding:0;}
+			li{list-style:none;}
+			body{font:12px "微软雅黑";}
+			a{text-decoration:none;}
+			img,button{border:none;}
+			table{border-collapse:collapse;}
+			.clearfix:after{content:" ";display:block;clear:both;height:0;visibility:hidden;}
+			
+			.box{
+				border:1px solid red;
+			}
+		</style>
+	</head>
+<body>
+	<div class="box">div1</div>
+	<div class="box">div2</div>
+	<p>我是段落1</p>
+	<p>我是段落2</p>
+<script src="../jquery-1.8.3/jquery.js"></script>
+<script type="text/javascript">
+	$(function(){
+
+		//after(content|fn) 在每个匹配的元素之后插入内容
+		//$('div').after('<p>我是段落</p>');
+		/*$('div').after(function(index){
+			return '<span>span'+index+'</span>';
+		});*/
+
+		//before(content|fn) 在每个匹配的元素之前插入内容
+		//$('div').before('<p>我是段落</p>');
+		/*$('div').before(function(index){
+			return '<p>段落'+(index+1)+'</p>';
+		});*/
+
+		//insertAfter(content) 把所有匹配的元素插入到另一个、指定的元素元素集合的后面
+		//$('p').insertAfter('div');
+		//$('<span>我是span</span>').insertAfter('div');
+
+		//insertBefore(content) 把所有匹配的元素插入到另一个、指定的元素元素集合的前面
+		//$('p').insertBefore('div');
+		//$('<span>我是span</span>').insertBefore('div');
+
+	});
+</script>
+</body>
+</html>

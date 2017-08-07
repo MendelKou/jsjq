@@ -1,0 +1,135 @@
+<!doctype html>
+<html>
+	<head>
+		<title></title>
+		<meta charset="utf-8">
+		<meta name="keywords" content="">
+		<meta name="description" content="">
+		<style type="text/css">
+			*{margin:0;padding:0;}
+			body{font:12px "Microsoft Yahei";}
+		</style>
+	</head>
+	<body>
+		<button id="btn1">关闭</button>
+		<button id="btn2">取消定时器</button>
+
+	</body>
+<script>
+/*
+	在网页中window就是全局环境 在全局环境中定义的变量作为window对象的属性
+*/
+//alert(window); //[object Window]
+/*var a = 1;
+console.log(a);
+console.log(window.a);
+console.log(window['a']);
+console.log(this.a);
+console.log(this===window); //true 全局环境中的this就是window */
+
+//window对象的name属性表示窗口的名称
+/*console.log(typeof window.name); //string
+console.log(window.name); //默认情况下为空字符串
+console.log(window.name==="");//true
+window.name = 'abc';
+console.log(window.name); //abc
+var name = 'xxx'; //会改变window的name属性
+console.log(window.name); //xxx */
+
+//window对象的top属性是最顶层窗口的只读引用 如果窗口本身是顶层窗口 则返回自身的引用
+//alert(window.top); //[object Window]
+/*console.log(window.top === window);//true
+var top = 'aaa'; //不会改变top
+console.log(top); */
+//由上可知 在全局环境中给变量起名时不能与window对象的属性重名
+
+//alert，comfirm，prompt等函数都是window对象的方法
+//alert('hello'); //就是window.alert('hello');
+//window.alert('hi');
+
+//confirm 确认框 点击确定是返回true 点击取消或关闭按钮则返回false
+/*var flag = confirm('确定要删除这条信息吗？');
+alert(flag);*/
+
+//prompt提示用户输入的对话框 如果点击取消或关闭按钮则返回null 点击确则返回输入字符串
+/*var str = prompt('请输入你的名字');
+console.log(str);*/
+/*var str = prompt('请输入一个数字',0); //第二个参数为默认的输入
+console.log(str);*/
+
+
+//窗口的打开与关闭 open与close
+//无参数： open方法将打开一个空白窗口
+//var obj = open(); //返回打开窗口的window对象
+//console.log(obj); 
+//obj.alert('我是新打开的窗口');
+
+//一个参数： url 表示要打开的网页的url地址
+/*var result = open('http://www.baidu.com'); //会在新的窗口打开网页 返回一个window对象
+console.log(result);
+console.log(result===window); //false 返回的是一个新的窗口的window对象*/
+
+//2个参数
+//var result = open('http://www.baidu.com','_blank'); //在新的窗口打开
+//var result = open('http://www.baidu.com','_parent'); //表示在本窗口内加载
+/*var win = open('http://www.baidu.com','abc'); //指定打开的新窗口的名称
+console.log(win.name); */
+
+//3个参数 第三个参数可以指定新打开的浏览器的特征(如窗口的尺寸与位置等等)
+/*var win = open('http://www.baidu.com','_blank','width:100; height:100; left:50; top:50;');
+console.log(typeof win);
+console.log(win); */
+
+//close关闭窗口
+/*window.onload = function(){
+	var btn = document.getElementById('btn1');
+	btn.onclick = function(){
+		close();
+	};
+};*/
+
+//获取浏览器窗口的位置 screenLeft，screenTop分别表示浏览器窗口距屏幕左边与上边的距离
+//console.log('screenLeft='+screenLeft);
+//console.log('screenTop='+screenTop); 
+//FF不支持 screenLeft与screenTop 在FF中会报错
+//FF使用screenX与screenY表示浏览器的位置 Chrome也支持
+//console.log('screenX='+screenX); //在IE8中报错
+//console.log('screenY='+screenY);
+//console.log('screenX='+window.screenX); //在IE8中为undefined
+//console.log('screenY='+window.screenY);
+//兼容写法
+/*sX = window.screenX || screenLeft; 
+sY = window.screenY || screenTop;
+console.log(sX);
+console.log(sY);*/
+//位置属性是只读的 无法通过修改它的值来改变窗口的位置
+
+//调整浏览器窗口的位置与大小 仅在IE中有效 其它浏览器禁用了这些方法
+//moveTo(100,100); //直接移动到相对于屏幕左上角的(100,100)处
+//moveBy(50,50); //在原有位置的基础上移动
+//resizeTo(100,100); //调整窗口的大小为指定的宽高
+//resizeBy(100,-50); //在原有大小的基础上调整 可以为负值
+
+//setInterval 设置周期性定时器
+//setTimeout 设置超时定时器
+/*setInterval(function(){
+	console.log(new Date());
+},1000);*/
+
+/*setTimeout(function(){
+	alert('打开页面有3秒了');
+},3000);*/
+
+//setInterval与setTimeout会返回定时器的引用 
+//通过把定时器引用传递给clearInterval或clearTimeout则可以取消定时器
+window.onload = function(){
+	var btn2 = document.getElementById('btn2');
+	var timerId = setTimeout(function(){alert('起床了');},3000);
+	btn2.onclick = function(){
+		clearTimeout(timerId);
+	};
+};
+
+
+</script>
+</html>

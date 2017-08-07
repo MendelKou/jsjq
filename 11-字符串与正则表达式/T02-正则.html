@@ -1,0 +1,122 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="Keywords" content="">
+		<meta name="Description" content="">
+		<title></title>
+		
+		<style type="text/css">
+			body,div,p,h1,h2,h3,h4,h5,h6,ul,ol,dl,dd,fieldset{margin:0;}
+			ul,ol,input,textarea,th,td,fieldset,legend{padding:0;}
+			li{list-style:none;}
+			body{font:12px "微软雅黑";}
+			a{text-decoration:none;}
+			img,button{border:none;}
+			table{border-collapse:collapse;}
+			.clearfix:after{content:" ";display:block;clear:both;height:0;visibility:hidden;}
+
+		</style>
+	</head>
+<body>
+	
+<script type="text/javascript">
+	//可以只用unicode字符创建字符类
+	//基本汉字的unicode编码范围为:4E00~9FA5
+	// var reg = /^[\u4E00-\u9FA5]$/;//匹配单个汉字
+	// console.log(reg.test('你'));
+	// console.log(reg.test('a'));
+
+	// var reg = /^\w+$/; //\w等价于[a-zA-Z0-9_]
+	// console.log(reg.test('a'));
+	// console.log(reg.test('含'));
+	// console.log(reg.test('abc'));
+	// console.log(reg.test('你好'));
+	// console.log(reg.test('a_b0'));
+
+	// var reg = /\s*/g;
+	// var str = 'aaa';
+	// var arr;
+	//此正则会使下面的循环无法结束 因为它可以匹配任何位置的空白字符与空字符
+	// while((arr = reg.exec(str)) != null) {
+	// 	console.log('匹配到了:'+arr[0]+',位置:'+arr.index+',下次搜索位置:'+reg.lastIndex);
+	// }
+
+	// var reg = /(\d)(\1)/;
+	// var str = 'a22b33c348';
+	// console.log(str.match(reg));
+
+	// var reg = /[Jj]ava(?!Script)[A-Z]\w*/;
+	// console.log('JavaScript'.match(reg));
+	// console.log('JavaScripter'.match(reg));
+	// console.log('JavaSE'.match(reg));
+
+	//方括号中的\b匹配退格符
+	// var reg = /ab[\b]c/;
+	// console.log('abc'.match(reg));//null
+	// console.log('ac'.match(reg));//null
+
+	// var reg = /^\d+$/gm;
+	// var str = '123\n22\n33';
+	// console.log(str.match(reg));
+
+	// var reg = /"([^"']+)"/g;
+	// var str = 'Father said:"Where are you?". Son said:"none of your business!"';
+	//console.log(str.match(reg));
+	//console.log(str.replace(reg,"'$1'"));//将双引号替换为单引号
+	// console.log(str.replace(reg,function($0,$1){
+	// 	console.log($0);
+	// 	console.log($1);
+	// 	return "'"+$1+"'";
+	// }));
+
+	//方括号中的.匹配点
+	// console.log(/^[.]$/.test('a'));
+	// console.log(/^[.]$/.test('.'));
+	// console.log(/^[\.]$/.test('.'));
+
+	// console.log('abc'.split()); //返回原字符串
+	// console.log('abc'.split('')); //分割为单个字符组成的数组
+	// console.log('abc'.split(/\s*/)); //分割为单个字符组成的数组
+
+	//var reg = /\d+/;
+	// var reg = new RegExp('\\d+','g');
+	// console.log(reg.source);
+	// console.log(reg.global);
+	// console.log(reg.ignoreCase);
+	// console.log(reg.multiline);
+	// console.log(reg.lastIndex);
+
+	// reg.test('23ab23');
+	// console.log(reg.lastIndex);
+	// reg.exec('23ab23');
+	// console.log(reg.lastIndex);
+
+	// var reg = /\d+/g;
+	// var str = 'a2b34c23';
+	// var count = 0;
+	// while(reg.test(str)){
+	// 	count++;
+	// 	console.log('第'+count+'次匹配成功');
+	// }
+	// console.log('成功匹配'+count+'次');
+
+</script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

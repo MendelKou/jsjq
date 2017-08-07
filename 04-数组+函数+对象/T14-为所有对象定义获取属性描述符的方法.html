@@ -1,0 +1,150 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="Keywords" content="">
+		<meta name="Description" content="">
+		<title></title>
+		
+		<style type="text/css">
+			body,div,p,h1,h2,h3,h4,h5,h6,ul,ol,dl,dd,fieldset{margin:0;}
+			ul,ol,input,textarea,th,td,fieldset,legend{padding:0;}
+			li{list-style:none;}
+			body{font:12px "微软雅黑";}
+			a{text-decoration:none;}
+			img,button{border:none;}
+			table{border-collapse:collapse;}
+			.clearfix:after{content:" ";display:block;clear:both;height:0;visibility:hidden;}
+
+		</style>
+	</head>
+<body>
+	
+<script type="text/javascript">
+
+(function(){
+	function properties(){
+		var propNames;//存储对象所有自有属性名或指定的属性名的数组
+		if(properties.arguments.length === 0){
+				propNames = Object.getOwnPropertyNames(this);
+		}else if(properties.arguments.length === 1 && Array.isArray(properties.arguments[1])){
+			propNames = properties.arguments[1];
+		}else{
+			propNames = Array.splice.call(properties.arguments,0);
+		}
+		return new Properties(this,propNames);
+	}
+	Object.defineProperty(Object.prototype,'properties',{value:properties,enumerable:false,configurable:true});
+	
+	function Properties(o,names){
+		Object.defineProperties(this,{
+			'o':{value:o},
+			'names':{value:names}
+		});
+	}
+	Object.defineProperties(Properties.prototype,{
+		'descriptors':{writable:true,configurable:true,enumerable:false,
+			value:function(){
+				if(this.names.length === 0){
+					return null;
+				}
+				var o = this.o;
+				var descs = {};
+				this.names.forEach(function(name){
+					if(o.hasOwnProperty(name)){
+						descs[name] = Object.getOwnPropertyDescriptor(o,name);
+					}
+				});
+				return descs;
+			}
+		},
+		'hide':{writable:true,configurable:true,enumerable:false,
+			value:function(){
+				var o = this.o;
+				this.names.forEach(function(name){
+					if(o.hasOwnProperty(name)){
+						Object.defineProperty(o,name,{enumerable:false});
+					}
+				});
+				return this;
+			}
+		},
+		'freeze':{writable:true,configurable:true,enumerable:false,
+			value:function(){
+				var o = this.o;
+				this.names.forEach(function(name){
+					if(o.hasOwnProperty(name)){
+						Object.defineProperty(o,name,{writable:false,configurable:false});
+					}
+				});
+				return this;
+			}
+		},
+		'toString':{writable:true,configurable:true,enumerable:false,
+			value:function(){
+				var o = this.o;
+				var str = '';
+				this.names.forEach(function(name){
+					if(o.hasOwnProperty(name)){
+						var desc = Object.getOwnPropertyDescriptor(o,name);
+						str += name+':{';
+						if(desc.hasOwnProperty('value')){
+							str += 'value:'+(typeof desc.value === 'function' ? 'function' : desc.value)+',';
+						}
+						if(desc.hasOwnProperty('writable')){
+							str += 'writable:'+desc.writable+',';
+						}
+						str += 'enumerable:'+desc.enumerable+',configurable:'+desc.configurable;
+						if(desc.get){
+							str += ',get';
+						}
+						if(desc.set){
+							str += ',set';
+						}
+						str += '}\n';
+					}else{
+						str += name+':undefined\n';
+					}
+				});
+				return str;
+			}
+		}
+	});
+
+})();
+
+	var obj = {name:'Tom',age:12};
+	var properties = obj.properties();
+	console.log(properties);
+	for(var k in properties){
+		console.log(k);
+	}
+	//console.log(properties.descriptors()['name']);
+	console.log(properties.descriptors());
+	console.log(properties.toString());
+	properties.hide();
+	console.log(properties.descriptors());
+	console.log(properties.toString());
+	properties.freeze();
+	console.log(properties.descriptors());
+	console.log(properties.toString());
+	
+</script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

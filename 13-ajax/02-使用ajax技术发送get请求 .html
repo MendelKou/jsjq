@@ -1,0 +1,60 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="Keywords" content="">
+		<meta name="Description" content="">
+		<title></title>
+		
+		<style type="text/css">
+			body,div,p,h1,h2,h3,h4,h5,h6,ul,ol,dl,dd,fieldset{margin:0;}
+			ul,ol,input,textarea,th,td,fieldset,legend{padding:0;}
+			li{list-style:none;}
+			body{font:12px "微软雅黑";}
+			a{text-decoration:none;}
+			img,button{border:none;}
+			table{border-collapse:collapse;}
+			.clearfix:after{content:" ";display:block;clear:both;height:0;visibility:hidden;}
+			
+		</style>
+	</head>
+<body>
+
+<script type="text/javascript" src="01-createXhr.js"></script>
+<script type="text/javascript">
+	var xhr = createXhr();
+	var method = 'get'; //请求方式
+	var url = 'http://localhost/date.jsp?name=Tom&_='+Math.random(); //get请求地址及查询字符串
+	var async = true; //是否为异步请求 true(异步 默认) false(同步)
+	xhr.open(method,url,async);
+	xhr.onreadystatechange = function(){
+		console.log(xhr.readyState);
+		if(xhr.readyState == 4 && xhr.status == 200){ //如果请求成功
+			alert(xhr.responseText);
+		}
+	};
+	xhr.send(null); //发送请求 这个方法必须写在open与onreadystatechange后面
+	//如果async为false 那么当请求未完成时 不会执行send后面的方法 在等待send方法完成的过程中 页面会锁定
+	//为了响应时间过长而导致页面假死 一般我们的请求是异步的
+	alert('我是send后面的');
+	
+</script>
+</body>
+</html>
+<!--
+	当xhr.readyState改变时 会调用onreadystatechange 
+	readyState取值及含义如下：
+		0: 请求未初始化
+		1: 服务器连接已建立
+		2: 请求已接收
+		3: 请求处理中
+		4: 请求已完成，且响应已就绪
+	status 表示响应的状态码
+	statusText 状态描述
+	responseText 返回的数据
+
+	//当get请求的url没有变化时 IE浏览器不会重复发送 返回的是缓存的第一次请求的结果
+	//为了避免这个问题可以给url后面加一些变化的参数
+
+
+-->

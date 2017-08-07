@@ -1,0 +1,52 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="Keywords" content="">
+		<meta name="Description" content="">
+		<title></title>
+		
+		<style type="text/css">
+			body,div,p,h1,h2,h3,h4,h5,h6,ul,ol,dl,dd{margin:0;}
+			ul,ol,input{padding:0;}
+			ul,ol{list-style:none;}
+			body{font:12px "微软雅黑";}
+			a{text-decoration:none;color:#000;}
+			img,button{border:none;}
+
+			#div1{
+				width:100px;
+				height:100px;
+				background:red;
+				margin:50px auto;
+			}
+		</style>
+		
+	</head>
+<body>
+	<div id="div1"></div>
+</body>
+<script type="text/javascript">
+/*
+	事件对手在事件发生是产生 它包含了有关事件的信息 如果事件源 鼠标事件包括光标的位置等等
+*/
+	window.onload = function(){
+		//console.log(arguments.length);//1 这说明onload事件发生时传递了一个参数
+		/*var oDiv = document.getElementById('div1');
+		oDiv.onclick = function(ev){
+			//alert(arguments[0]);//火狐与Chrome中为[object MouseEvent] ie8中为undefined
+			//alert(event); //ie与Chrome中event表示事件对象 火狐中报错
+			//兼容写法
+			var oEvent = ev || event;
+			//alert(oEvent);
+			console.log(oEvent.clientX);
+			console.log(oEvent.clientY);
+			console.log(oEvent.screenX);
+			console.log(oEvent.screenY);
+			console.log(oEvent.altKey);
+			console.log(oEvent.ctrlKey);
+			console.log(oEvent.shiftKey); */
+		};
+	};
+</script>
+</html>

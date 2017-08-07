@@ -1,0 +1,99 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="Keywords" content="">
+		<meta name="Description" content="">
+		<title></title>
+		
+		<style type="text/css">
+			body,div,p,h1,h2,h3,h4,h5,h6,ul,ol,dl,dd,fieldset{margin:0;}
+			ul,ol,input,textarea,th,td,fieldset,legend{padding:0;}
+			li{list-style:none;}
+			body{font:12px "微软雅黑";}
+			a{text-decoration:none;}
+			img,button{border:none;}
+			table{border-collapse:collapse;}
+			.clearfix:after{content:" ";display:block;clear:both;height:0;visibility:hidden;}
+			th,td{border:1px solid #000;}
+			#box1{background:url("images/photo-1.jpg");height:1000px;width:1000px;}
+		</style>
+		
+	</head>
+<body>
+	<button id="btn1">button1</button>
+	<button id="btn2">button2</button>
+	<button id="btn3">button3</button>
+	<button id="btn4">button4</button>
+	<div id="box1"></div>
+	
+<script type="text/javascript">
+window.onload = function(){
+	var body = document.getElementsByTagName('body')[0];
+	var btn1 = document.getElementById('btn1');
+	var btn2 = document.getElementById('btn2');
+	var btn3 = document.getElementById('btn3');
+	var btn4 = document.getElementById('btn4');
+
+	var list = document.getElementById('list');
+
+	//屏蔽浏览器右键菜单
+	btn2.oncontextmenu = function(){
+		return false;
+	};
+
+	btn2.onclick = function(){
+	};
+
+	//兼容方法
+	//以对象属性的方式返回窗口滚动条的偏移量
+	var getScrollOffsets = function(w){
+		var w = w || window; //如果不使用指定的窗口则默认为window
+		//除了IE8及更早的浏览器 其它浏览器均支持
+		if(w.pageXOffset !== undefined){
+			return {x:w.pageXOffset,y:w.pageYOffset};
+		}
+		var d = w.document;
+		return {
+			x:d.documentElement.scrollLeft || d.body.scrollLeft,
+			y:d.documentElement.scrollTop || d.body.scrollTop
+		};
+	};
+	
+
+	window.onscroll = function(ev){
+		/*
+		var e = ev || window.event;
+		//其它浏览器下有效 谷歌下document.documentElement.scrollTop始终为0
+		console.log('document.documentElement.scrollTop='+document.documentElement.scrollTop);
+		//仅在谷歌下有效 其它浏览器下始终为0
+		console.log('document.body.scrollTop='+document.body.scrollTop);
+		//除了IE8与更早的浏览器 其它浏览器下均有效
+		console.log('window.pageYOffset='+window.pageYOffset);
+		*/
+		console.log('x='+getScrollOffsets().x+',y='+getScrollOffsets().y);
+	};
+	
+	
+
+	
+};
+</script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

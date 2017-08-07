@@ -1,0 +1,55 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="Keywords" content="">
+		<meta name="Description" content="">
+		<title></title>
+		
+		<style type="text/css">
+			body,div,p,h1,h2,h3,h4,h5,h6,ul,ol,dl,dd,fieldset{margin:0;}
+			ul,ol,input,textarea,th,td,fieldset,legend{padding:0;}
+			li{list-style:none;}
+			body{font:12px "微软雅黑";}
+			a{text-decoration:none;}
+			img,button{border:none;}
+			table{border-collapse:collapse;}
+			.clearfix:after{content:" ";display:block;clear:both;height:0;visibility:hidden;}
+			
+		</style>
+	</head>
+<body>
+	
+
+<script type="text/javascript" src="09-MyUtil.js"></script>
+<script type="text/javascript">
+	//测试MyUtil.ajax
+	/*MyUtil.ajax({
+		url:'http://localhost/test01/date2.jsp',
+		type:'post',
+		data:{name:'李四',age:23},
+		async:true,
+		dataType:'text',
+		success:function(result){
+			alert(result);
+		},
+		error:function(msg){
+			alert(msg);
+		}
+	});*/
+
+	MyUtil.ajax({
+		url:'http://localhost/test01/json.jsp',
+		type:'get',
+		async:true,
+		dataType:'json',
+		success:function(obj){
+			alert(obj.name+','+obj.age);
+		},
+		error:function(msg){
+			alert(msg);
+		}
+	});
+</script>
+</body>
+</html>

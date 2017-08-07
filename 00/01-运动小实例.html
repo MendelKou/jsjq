@@ -1,0 +1,94 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="Keywords" content="">
+		<meta name="Description" content="">
+		<title></title>
+		
+		<style type="text/css">
+			body,div,p,h1,h2,h3,h4,h5,h6,ul,ol,dl,dd{margin:0;}
+			ul,ol{padding:0;list-style:none;}
+			body{font-size:12px;font-family:"微软雅黑";}
+			a{text-decoration:none;color:#000;}
+			img,button{border:none;}
+			
+			#div1{
+				width:100px;
+				height:100px;
+				background:red;
+				border-radius:50%;
+				position:absolute;
+				top:50px;
+			}
+		</style>
+	</head>
+<body>
+	<button id="btn1" type="button">开始</button>
+	<div id="div1"></div>
+	aaaa
+</body>
+<script type="text/javascript">
+	var oDiv = document.getElementById('div1');
+	var oBtn = document.getElementById('btn1');
+	var timerId;
+	var end = 900;
+	var speed;
+	oBtn.onclick = function(){
+		//oDiv.style.left = parseInt(getStyle(oDiv,'left'))+10+'px';
+		/*if(!timerId){
+			timerId = setInterval(function(){
+				oDiv.style.left = parseInt(getStyle(oDiv,'left'))+10+'px';
+			},200);
+		}*/
+
+		//alert(oDiv.offsetLeft);
+		if(!timerId){
+			timerId = setInterval(function(){
+				speed = (end - oDiv.offsetLeft)/30;
+				if(speed<1){
+					clearInterval(timerId);
+				}
+				oDiv.style.left = oDiv.offsetLeft+speed+'px';
+				console.log(speed);
+			},20);
+		}
+	};
+	//自己封装的获取dom对象属性指定属性的值得函数
+	function getStyle(dom,prop){
+		return dom.currentStyle ? dom.currentStyle[prop] : window.getComputedStyle(dom,null)[prop];
+	}
+
+</script>
+</html>
+<!--
+	//1. 用style属性获取css中设置的属性值时为空字符串 但当写成内联样式时可以获取到
+	//alert(oDiv.style.top);
+	//alert(oDiv.style.top==''); //true
+
+	//2. currentStyle Chrome,FF均为undefined IE8可以获取到
+	//alert(oDiv.currentStyle); 
+	//alert(oDiv.currentStyle.top);
+
+	//3. window.getComputedStyle(dom,伪类)
+	//alert(getComputedStyle(oDiv,null));
+	//alert(getComputedStyle(oDiv,null).top); //Chrome和FF可以获取到 IE8获取不到
+
+	//兼容写法
+	//var left = oDiv.currentStyle ? oDiv.currentStyle.left : getComputedStyle(oDiv,null).left;
+	//alert(left);
+	//oDiv.style.left = parseInt(left)+10+'px';
+
+
+	offsetLeft 获取的是相对于父对象的左边距
+	left 获取或设置相对于 具有定位属性(position定义为relative)的父对象 的左边距
+	如果父div的position定义为relative,子div的position定义为absolute，那么子div的style.left的值是相对于父div的值，
+	这同offsetLeft是相同的，区别在于：
+	1. style.left 返回的是字符串，如28px，offsetLeft返回的是数值28，如果需要对取得的值进行计算，
+	还用offsetLeft比较方便。
+	2. style.left是读写的，offsetLeft是只读的，所以要改变div的位置，只能修改style.left。
+	3. style.left的值需要事先定义，否则取到的值为空。而且必须要定义在html里，我做过试验，如果定义在
+	css里，style.left的值仍然 为空，这就是我刚开始碰到的问题，总是取不到style.left的值。
+
+	offsetLeft则仍然能够取到，无需事先定义div的位置。
+-->

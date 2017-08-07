@@ -1,0 +1,102 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="Keywords" content="">
+		<meta name="Description" content="">
+		<title></title>
+		
+		<style type="text/css">
+			body,div,p,h1,h2,h3,h4,h5,h6,ul,ol,dl,dd,fieldset{margin:0;}
+			ul,ol,input,textarea,th,td,fieldset,legend{padding:0;}
+			li{list-style:none;}
+			body{font:12px "微软雅黑";padding-top:1px;}
+			a{text-decoration:none;}
+			img,button{border:none;}
+			table{border-collapse:collapse;}
+			.clearfix:after{content:" ";display:block;clear:both;height:0;visibility:hidden;}
+			
+			.wrap{
+				width:610px;
+				height:400px;
+				margin:50px auto;
+				border:1px solid red;
+			}
+			#box1{
+				position:relative;
+				float:left;
+				width:400px;
+				height:400px;
+				background:url(img/medium.jpg) no-repeat center;
+			}
+			#box2{
+				float:left;
+				width:200px;
+				height:200px;
+				border:5px solid #333;
+				background:url(img/max.jpg) top left;
+			}
+			#area{
+				position:absolute;
+				top:0px;
+				left:0px;
+				width:100px;
+				height:100px;
+				background:rgba(220,125,0,0.3);
+				border:1px solid #ccc;
+			}
+
+		</style>
+	</head>
+<body>
+	<div class="wrap">
+		<div id="box1">
+			<div id="area"></div>
+		</div>
+		<div id="box2"></div>
+	</div>
+<script type="text/javascript">
+	window.onload = function(){
+		var box1 = document.getElementById('box1');
+		var box2 = document.getElementById('box2');
+		var area = document.getElementById('area');
+
+		box1.onmousemove = function(ev){
+			var e = ev || event;
+			move(e);
+		};
+		area.onmousemove = function(ev){
+			var e = ev || event;
+			if(e.stopPropagation){
+				e.stopPropagation();
+			}else{
+				e.cancelBubble = true;
+			}
+			move(e);
+		};
+
+		function move(e){
+			var x = e.clientX-box1.offsetLeft; //鼠标相对于box1左上角的x坐标
+			var y = e.clientY-box1.offsetTop;
+			if(x < area.offsetWidth/2){
+				x = area.offsetWidth/2;
+			}
+			else if(x > box1.clientWidth-area.offsetWidth/2){
+				x = box1.clientWidth-area.offsetWidth/2;
+			}
+			if(y < area.offsetHeight/2){
+				y = area.offsetHeight/2;
+			}else if(y > box1.clientHeight-area.offsetHeight/2){
+				y = box1.clientHeight-area.offsetHeight/2;
+			}
+			x -= area.offsetWidth/2;
+			y -= area.offsetHeight/2;
+			area.style.left = x+'px';
+			area.style.top = y+'px';
+
+			box2.style.backgroundPosition = -2*x+'px '+(-2*y)+'px';
+		}
+	};
+</script>
+</body>
+</html>

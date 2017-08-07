@@ -1,0 +1,159 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="Keywords" content="">
+		<meta name="Description" content="">
+		<title></title>
+		
+		<style type="text/css">
+			body,div,p,h1,h2,h3,h4,h5,h6,ul,ol,dl,dd{margin:0;}
+			ul,ol{padding:0;list-style:none;}
+			body{font-size:12px;font-family:"微软雅黑";}
+			a{text-decoration:none;color:#000;}
+			img,button{border:none;}
+			
+		</style>
+	</head>
+<body>
+</body>
+<script type="text/javascript">
+	//函数是一段可以重复执行的代码
+	//声明函数
+	/*function hello(){
+		alert('Hello, my friend');
+	}
+	//hello(); //调用函数 */
+
+	//声明有参数的函数
+	/*function say(name){
+		alert('Hello, '+name);
+	}
+	say('Tom');
+	say(); //Hello, undefined */
+
+	//声明有返回值得函数 返回值通过return语句返回
+	/*function add(a,b){
+		return a+b;
+	}
+	console.log(add(1,2)); //3
+	console.log(add('1','2')); //12
+	console.log(add('1')); //1undefined
+	console.log(add()); //NaN */
+	//return;可以结束函数的执行 其后的代码不会执行
+
+	//没有return语句的函数的返回值为undefined
+	/*function f1(){}
+	console.log(f1()); //undefined
+	console.log(f1()===undefined); //true */
+
+	//函数也是一个对象 可以把它赋给变量 通过这个变量调用它
+	/*var say = function(name){
+		alert('我是'+name);
+	};
+	//say('Jack'); */
+
+	//通过new方式创建函数 实际上任何函数都是这样创建的
+	/*var add = new Function('a','b','return a+b;');
+	//console.log(add(1,2)); //3
+	//实际上任何函数都是通过这种方式创建的
+	function f1(){}
+	var f2 = function(){};
+	console.log(typeof add); //function
+	console.log(typeof f1); //function
+	console.log(typeof f2); //function
+	console.log(add.constructor === Function); //true
+	console.log(f1.constructor === Function); //true
+	console.log(f2.constructor === Function); //true
+	//所以判断一个变量是不是函数可以使用 typeof x === 'function' 或x.constructor===Function */
+
+	//函数有自己的上下文环境或者说作用域吧
+	//函数中定义的变量尽在函数中有效
+	/*function f(){
+		var a = 1;
+		console.log(a);
+	}
+	f();
+	console.log(a); //ReferenceError: a is not defined */
+
+	//js中的函数可以嵌套定义
+	/*function cal(a,b,type){
+		if(type==='add'){
+			return add(a,b);
+		}else if(type==='subtract'){
+			return subtract(a,b);
+		}
+		//函数内定义的函数只在此函数内可用
+		function add(a,b){
+			return a+b;
+		}
+		function subtract(a,b){
+			return a-b;
+		}
+	}
+	console.log(cal(1,2,'add')); //3
+	console.log(cal(1,2,'subtract')); //-1 */
+
+	//有参函数的形参可以省略 可以利用函数内置的arguments对象获取传递进来的实参
+	//arguments类似一个数组 里面存放了函数的实参 
+	//虽然arguments的使用类型数组 但是它不是Array类型的数组 不具体普通数组的方法
+	/*function f1(){
+		console.log('实参个数：'+arguments.length);
+	}
+	f1();
+	f1(1);
+	f1(1,2); */
+
+	/*function f2(){
+		for(var i=0; i<arguments.length; ++i){
+			console.log(arguments[i]);
+		}
+	}
+	f2(1,2,3); */
+
+	//js中没有函数重载的概念 但可以利用arguments达到类似的效果
+	/*function sum(){
+		var result = 0;
+		for(var i=0; i<arguments.length; ++i){
+			result += arguments[i];
+		}
+		return result;
+	}
+	console.log(sum(1,2,3)); //6
+	console.log(sum(1,2,3,4,5)); //15 */
+
+	//函数本身有一个length属性 存储函数形参的个数
+	/*function f1(){}
+	function f2(a){}
+	function f3(a,b){}
+	console.log(f1.length); //0
+	console.log(f2.length); //1
+	console.log(f3.length); //2
+	f1.length = 10; //函数的length属性是只读的
+	console.log(f1.length); //0 */
+
+	//argumnets.length竟然可以被修改
+	/*function f1(){
+		arguments.length = 10;
+		console.log(arguments.length);
+	}
+	//f1(); //10
+
+	//argumnets中的元素竟然可以被修改
+	function f2(){
+		console.log(arguments[0]); //undefined
+		arguments[0] = 1;
+		console.log(arguments[0]); //1
+	}
+	//f2();
+
+	function f3(){
+		console.log(typeof arguments); //object
+		console.log(arguments.constructor); //function Object() { [native code] }
+		console.log(arguments.toString()); //[object Arguments]
+		//console.log(arguments.join()); //TypeError: arguments.join is not a function
+	}
+	f3(1,2); */
+
+</script>
+</html>

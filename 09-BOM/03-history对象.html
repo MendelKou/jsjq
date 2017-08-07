@@ -1,0 +1,60 @@
+<!doctype html>
+<html>
+	<head>
+		<title></title>
+		<meta charset="utf-8">
+		<meta name="keywords" content="">
+		<meta name="description" content="">
+		<style type="text/css">
+			*{margin:0;padding:0;}
+			body{font:12px "Microsoft Yahei";}
+		</style>
+	</head>
+	<body>
+		<button id="btn1">访问新的锚点</button>
+		<button id="btn2">后退</button>
+		<button id="btn3">前进</button>
+		<button id="btn4">显示访问记录数</button>
+		<button id="btn5">自定义</button>
+		
+	</body>
+<script>
+/*
+	history对象包含当前浏览器窗口访问过的url
+*/
+//history.length 当前url列表中的url数量
+//console.log('history.length='+history.length);
+/*方法	描述
+back()	加载 history 列表中的前一个 URL。
+forward()	加载 history 列表中的下一个 URL。
+go()	加载 history 列表中的某个具体页面。*/
+
+
+window.onload = function(){
+	var btn1 = document.getElementById('btn1');
+	var btn2 = document.getElementById('btn2');
+	var btn3 = document.getElementById('btn3');
+	var btn4 = document.getElementById('btn4');
+	var btn5 = document.getElementById('btn5');
+
+	btn1.onclick = function(){
+		location.hash = '#'+parseInt(Math.random()*100);
+	};
+	btn2.onclick = function(){
+		history.back();
+	};
+	btn3.onclick = function(){
+		history.forward();
+	};
+	btn4.onclick = function(){
+		alert(history.length);
+	};
+	btn5.onclick = function(){
+		history.go(2); //相当于调用两次forward
+		//history.go(-2); //相当于调用两次back
+	};
+
+};
+
+</script>
+</html>

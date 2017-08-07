@@ -1,0 +1,160 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="Keywords" content="">
+		<meta name="Description" content="">
+		<title></title>
+		
+		<style type="text/css">
+			body,div,p,h1,h2,h3,h4,h5,h6,ul,ol,dl,dd,fieldset{margin:0;}
+			ul,ol,input,textarea,th,td,fieldset,legend{padding:0;}
+			li{list-style:none;}
+			body{font:12px "微软雅黑";}
+			a{text-decoration:none;}
+			img,button{border:none;}
+			table{border-collapse:collapse;}
+			.clearfix:after{content:" ";display:block;clear:both;height:0;visibility:hidden;}
+			
+		</style>
+	</head>
+<body>
+<script type="text/javascript">
+	
+	//IE中的一个bug 当对象中自定义的属性与对象中不可枚举的属性同名时 for/in循环遍历不到此属性
+	/*var o = {x:'xxx',toString:null};
+	for(var p in o){
+		console.log(p+'='+o[p]);
+	}*/
+
+	//定义一个扩展函数 将第二个参数及其之后的参数的属性复制到第一个参数中 如果存在上面的IE bug则返回修正后的版本
+	var extend = (function(){
+		//首次通过for/in检测是否存在bug 如果进行for/in则表明不存在那个bug
+		for(var p in {toString:null}){
+			return function extend(o){
+				for(var i=1; i<arguments.length; ++i){
+					var obj = arguments[i];
+					for(var prop in obj){
+						o[prop] = obj[prop];
+					}
+				}
+				return o;
+			};
+		}
+
+		var protoprops = ["toString","valueOf","constructor","hasOwnProperty",
+		"isPrototypeOf","propertyIsEnumerable","toLocaleString"];
+
+		return function patched_extend(o){
+			for(var i=1; i<arguments.length; ++i){
+				var obj = arguments[i];
+				for(var prop in obj){
+					o[prop] = obj[prop];
+				}
+
+				//检查特殊属性
+				for(var j=0; j<protoprops.length; ++j){
+					prop = protoprops[j];
+					if(obj.hasOwnProperty(prop)){
+						o[prop] = obj[prop];
+					}
+				}
+			}
+			return o;
+		};
+	})();
+
+	//创建并返回以指定对象为原型的对象
+	function inherit(p){
+		if(p == null) throw TypeError();
+		if(Object.create){
+			return Object.create(p); //ES5中的Object.create方法以指定的对象为原型创建对象
+		}
+		if(typeof p != 'object' && typeof p != 'function') throw TypeError();
+		function f(){}
+		f.prototype = p;
+		return new f();
+	}
+	
+	/*function A(a){
+		this.a = a;
+	}
+	A.prototype.printA = function(){
+		console.log(this.a);
+	};
+	var a = new A(1);
+	//a.printA();
+
+	function B(a,b){
+		A.call(this,a);
+		this.b = b;
+	}
+	B.prototype = inherit(A.prototype);
+	B.prototype.printB = function(){
+		console.log(this.b);
+	};
+	var b = new B(1,2); */
+
+
+	//自定义一个工厂函数 实现两个类的继承关系
+	//参数：Sub(子类构造函数),Super(父类构造函数)
+	function defineInheritance(Sub,Super){
+		function F(){} //一个辅助构造函数
+		F.prototype = Super.prototype;
+		var obj = new F();
+		Sub.prototype = obj;
+		Sub.prototype.constructor = Sub; //修正constructor属性值
+		Sub.superProto = Super.prototype;
+	}
+	//测试defineInheritance
+	function Person(name,gender){
+		this.name = name;
+		this.gender = gender;
+	}
+	Person.prototype.toString = function(){
+		return 'Person[name='+this.name+',gender='+this.gender+']';
+	};
+	var p = new Person('Tom',22);
+	//console.log(p);
+	//console.log(p.toString());
+
+	function Student(name,gender,sid){
+		Person.call(this,name,gender);
+		this.sid = sid;
+	}
+	defineInheritance(Student,Person);
+	Student.prototype.toString = function(){
+		return Student.superProto.toString.call(this)+'Student[sid='+this.sid+']';
+	};
+
+	var s = new Student('Jack',23,1001);
+	/*console.log(s);
+	console.log(s.toString());
+	console.log(s instanceof Student);
+	console.log(s instanceof Person);*/
+	//动态性展示
+	Person.prototype.getName = function(){
+		return this.name;
+	};
+	//console.log(s.getName());
+
+	
+</script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,44 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="Keywords" content="">
+		<meta name="Description" content="">
+		<title></title>
+		
+		<style type="text/css">
+			body,div,p,h1,h2,h3,h4,h5,h6,ul,ol,dl,dd{margin:0;}
+			ul,ol{padding:0;list-style:none;}
+			body{font-size:12px;font-family:"微软雅黑";}
+			a{text-decoration:none;color:#000;}
+			img,button{border:none;}
+			
+		</style>
+	</head>
+<body>
+	
+</body>
+<script type="text/javascript">
+	/*
+		字面量：一个值 它是常量 也有不同的类型 可以作为变量的值
+	*/
+	var name = "Tom"; //"Tom"是字符串字面量
+	var num = 5; //5是数字字面量
+	var flag = true;
+	flag = false; //true，false是布尔型常量 不是关键字
+	var reg = /\d+/; // /\d+/是正则字面量
+	var arr = [1,2,3]; //[1,2,3]是数组字面量
+	var obj = {name:"Jack",age:22}; //{name:"Jack",age:22}对象字母量
+	//alert(obj.age);
+	var a = 1/0;
+	console.log(a); //Infinity
+	console.log(typeof a); //number
+	var b = -1/0;
+	console.log(b); //-Infinity
+	console.log(typeof b); //number
+	var c = 0/0;
+	console.log(c); //NaN
+	console.log(typeof c); //number
+
+</script>
+</html>

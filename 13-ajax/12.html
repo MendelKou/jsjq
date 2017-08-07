@@ -1,0 +1,288 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="Keywords" content="">
+		<meta name="Description" content="">
+		<title></title>
+		
+		<style type="text/css">
+			body,div,p,h1,h2,h3,h4,h5,h6,ul,ol,dl,dd,fieldset{margin:0;}
+			ul,ol,input,textarea,th,td,fieldset,legend{padding:0;}
+			li{list-style:none;}
+			body{font:12px "微软雅黑";}
+			a{text-decoration:none;}
+			img,button{border:none;}
+			table{border-collapse:collapse;}
+			.fL{float:left;} .fR{float:right;}
+			.clearfix:after{content:" ";display:block;clear:both;height:0;visibility:hidden;}
+			
+		</style>
+	</head>
+<body>
+	<button id="btn1">按钮1</button>
+	<button id="btn2">按钮2</button>
+<script type="text/javascript">
+window.onload = function(){
+	var btn1 = document.getElementById('btn1');
+	var btn2 = document.getElementById('btn2');
+	var input1 = document.getElementById('input1');
+	
+	btn1.onclick = function(e){
+		e = e || window.event;
+		console.log('btn1');
+	
+
+	};
+
+	btn2.onclick = function(e){
+		e = e || window.event;
+		console.log('btn2');
+		
+	};
+
+	/*
+	input1.onchange = function(){
+		console.log(input1.value);
+		//console.log(input1.files); //IE8不支持此属性
+		if(input1.files && input1.files.length>0){
+			if(typeof FormData === 'undefined'){
+				alert('您的浏览器不支持FormData');
+			}else{
+				var formData = new FormData();
+				formData.append('f1',input1.files[0]);
+				postFormData(formData,'t01.php',function(type){
+					if(type === 'progress'){
+						var loaded = arguments[1];
+						var total = arguments[2];
+						console.log('已上传%'+(100*loaded/total));
+					}else if('load'){
+						var xhr = arguments[1];
+						var rs = xhr.responseText;
+						if(rs.match(/^[0-9]{1,2}$/)){
+							console.log('上传失败');
+						}else{
+							console.log('上传成功');
+						}
+					}
+				});
+			}
+		}else{
+			alert('您的浏览器不支持File对象');
+		}
+	};
+	*/
+
+	function sendPost(){
+		var xhr = new XMLHttpRequest();
+		xhr.onreadystatechange = function(){
+			var readyState = xhr.readyState;
+			var status = xhr.status;
+			console.log('readyState='+readyState+',status='+status+',responseText='+xhr.responseText);
+			//console.log(typeof xhr.getAllResponseHeaders());
+			console.log(xhr.getResponseHeader('Content-Type'));
+		};
+		xhr.open(
+			'POST',
+			't01.php'
+		);
+		xhr.setRequestHeader('Content-Type','text/plain;charset=utf-8');
+		xhr.send('hello菲比');
+	}
+
+	//向指定的url发送get请求 
+	//根据响应的Content-Type将响应主体解析为文本或document对象或json对象后传给回调函数
+	function get(url,callback){
+		var xhr = new XMLHttpRequest();
+		xhr.open('GET',url);
+		xhr.onreadystatechange = function(){
+			if(xhr.readyState === 4 && xhr.status === 200){
+				var type = xhr.getResponseHeader('Content-Type');
+				if(type.indexOf('xml') !== -1 && xhr.responseXML){
+					callback(xhr.responseXML);
+				}else if(type === 'application/json'){
+					callback(JSON.parse(xhr.responseText));
+				}else{
+					callback(xhr.responseText);
+				}
+			}
+		};
+		xhr.send(null);
+	}
+
+	//使用json编码主体发起post请求 服务端在读取数据时要从原始的数据流中读取
+	function postJSON(url,data,callback){
+		var xhr = new XMLHttpRequest();
+		xhr.open('POST',url);
+		xhr.setRequestHeader('Content-Type','application/json');
+		xhr.onreadystatechange = function(){
+			if(xhr.readyState === 4){
+				if(callback){
+					callback(xhr); //callback自己负责响应是否成功的检查 以便在失败时能给出提示
+				}
+			}
+		};
+		xhr.send(JSON.stringify(data));
+	}
+
+	//以xml文档作为主体的post请求 服务端在读取数据时要从原始的数据流中读取并解析xml
+	//xmlDoc是document对象
+	function postXML(url,xmlDoc,callback){
+		var xhr = new XMLHttpRequest();
+		xhr.open('POST',url);
+		xhr.onreadystatechange = function(){
+			if(xhr.readyState === 4){
+				if(callback){
+					callback(xhr);
+				}
+			}
+		};
+		//会自动设置请求头的Content-Type 发送xml编码的数据
+		xhr.send(xmlDoc);
+	}
+
+	//如果input支持files属性通过post发送表示文件的File对象 服务端接受到的是数据流
+	function postFile(file,url,callback){
+		var xhr = new XMLHttpRequest();
+			xhr.onreadystatechange = function(){
+				callback('readystatechange',xhr);
+			};
+			xhr.upload.onloadstart = function(){
+				//console.log('upload.onloadstart');
+				callback('loadstart');
+			};
+			xhr.upload.onprogress = function(e){
+				//console.log('upload.onprogress');
+				callback('progress',e.loaded,e.total);
+				//console.log('已上传%'+(100*e.loaded/e.total));
+			};
+			xhr.upload.onload = function(){
+				//console.log('upload.onload');
+				callback('load');
+			};
+			xhr.upload.onloadend = function(){
+				//console.log('upload.onloadend');
+				callback('loadend');
+			};
+			xhr.open("POST",url);
+			xhr.send(file);
+	}
+
+	//请自行检查浏览器是否支持FormData
+	function postFormData(formData,url,callback){
+		var xhr = new XMLHttpRequest();
+		xhr.upload.onprogress = function(e){
+			if(callback){
+				callback('progress',e.total,e.loaded);
+			}
+		};
+		xhr.onload = function(){
+			//如果请求成功
+			if((xhr.status >= 200 && xhr.status < 300) || xhr.status == 304){
+				callback('load',xhr);
+			}
+		};
+		xhr.open('POST',url);
+		try{
+			xhr.send(formData);
+		}catch(e){
+			if(callback){
+				callback('senderror',e);
+			}
+		}
+	}
+	
+	/*
+		查询文档中有href但没有title属性的a元素
+		给它们注册mouseover事件处理程序 在第一次触发事件时发起HEAD请求 获取资源的详细信息
+		给元素设置title属性 这样便可以显示提示信息
+	*/
+	function getLinkdetails(){
+		//是否有机会使用跨域资源请求
+		var supportCORS = typeof (new XMLHttpRequest()).withCredentials !== 'undefined';
+		//查找所有的a元素
+		var aDoms = document.getElementsByTagName('a');
+		for(var i=0; i<aDoms.length; ++i){
+			var aDom = aDoms[i];
+			if(aDom.hasAttribute('href') && !aDom.hasAttribute('title')){
+				//如果这是一个跨域请求
+				if(aDom.host !== location.host || aDom.protocol !== location.protocol){
+					aDom.title = '站外链接';
+					if(!supportCORS){continue;} //如果不支持supportCORS就略过
+				}
+				if(aDom.addEventListener){
+					aDom.addEventListener('mouseover',handler,false);
+				}else if(aDom.attachEvent){
+					aDom.attachEvent('onmouseover',handler);
+				}
+			}
+		}
+
+		function handler(e){
+			console.log(e);
+			e = e || window.event;
+			var link = e.target || e.srcElement;
+			var href = link.href;
+			var xhr = new XMLHttpRequest();
+			xhr.onreadystatechange = function(){
+				if(xhr.readyState === 4){
+					if(xhr.status === 200){
+						var type = xhr.getResponseHeader('Content-Type');
+						var size = xhr.getResponseHeader('Content-Length');
+						var time = xhr.getResponseHeader('Last-Modified');
+						link.title = '类型:'+type+'\n大小:'+size+'\n时间:'+time;
+					}else{
+						if(!link.title){ //如果请求失败且没有站外链接的提示 则显示错误
+							link.title = '无法获取信息';
+						}
+					}
+					if(link.removeEventListener){ //只需获取一次 所以解除事件
+						link.removeEventListener('mouseover',handler,false);
+					}else if(link.detachEvent){
+						link.detachEvent('onmouseover',handler);
+					}
+				}
+			};
+			xhr.open('HEAD',href);
+			xhr.send(null);
+		}
+	}
+
+	/*
+		使用script发起数据请求
+		参数:
+		{
+			url:'请求地址'
+			data:{
+				cb:'回调函数名'
+				//之后可以根据需要附加其它参数
+			},
+			callback:回调函数
+		}
+	*/
+	function jsonp(params){
+		var newScript = document.createElement('script');
+		var src = params.url+'?';
+		for(var key in params.data){
+			src += key+'='+encodeURIComponent(params.data[key])+'&';
+		}
+		var ch = src[src.length-1];
+		if(ch === '&' || ch === '?'){
+			src = src.substring(0,src.length-1);
+		}
+		newScript.src = src;
+		var cb = params.data.cb;
+		window[cb] = function(json){
+			try{
+				params.callback(json);
+			}finally{
+				newScript.parentNode.removeChild(newScript);
+				delete window[cb];
+			}
+		};
+		document.getElementsByTagName('body')[0].appendChild(newScript);
+	}
+};
+</script>
+</body>
+</html>

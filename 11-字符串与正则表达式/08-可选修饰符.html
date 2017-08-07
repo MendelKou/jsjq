@@ -1,0 +1,42 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="Keywords" content="">
+		<meta name="Description" content="">
+		<title></title>
+		
+		<style type="text/css">
+			body,div,p,h1,h2,h3,h4,h5,h6,ul,ol,dl,dd{margin:0;}
+			ul,ol,input,textarea{padding:0;}
+			li{list-style:none;}
+			body{font:12px "微软雅黑";padding-top:1px;}
+			a{text-decoration:none;}
+			img,button{border:none;}
+			
+
+		</style>
+	</head>
+<body>
+	
+</body>
+<script>
+	//创建正则表达式时 有三个可选的修饰符
+	//i 表示忽略大小写
+	/*var str = 'love Love LovE';
+	console.log(/LOVE/.test(str)); //false
+	console.log(/LOVE/i.test(str)); //true */
+
+	//g 表示全局匹配
+	/*var str = 'abc123def123hjk';
+	console.log(str.match(/123/));
+	console.log(str.match(/123/g)); */
+
+	//m 表示多行模式
+	var str = 'ab\nc';
+	console.log(/^c/.test(str)); //false
+	console.log(/^c/m.test(str)); //true
+	
+
+</script>
+</html>

@@ -1,0 +1,64 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="Keywords" content="">
+		<meta name="Description" content="">
+		<title></title>
+		
+		<style type="text/css">
+			body,div,p,h1,h2,h3,h4,h5,h6,ul,ol,dl,dd,fieldset{margin:0;}
+			ul,ol,input,textarea,th,td,fieldset,legend{padding:0;}
+			li{list-style:none;}
+			body{font:12px "微软雅黑";}
+			a{text-decoration:none;}
+			img,button{border:none;}
+			table{border-collapse:collapse;}
+			.clearfix:after{content:" ";display:block;clear:both;height:0;visibility:hidden;}
+		</style>
+		
+	</head>
+<body>
+	<button id="btn1" data-src="abc">button1</button>
+	<button id="btn2">button2</button>
+	<button id="btn3">button3</button>
+	<button id="btn4">button4</button>
+
+<script type="text/javascript">
+window.onload = function(){
+	var btn1 = document.getElementById('btn1');
+	var btn2 = document.getElementById('btn2');
+	var btn3 = document.getElementById('btn3');
+	var btn4 = document.getElementById('btn4');
+	
+
+	btn2.onclick = function(){
+		//node对象的attributes属性表示节点的属性对象的类数组
+		console.log(btn1.attributes.length);
+		console.log(btn1.attributes[1].name); //属性名
+		console.log(btn1.attributes[1].value); //属性值
+	};
+
+	btn3.onclick = function(){
+		btn1.attributes[1].value = 'xxx'; //可写
+	};
+};
+</script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

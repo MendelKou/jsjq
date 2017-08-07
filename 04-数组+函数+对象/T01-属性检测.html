@@ -1,0 +1,44 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="Keywords" content="">
+		<meta name="Description" content="">
+		<title></title>
+		
+		<style type="text/css">
+			body,div,p,h1,h2,h3,h4,h5,h6,ul,ol,dl,dd,fieldset{margin:0;}
+			ul,ol,input,textarea,th,td,fieldset,legend{padding:0;}
+			li{list-style:none;}
+			body{font:12px "微软雅黑";}
+			a{text-decoration:none;}
+			img,button{border:none;}
+			table{border-collapse:collapse;}
+			.clearfix:after{content:" ";display:block;clear:both;height:0;visibility:hidden;}
+			
+			
+		</style>
+	</head>
+<body>
+	
+<script type="text/javascript">
+	var o = {x:'abc'};
+	//in运算符可以判断对象是否有指定的属性
+	/*console.log('x' in o); //true
+	console.log('y' in o); //false
+	console.log('toString' in o); //true toString是继承而来的属性 */
+
+	//hasOwnProperty(prop) 判断指定的属性是否是对象的自有属性
+	/*console.log(o.hasOwnProperty('x'));//true
+	console.log(o.hasOwnProperty('y'));//false
+	console.log(o.hasOwnProperty('toString'));//false */
+
+	//propertyIsEnumerable(prop) 只有为自有属性且可枚举时才返回true
+	console.log(o.propertyIsEnumerable('x'));//true
+	console.log(o.propertyIsEnumerable('y'));//false
+	console.log(o.propertyIsEnumerable('toString'));//false
+	console.log(Object.prototype.propertyIsEnumerable('toString'));//false
+
+</script>
+</body>
+</html>

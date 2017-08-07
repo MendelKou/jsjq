@@ -1,0 +1,104 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="Keywords" content="">
+		<meta name="Description" content="">
+		<title></title>
+		
+		<style type="text/css">
+			body,div,p,h1,h2,h3,h4,h5,h6,ul,ol,dl,dd,fieldset{margin:0;}
+			ul,ol,input,textarea,th,td,fieldset,legend{padding:0;}
+			li{list-style:none;}
+			body{font:12px "微软雅黑";}
+			a{text-decoration:none;}
+			img,button{border:none;}
+			table{border-collapse:collapse;}
+			.clearfix:after{content:" ";display:block;clear:both;height:0;visibility:hidden;}
+			
+			#div1{
+				position:relative;
+				width:100px;
+				height:100px;
+				margin-top:20px;
+				background:red;
+			}
+			#div1 div{
+				width:50px;
+				height:50px;
+				background:green;
+			}
+		</style>
+	</head>
+<body>
+	<ul class="list">
+		<li>11111111</li>
+		<li>22222222</li>
+		<li class="txt">33333333</li>
+		<li>44444444</li>
+		<li class="count txt">55555555</li>
+		<li>66666666</li>
+		<li>
+			<p id="p1">我是段落</p>
+		</li>
+		<li>
+			<p>我是段落</p>
+		</li>
+	</ul>
+
+	<div id="div1">
+		<div></div>
+	</div>
+<script src="../jquery-1.8.3/jquery.js"></script>
+<script type="text/javascript">
+	$(function(){
+		//children([expr]) 取得一个包含匹配的元素集合中每一个元素的所有子元素(只是子代)的元素集
+		/*console.log($('.list').children().length);
+		console.log($('.list').children('li').length);
+		console.log($('.list').children('p').length);//0 */
+
+		//closest(expr,[context]|object|element) jQuery 1.3新增。从元素本身开始，逐级向上级元素匹配，并返回最先匹配的元素
+		//$('#p1').closest('li').css('padding-left','100px');
+
+		//find(expr|obj|ele) 搜索所有与指定表达式匹配的元素。这个函数是找出正在处理的元素的后代元素的好方法。
+		//$('.list').find('p').css('color','red');
+
+		//取得一个包含匹配的元素集合中每一个元素紧邻的后面同辈元素的元素集合。
+		//$('.txt').next().css('background','red');
+
+		//nextAll([expr]) 查找当前元素之后所有的同辈元素。
+		//$('.count').nextAll().css('color','red');
+
+		//nextUntil([exp|ele][,fil]) 找当前元素之后所有的同辈元素，直到遇到匹配的那个元素为止
+		//$('.list li:first-child').nextUntil('.count').css('color','red');
+		//如果没有选择器匹配到，或者没有提供参数，那么跟在后面的所有同辈元素都会被选中。这就跟用没有提供参数的 .nextAll()效果一样。
+		//$('.list li:first-child').nextUntil().css('color','red');
+
+		//offsetParent() 返回第一个匹配元素的用于定位的父节点。这返回父元素中第一个其position设为relative或者absolute的元素。此方法仅对可见元素有效。
+		//$('#div1 div').offsetParent().css('background','blue');
+
+		//parent([expr]) 取得包含所有匹配元素的唯一父元素的集合
+		//$('.list li p').parent().css('background','red');
+
+		//parents([expr]) 取得一个包含着所有匹配元素的祖先元素的元素集合（不包含根元素）。
+		//console.log($('.list li p').parents().length);
+		//$('.list li p').parents().css('background','red');
+
+		//parentsUntil([expr|element][,filter]) 查找当前元素的所有的父辈元素，直到遇到匹配的那个元素为止。
+		//$('.list li p').parentsUntil('body').css('background','red');
+
+		//prev[expr] 取得一个包含匹配的元素集合中每一个元素紧邻的前一个同辈元素的元素集合。
+		//$('.count').prev().css('color','red');
+
+		//prevAll[expr] 查找当前元素之前所有的同辈元素
+		//$('.count').prevAll().css('color','red');
+
+		//prevUntil([exp|ele][,fil]) 查找当前元素之前所有的同辈元素，直到遇到匹配的那个元素为止。
+		//$('.count').prevUntil('.txt').css('color','red');
+
+		//siblings([expr]) 取得一个包含匹配的元素集合中每一个元素的所有唯一同辈元素的元素集合
+		//$('.count').siblings().css('color','red');
+	});
+</script>
+</body>
+</html>

@@ -1,0 +1,64 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="Keywords" content="">
+		<meta name="Description" content="">
+		<title></title>
+		
+		<style type="text/css">
+			body,div,p,h1,h2,h3,h4,h5,h6,ul,ol,dl,dd{margin:0;}
+			ul,ol{padding:0;list-style:none;}
+			body{font-size:12px;font-family:"微软雅黑";}
+			a{text-decoration:none;color:#000;}
+			img,button{border:none;}
+
+		</style>
+	</head>
+<body>
+	<button type="button" id="btn1">排序</button>
+	<ul id="list1">
+		<li>12￥：鼠标</li>
+		<li>10￥：笔记本</li>
+		<li>40000￥：笔记本电脑</li>
+		<li>1200￥：篮球</li>
+		<li>50￥：T恤</li>
+	</ul>
+</body>
+<script>
+	window.onload = function(){
+		var list = document.getElementById('list1');
+		var liSet = list.getElementsByTagName('li');
+		//alert(liSet);//[object HTMLCollection]
+		//alert(liSet.sort); //undefined
+		var btn = document.getElementById('btn1');
+		var bool = true;
+		var liArr = [];
+		for(var i=0; i<liSet.length; ++i){
+			liArr.push(liSet[i]);
+		}
+		/*function sortFunc(a,b){
+			if(bool){
+				return parseInt(a.innerHTML)-parseInt(b.innerHTML);
+			}else{
+				return parseInt(b.innerHTML)-parseInt(a.innerHTML);
+			}
+		}*/
+		btn.onclick = function(){
+			//liArr.sort(sortFunc);
+			liArr.sort(function(a,b){
+				if(bool){
+					return parseInt(a.innerHTML)-parseInt(b.innerHTML);
+				}else{
+					return parseInt(b.innerHTML)-parseInt(a.innerHTML);
+				}
+			});
+			for(var i=0; i<liArr.length; ++i){
+				list.appendChild(liArr[i]);
+			}
+			bool = !bool;
+		};
+	};
+
+</script>
+</html>

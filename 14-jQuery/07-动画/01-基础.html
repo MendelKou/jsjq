@@ -1,0 +1,86 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="Keywords" content="">
+		<meta name="Description" content="">
+		<title></title>
+		
+		<style type="text/css">
+			body,div,p,h1,h2,h3,h4,h5,h6,ul,ol,dl,dd,fieldset{margin:0;}
+			ul,ol,input,textarea,th,td,fieldset,legend{padding:0;}
+			li{list-style:none;}
+			body{font:12px "微软雅黑";}
+			a{text-decoration:none;}
+			img,button{border:none;}
+			table{border-collapse:collapse;}
+			.clearfix:after{content:" ";display:block;clear:both;height:0;visibility:hidden;}
+			
+			#div1{width:100px;height:100px;background:red;display:none;}
+		</style>
+	</head>
+<body>
+	<div id="div1" class="box"></div>
+	<button id="btn1">show</button>
+	<button id="btn2">hide</button>
+	<button id="btn3">toggle</button>
+<script type="text/javascript" src="../jquery-1.8.3/jquery.min.js"></script>
+<script type="text/javascript">
+	$(function(){
+			$('#btn1').on('click',function(){
+			//show([speed,[easing],[fn]]) 显示匹配的隐藏元素 对visibility为hidden的元素无效
+			
+			$('#div1').show();
+
+			//slow,normal,fast 为三个预定义的时间常量值 单位位毫秒 值大约分别为600,400,200
+			//$('#div1').show('fast');
+
+			//指定时间值
+			//$('#div1').show(1000);
+
+			//第二个参数如果为字符串 则表示切换效果 默认为swing 可选值为linear
+			//$('#div1').show('slow','swing'); //感觉swing是由快到慢
+			//$('#div1').show('slow','linear');
+
+			//第二个参数为函数 则在动画执行完毕时会调用这个函数
+			/*$('#div1').show(2000,function(){
+				alert('动画显示完毕');
+			});*/
+
+			//可以同时指定切换效果与回调函数
+			/*$('#div1').show(2000,'swing',function(){
+				alert('动画显示完毕');
+			});*/
+
+		});
+
+		$('#btn2').on('click',function(){
+			$('#div1').hide();
+			//$('#div1').hide('slow');
+			//$('#div1').hide(2000);
+			//$('#div1').hide(2000,'linear');
+			//$('#div1').hide(2000,function(){console.log('我隐藏了');});
+			//$('#div1').hide(2000,'linear',function(){console.log('我隐藏了');});
+		});
+
+		$('#btn3').on('click',function(){
+			//toggle 切换元素显示/隐藏
+			$('#div1').toggle();
+			//指定时间
+			//$('#div1').toggle(1000);
+			//指定速度曲线
+			//$('#div1').toggle(1000,'linear');
+			//指定每次切换执行的函数
+			/*$('#div1').toggle(1000,function(){
+				console.log($(this).is(':visible'));
+			});*/
+			//指定显示或隐藏 true显示 false隐藏
+			//$('#div1').toggle(true); //相当于show
+		});
+
+	});
+	
+
+</script>
+</body>
+</html>

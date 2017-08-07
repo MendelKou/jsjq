@@ -1,0 +1,303 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="Keywords" content="">
+		<meta name="Description" content="">
+		<title></title>
+		
+		<style type="text/css">
+			body,div,p,h1,h2,h3,h4,h5,h6,ul,ol,dl,dd,fieldset{margin:0;}
+			ul,ol,input,textarea,th,td,fieldset,legend{padding:0;}
+			li{list-style:none;}
+			body{font:12px "微软雅黑";}
+			a{text-decoration:none;}
+			img,button{border:none;}
+			table{border-collapse:collapse;}
+			.clearfix:after{content:" ";display:block;clear:both;height:0;visibility:hidden;}
+			
+		</style>
+	</head>
+<body>
+<script type="text/javascript">
+	//Set：值的任意集合
+	function Set(){
+		this.values = {}; //这是一个构造函数
+		this.n = 0; //集合中的元素数保存在对象的属性里
+		this.add.apply(this,arguments); //把所有的参数都添加进这个集合
+	}
+	//将每个参数都添加进集合中
+	Set.prototype.add = function(){
+		for(var i=0; i<arguments.length; ++i){
+			var val = arguments[i];
+			var str = Set._v2s(val);
+			if(!this.values.hasOwnProperty(str)){
+				this.values[str] = val;
+				this.n++; //集合元素计数增1
+			}
+		}
+		return this;
+	};
+	//从集合删除元素 这些元素由参数指定
+	Set.prototype.remove = function(){
+		for(var i=0; i<arguments.length; ++i){ //遍历每个参数
+			var str = Set._v2s(arguments[i]);//将字符串和值对应起来
+			if(this.values.hasOwnProperty(str)){ //如果它在集合中
+				delete this.values[str];
+				this.n--; //集合元素计数减1
+			}
+		}
+		return this;
+	};
+
+	//如果集合包含这个值 则返回true 否则返回false
+	Set.prototype.contains = function(value){
+		return this.values.hasOwnProperty(Set._v2s(value));
+	};
+
+	//返回集合的大小
+	Set.prototype.size = function(){
+		return this.n;
+	};
+
+	//遍历集合中的所有元素 在指定的上下文中调用f
+	Set.prototype.foreach = function(f,context){
+		for(var s in this.values){
+			if(this.values.hasOwnProperty(s)){
+				f.call(context,this.values[s]);
+			}
+		}
+	};
+
+	//这是一个内部函数 用以将任意JavaScript值和唯一的字符串对应起来
+	Set._v2s = function(val){
+		switch(val){
+			case undefined: return 'u'; //特殊的原始值
+			case null: return 'n';
+			case true: return 't';
+			case false: return 'f';
+			default:switch(typeof val){
+				case 'number': return '#'+val; //数字都带有#前缀
+				case 'string': return '"'+val; //字符串都带有"前缀
+				default: return '@'+objectId(val); //Objs and funcs get @
+			}
+		}
+
+		//对任意对象来说 都会返回一个字符串
+		//针对不同的对象 这个函数会返回不同的字符串
+		//对于同一个对象的多次调用 总是返回相同的字符串
+		//为了做到这一点 它给o创建了一个属性 在ES5中 这个属性是不可枚举且是只读的
+		function objectId(o){
+			var prop = '|**objectid**|'; //私有属性 用以存放id
+			if(!o.hasOwnProperty(prop)){
+				o[prop] = Set._v2s.next++; //将下一个值赋给它
+			}
+			return o[prop];
+		}
+	};
+	Set._v2s.next = 100; //设置初始id的值
+
+	//IE中的一个bug 当对象中自定义的属性与对象中不可枚举的属性同名时 for/in循环遍历不到此属性
+	/*var o = {x:'xxx',toString:null};
+	for(var p in o){
+		console.log(p+'='+o[p]);
+	}*/
+
+	//定义一个扩展函数 将第二个参数及其之后的参数复制到第一个参数中 如果存在上面的IE bug则返回修正后的版本
+	var extend = (function(){
+		//首次通过for/in检测是否存在bug 如果进行for/in则表明不存在那个bug
+		for(var p in {toString:null}){
+			return function extend(o){
+				for(var i=1; i<arguments.length; ++i){
+					var obj = arguments[i];
+					for(var prop in obj){
+						o[prop] = obj[prop];
+					}
+				}
+				return o;
+			};
+		}
+
+		var protoprops = ["toString","valueOf","constructor","hasOwnProperty",
+		"isPrototypeOf","propertyIsEnumerable","toLocaleString"];
+
+		return function patched_extend(o){
+			for(var i=1; i<arguments.length; ++i){
+				var obj = arguments[i];
+				for(var prop in obj){
+					o[prop] = obj[prop];
+				}
+
+				//检查特殊属性
+				for(var j=0; j<protoprops.length; ++j){
+					prop = protoprops[j];
+					if(obj.hasOwnProperty(prop)){
+						o[prop] = obj[prop];
+					}
+				}
+			}
+			return o;
+		};
+	})();
+
+	//给Set类的原型添加一些方法
+	extend(Set.prototype,{
+		//将集合转换为字符串
+		toString:function(){
+			var s = '{', i = 0;
+			this.foreach(function(v){
+				s += ((i++>0)?',':'')+v;
+			});
+			return s+'}';
+		},
+		//类似toString 但是对于所有的值都将调用toLocaleString()
+		toLocaleString: function(){
+			var s = '{',i=0;
+			this.foreach(function(v){
+				if(i++>0) s += ',';
+				if(v == null) s += v; //null和undefined
+				else s += v.toLocaleString(); //其他情况
+			});
+			return s+'}';
+		},
+		toArray: function(){
+			var a = [];
+			this.foreach(function(v){a.push(v);});
+			return a;
+		}
+	});
+	//对于要从JSON转换为字符串的集合都被当做数组来对待
+	Set.prototype.toJSON = Set.prototype.toArray;
+
+	/*var set1 = new Set(1,'abc',true,null);
+	console.log(set1.toString());
+	console.log(set1.toLocaleString());
+	console.log(set1.toJSON());*/
+
+	//为Set类添加equals方法
+	Set.prototype.equals = function(that){
+		if(this === that) return true;
+		if(!(that instanceof Set)) return false;
+		if(this.size() != that.size()) return false;
+		try{
+			this.foreach(function(v){
+				if(!that.contains(v)) throw false;
+			});
+			return true;
+		}catch(x){
+			if(x === false) return false;
+			throw x;
+		}
+	};
+
+	/*var set1 = new Set(1,2,3);
+	var set2 = new Set(3,2,1);
+	var set3 = new Set(1,2,4);
+	console.log(set1.equals(set2));
+	console.log(set1.equals(set3));*/
+
+	//定义范围类
+	function Range(from,to){
+		this.from = from;
+		this.to = to;
+	}
+	Range.prototype = {
+		constructor:Range,
+		includes:function(x){
+			return this.from <= x && x <= this.to;
+		},
+		foreach:function(f){
+			for(var i=Math.ceil(this.from); i<=this.to; ++i){
+				f(i);
+			}
+		},
+		toString:function(){
+			return this.from+'~'+this.to;
+		},
+		//为Range类添加equals比较方法
+		equals:function(that){
+			if(that == null) return false;
+			if(that.constructor !== Range) return false;
+			return this.from == that.from && this.to == that.to;
+		},
+		//为Range类添加compareTo方法
+		compareTo:function(that){
+			if(!(that instanceof Range)){
+				throw new Error("Can't compare a Range with "+that);
+			}
+			var diff = this.from - that.from;
+			if(diff == 0) diff = this.to - that.to;
+			return diff;
+		}
+	};
+
+	/*var r1 = new Range(1,10);
+	var r2 = new Range(1,10);
+	var r3 = new Range(1,11);*/
+	/*console.log(r1.equals(r2));
+	console.log(r1.equals(r3));*/
+	/*console.log(r1.compareTo(r2));
+	console.log(r1.compareTo(r3));*/
+
+	//console.log({} instanceof Object); //true
+	//console.log(null instanceof Object); //false
+
+	//方法借用的泛型实现 
+	//定义通用的toString与equals方法
+	var generic = {
+		toString:function(){
+			//返回一个字符串 这个字符串包括构造函数的名字(如果有构造函数的话)
+			var s = '[';
+			//constructor的name属性是非标准的 有些环境可能不支持
+			if(this.constructor && this.constructor.name){
+				s += this.constructor.name+':';
+			}
+			//显示所有自有的非函数属性
+			var i=0,value;
+			for(var prop in this){
+				value = this[prop];
+				if(this.hasOwnProperty(prop) && typeof value != 'function'){
+					if(i++ > 0) s += ',';
+					s += prop+'='+value;
+				}
+			}
+			s += ']';
+			return s;
+		},
+		equals:function(that){
+			if(that == null) return false;
+			if(this.constructor != that.constructor) return false;
+			for(var name in this){
+				if(name === '|**objectid**|') continue; //跳过特殊属性
+				if(!this.hasOwnProperty(name)) continue; //跳过继承属性
+				if(this[name] != that[name]) return false;
+			}
+			return true;
+		}
+	};
+	/*var obj = {name:'Tom',age:18};
+	var obj2 = {name:'Tom',age:18};
+	var obj3 = {name:'Tom',age:19};
+	//console.log(generic.toString.call(obj));
+	console.log(generic.equals.call(obj,obj2)); //true
+	console.log(generic.equals.call(obj,obj3)); //false */
+
+</script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

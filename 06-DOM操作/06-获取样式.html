@@ -1,0 +1,84 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="Keywords" content="">
+		<meta name="Description" content="">
+		<title></title>
+		
+		<style type="text/css">
+			body,div,p,h1,h2,h3,h4,h5,h6,ul,ol,dl,dd{margin:0;}
+			ul,ol{padding:0;list-style:none;}
+			body{font-size:12px;font-family:"微软雅黑";}
+			a{text-decoration:none;color:#000;}
+			img,button{border:none;}
+
+			#div2{
+				width:200px;
+				height:100px;
+				background:green;
+			}
+			
+		</style>
+	</head>
+<body>
+	<div id="div1" style="width:100px;height:100px;background:red;font-size:20px;">我是div1</div>
+	<div id="div2">我是div2</div>
+</body>
+<script>
+	window.onload = function(){
+		var div1 = document.getElementById('div1');
+		//alert(div1.style); //Chrome:[object CSSStyleDeclaration] FF:[object CSS2Properties]
+		//console.log(div1.style);
+		/*console.log(div1.style.width);//100px
+		console.log(div1.style.height);//100px
+		console.log(div1.style.background);//red
+		console.log(div1.style.backgroundColor);//red
+		console.log(div1.style.fontSize);//20px */
+
+		//style属性只能获取到内联样式
+		var div2 = document.getElementById('div2');
+		//alert(div2.style); //Chrome:[object CSSStyleDeclaration] FF:[object CSS2Properties]
+		//console.log(div2.style);
+		/*console.log(div2.style.width);//空字符串
+		console.log(div2.style.height);//空字符串
+		console.log(div2.style.background);//空字符串
+		console.log(div2.style.backgroundColor);//空字符串
+		console.log(div2.style.fontSize);//空字符串 */
+
+		
+		//var compStyle = window.getComputedStyle(div1,null);
+		/*var compStyle = window.getComputedStyle(div2,null); //IE8以及更早的版本中没有实现 会报错
+		alert(compStyle); //Chrome:[object CSSStyleDeclaration] FF:[object CSS2Properties]
+		console.log(compStyle);
+		console.log(compStyle.width); 
+		console.log(compStyle['height']);
+		console.log(compStyle.backgroundColor); //rgb(x,x,x)格式返回 */
+
+		//var curStyle = div1.currentStyle;
+		/*var curStyle = div2.currentStyle;
+		alert(curStyle); //IE8:[object CSSCurrentStyleDeclaration] Chrome:undefined FF:undefined
+		console.log(curStyle.width);
+		console.log(curStyle['height']);
+		console.log(curStyle.backgroundColor); //IE8返回颜色单词 */
+		
+		//兼容写法
+		/*if(div2.currentStyle){
+			console.log(div2.currentStyle.width);
+		}else{
+			console.log(window.getComputedStyle(div2,null).width);
+		} */
+
+		//进行封装
+		/*function getStyle(obj,attr){
+			return obj.currentStyle ? obj.currentStyle[attr] : getComputedStyle(obj,null)[attr];
+		}
+		console.log(getStyle(div1,'width'));
+		console.log(getStyle(div2,'width')); */
+
+		//注意currentStyle,getComputedStyle的属性是只读的 设置属性时用style属性
+
+	
+	};
+</script>
+</html>

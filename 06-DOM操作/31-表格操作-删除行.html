@@ -1,0 +1,99 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="Keywords" content="">
+		<meta name="Description" content="">
+		<title></title>
+		
+		<style type="text/css">
+			body,div,p,h1,h2,h3,h4,h5,h6,ul,ol,dl,dd{margin:0;}
+			ul,ol{padding:0;list-style:none;}
+			body{font-size:12px;font-family:"微软雅黑";}
+			img,button{border:none;}
+
+			#tab1{
+				width:300px;
+				margin-top:10px;
+				font-size:16px;
+				border-collapse:collapse;
+			}
+			#tab1 td,#tab1 th{
+				border:1px solid #000;
+			}
+			
+		</style>
+	</head>
+<body>
+	<label>姓名:<input type="text" id="nameInput"/></label>
+	<label><input type="radio" id="manRadio" name="gender" value="男" checked="checked"/>男</label>
+	<label><input type="radio" name="gender" value="女" />女</label>
+	<input type="button" id="addBtn" value="添加"/>
+	<table id="tab1">
+		<thead>
+			<tr>
+				<th>编号</th>
+				<th>姓名</th>
+				<th>性别</th>
+				<td>操作</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td>001</td>
+				<td>张三</td>
+				<td>男</td>
+				<td><a href="javascript:void(0);">删除</a></td>
+			</tr>
+			<tr>
+				<td>002</td>
+				<td>李四</td>
+				<td>男</td>
+				<td><a href="javascript:void(0);">删除</a></td>
+			</tr>
+			<tr>
+				<td>003</td>
+				<td>李花</td>
+				<td>女</td>
+				<td><a href="javascript:void(0);">删除</a></td>
+			</tr>
+		</tbody>
+	</table>
+</body>
+<script>
+	window.onload = function(){
+		var oTab = document.getElementById('tab1');
+		var oBtn = document.getElementById('addBtn');
+		var nameInput = document.getElementById('nameInput');
+		var manRadio = document.getElementById('manRadio');
+		oBtn.onclick = function(){
+			var name = nameInput.value;
+			if(name.replace(/(^\s+)|(\s+$)/g,'')){
+				var gender = manRadio.checked ? '男' : '女';
+
+				var tr = oTab.tBodies[0].insertRow(0); //在指定的行之前插入 如果不给参数则作为最后一行插入
+				tr.insertCell().innerHTML = oTab.tBodies[0].rows.length;
+				tr.insertCell().innerHTML = name;
+				tr.insertCell().innerHTML = gender;
+				var oA = document.createElement('a');
+				oA.href = 'javascript:void(0);';
+				oA.innerHTML = '删除';
+				tr.insertCell().appendChild(oA);
+				oA.onclick = function(){
+					oTab.tBodies[0].removeChild(this.parentNode.parentNode);
+				};
+			}else{
+				alert('请输入姓名');
+			}
+		};
+
+		var oAs = oTab.tBodies[0].getElementsByTagName('a');
+		for(var i=0; i<oAs.length; ++i){
+			oAs[i].onclick = function(){
+				oTab.tBodies[0].removeChild(this.parentNode.parentNode);
+			};
+		}
+		
+	};
+</script>
+</html>

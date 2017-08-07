@@ -1,0 +1,42 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="Keywords" content="">
+		<meta name="Description" content="">
+		<title></title>
+		
+		<style type="text/css">
+			body,div,p,h1,h2,h3,h4,h5,h6,ul,ol,dl,dd{margin:0;}
+			ul,ol{padding:0;list-style:none;}
+			body{font-size:12px;font-family:"微软雅黑";}
+			a{text-decoration:none;color:#000;}
+			img,button{border:none;}
+
+			#div1{
+				font-size:20px;
+			}
+			
+		</style>
+	</head>
+<body>
+	<div id="div1"></div>
+</body>
+<script type="text/javascript">
+	var oDiv = document.getElementById('div1');
+	var str = '';
+	for(var i=1; i<=9; ++i){
+		for(var j=1; j<=i; ++j){
+			str += j+'*'+i+'='+(j*i);
+			if(j*i>9){
+				str += '&nbsp;&nbsp;';
+			}else{
+				str += '&nbsp;&nbsp;&nbsp;&nbsp;';
+			}
+		}
+		str += '<br/>';
+	}
+	oDiv.innerHTML = str;
+	
+</script>
+</html>

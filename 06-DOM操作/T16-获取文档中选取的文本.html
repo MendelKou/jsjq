@@ -1,0 +1,98 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="Keywords" content="">
+		<meta name="Description" content="">
+		<title></title>
+		
+		<style type="text/css">
+			body,div,p,h1,h2,h3,h4,h5,h6,ul,ol,dl,dd,fieldset{margin:0;}
+			ul,ol,input,textarea,th,td,fieldset,legend{padding:0;}
+			li{list-style:none;}
+			body{font:12px "微软雅黑";}
+			a{text-decoration:none;}
+			img,button{border:none;}
+			table{border-collapse:collapse;}
+			.clearfix:after{content:" ";display:block;clear:both;height:0;visibility:hidden;}
+			th,td{border:1px solid #000;}
+		</style>
+		
+	</head>
+<body>
+	<button id="btn1">button1</button>
+	<button id="btn2">button2</button>
+	<button id="btn3">button3</button>
+	<button id="btn4">button4</button>
+	
+	<div id="box1">do you think afraid i love her</div>
+	<input type="text" value="的宽度发的开发" id="input1"/><br>
+	<textarea id="tt1"></textarea>
+	
+<script type="text/javascript">
+	
+window.onload = function(){
+	var body = document.getElementsByTagName('body')[0];
+	var btn1 = document.getElementById('btn1');
+	var btn2 = document.getElementById('btn2');
+	var btn3 = document.getElementById('btn3');
+	var btn4 = document.getElementById('btn4');
+	var box1 = document.getElementById('box1');
+	var input = document.getElementById('input1');
+	var textarea = document.getElementById('tt1');
+
+	//屏蔽浏览器右键菜单
+	btn2.oncontextmenu = function(){
+		return false;
+	};
+
+	btn2.onclick = function(){
+		console.log('btn2');
+		console.log(input.selectionStart); //IE8不支持selectionStart与selectionEnd属性 返回undefined
+		console.log(input.value.substring(input.selectionStart,input.selectionEnd));
+	};
+	document.onclick = function(){
+
+	};
+
+	btn3.onclick = function(){
+		console.log('btn3');
+		console.log(textarea.value.substring(textarea.selectionStart,textarea.selectionEnd));
+	};
+
+	window.onscroll = function(ev){
+		console.log('onscroll');
+	};
+	
+
+	//获取文档中选取的文本
+	function getSelectionText(){
+		if(window.getSelection){ 
+			return window.getSelection().toString(); //html5标准API 只能获取文档本身被选中的文本 无法input,textarea中选中的文本
+		}else if(document.selection){
+			return document.selection.createRange().text; //IE特有 可以返回任何选中的文本
+		}
+	}
+
+	
+
+};
+</script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,74 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="Keywords" content="">
+		<meta name="Description" content="">
+		<title></title>
+		
+		<style type="text/css">
+			body,div,p,h1,h2,h3,h4,h5,h6,ul,ol,dl,dd,fieldset{margin:0;}
+			ul,ol,input,textarea,th,td,fieldset,legend{padding:0;}
+			li{list-style:none;}
+			body{font:12px "微软雅黑";}
+			a{text-decoration:none;}
+			img,button{border:none;}
+			table{border-collapse:collapse;}
+			.clearfix:after{content:" ";display:block;clear:both;height:0;visibility:hidden;}
+			
+			#div1{width:200px;height:200px;background:red;}
+		</style>
+	</head>
+<body>
+	<button id="btn1">start</button>
+	<button id="btn2">stop</button>
+	<button id="btn3">按钮3</button>
+	<div id="div1" class="box"></div>
+	
+	
+<script type="text/javascript" src="../jquery-1.8.3/jquery.min.js"></script>
+<script type="text/javascript">
+	$(function(){
+		$('#btn1').on('click',function(){
+
+			//animate(params,[speed],[easing],[fn]) 用于创建自定义动画的函数
+
+			/*$('#div1').animate({
+				width:'300px',
+				height:'300px'
+			});*/
+
+			$('#div1').animate({
+				width:'100px',
+				height:'100px'
+			},3000,function(){
+				$(this).css('background','blue');
+			});
+
+			//这个动画会在上面的执行完后执行 所以一个元素的多个动画按队列执行
+			//$('#div1').slideToggle();
+		});
+
+		$('#btn2').on('click',function(){
+			//stop([clearQueue],[jumpToEnd]) 停止在当前元素上正则执行的动画
+			//$('#div1').stop().slideToggle();
+			//stop的第一个参数表示是否取消动画队列 第二个参数表示正在执行的动画是否立即完成 两者默认为false
+			//$('#div1').stop(false,true);
+			//$('#div1').stop(true,false);
+			//$('#div1').stop(true,true);
+
+		});
+
+		$('#btn3').on('click',function(){
+			//delay(duration,[queueName])
+			//设置一个延时来推迟执行队列中之后的项目
+			$('#div1')
+			.animate({width:'100px'},1000,function(){$(this).css('background','blue');})
+			.delay(1000)
+			.animate({height:'100px'},1000,function(){$(this).css('background','green');});
+		});
+		
+	});
+</script>
+</body>
+</html>

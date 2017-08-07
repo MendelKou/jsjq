@@ -1,0 +1,50 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="Keywords" content="">
+		<meta name="Description" content="">
+		<title></title>
+		
+		<style type="text/css">
+			body,div,p,h1,h2,h3,h4,h5,h6,ul,ol,dl,dd,fieldset{margin:0;}
+			ul,ol,input,textarea,th,td,fieldset,legend{padding:0;}
+			li{list-style:none;}
+			body{font:12px "微软雅黑";}
+			a{text-decoration:none;}
+			img,button{border:none;}
+			table{border-collapse:collapse;}
+			.clearfix:after{content:" ";display:block;clear:both;height:0;visibility:hidden;}
+			
+		</style>
+	</head>
+<body>
+<script type="text/javascript">
+	function factorial(n){
+		if(n<0){
+			throw new Error('阶乘的数不能小于0');
+			//throw '阶乘的数不能小于0'; //当为字符串时异常对象就是这里的字符串
+		}
+		for(var r = 1; n > 1; --n){
+			r *= n;
+		}
+		return r;
+	}
+	try{
+		console.log(factorial(-1));
+	}catch(e){
+		console.log(e);
+		console.log(typeof e);
+		console.log(e.name);
+		console.log(e.message);
+		//name与message是不可遍历的
+		for(key in e){
+			console.log(key+'='+e[key]);
+		}
+	}finally{
+		console.log('finally');
+	}
+	
+</script>
+</body>
+</html>

@@ -1,0 +1,40 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="Keywords" content="">
+		<meta name="Description" content="">
+		<title></title>
+		
+		<style type="text/css">
+			body,div,p,h1,h2,h3,h4,h5,h6,ul,ol,dl,dd{margin:0;}
+			ul,ol{padding:0;list-style:none;}
+			body{font-size:12px;font-family:"微软雅黑";}
+			a{text-decoration:none;color:#000;}
+			img,button{border:none;}
+
+			
+			
+		</style>
+	</head>
+<body>
+	<ul id="list">
+		<li>item1</li>
+		<li id="li3">item3</li>
+		<li>item4</li>
+		<li>item5</li>
+	</ul>
+</body>
+<script>
+	/*
+		父节点.insertBefore(要插入的节点，指定人节点) 将节点插入到父节点指定的子节点之前
+	*/
+	var oList = document.getElementById('list');
+	var oLi = document.getElementById('li3');
+	var newLi = document.createElement('li');
+	newLi.innerHTML = '我是新添加的item2';
+	newLi.style.background = 'red';
+	oList.insertBefore(newLi,oLi);
+
+</script>
+</html>

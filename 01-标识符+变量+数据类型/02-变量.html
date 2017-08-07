@@ -1,0 +1,75 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="Keywords" content="">
+		<meta name="Description" content="">
+		<title></title>
+		
+		<style type="text/css">
+			body,div,p,h1,h2,h3,h4,h5,h6,ul,ol,dl,dd{margin:0;}
+			ul,ol{padding:0;list-style:none;}
+			body{font-size:12px;font-family:"微软雅黑";}
+			a{text-decoration:none;color:#000;}
+			img,button{border:none;}
+			
+		</style>
+	</head>
+<body>
+	
+</body>
+<script type="text/javascript">
+	/*
+		变量：表示存储数据的一块内存空间
+		变量名遵循标识符命名规则
+		js是弱类型或松散类型的语言 所有的变量均通过关键字var声明
+		注意：js中的变量是有类型的 通过值来区分类型
+		没有字符 单个字符也是字符串
+	*/
+	//定义变量
+	var sum = 0;
+	var str = 'Tom'; //单双引号均可
+	var flag1 = true;
+	var flag2 = false;
+	var func = function(){}; //函数
+	/*console.log(sum);
+	console.log(str);
+	console.log(flag1);
+	console.log(flag2);
+	console.log(func);*/
+
+	//在一条语句中定义多个变量
+	var price = 1.5, name= 'rose', isFound = false;
+	/*console.log(price);
+	console.log(name);
+	console.log(isFound);*/
+
+	//由于类型有值决定 所以随着值得改变类型可能会改变
+	//typeof 运算符可以返回变量的类型
+	var a1 = 1; //数值类型
+	//console.log(typeof a1); //number
+	a1 = 'aaa'; //字符串类型
+	//console.log(typeof a1); //string
+
+	var x1; //没有初始化的变量的值为undefined
+	//console.log(x1);
+
+	//可以重复地定义变量但是不建议
+	var a2 = 1;
+	var a2 = 'xxx';
+	//console.log(a2); //xxx
+
+	var a3 = 1;
+	var a3;
+	//console.log(a3); //还是1
+
+	//没有var定义的变量与有var定义的变量是不同的 后面讲
+	var a4 = 0;
+	a5 = 0;
+	
+
+
+
+
+</script>
+</html>

@@ -1,0 +1,29 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="Keywords" content="">
+		<meta name="Description" content="">
+		<title></title>
+		
+		<style type="text/css">
+			body,div,p,h1,h2,h3,h4,h5,h6,ul,ol,dl,dd{margin:0;}
+			ul,ol{padding:0;list-style:none;}
+			body{font-size:12px;font-family:"微软雅黑";}
+			a{text-decoration:none;color:#000;}
+			img,button{border:none;}
+			
+		</style>
+	</head>
+<body>
+	<a href="#" id="a1" onclick="fn(this);">a1</a><br/><br/><br/> <!--会跳转-->
+	<a href="javascript:void(0);" id="a2" onclick="fn(this);">a2</a><br/><br/><br/>
+	<a href="javascript:;" id="a3" onclick="fn(this);">a3</a><br/><br/><br/>
+	<a href="#" id="a4" onclick="fn(this);return false;">a4</a><br/>
+</body>
+<script>
+	function fn(obj){
+		alert(obj.id);
+	}
+</script>
+</html>

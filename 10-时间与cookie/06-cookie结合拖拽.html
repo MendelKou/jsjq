@@ -1,0 +1,90 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="Keywords" content="">
+		<meta name="Description" content="">
+		<title></title>
+		
+		<style type="text/css">
+			body,div,p,h1,h2,h3,h4,h5,h6,ul,ol,dl,dd{margin:0;}
+			ul,ol,input{padding:0;}
+			li{list-style:none;}
+			body{font:12px "微软雅黑";}
+			a{text-decoration:none;color:#000;}
+			img,button{border:none;}
+			strong{font-size:30px;}
+
+			.box{position:absolute;width:100px;height:100px;background:red;border-radius:50%;}
+		</style>
+	</head>
+<body>
+	<div class="box" id="div1"></div>
+<script>
+	window.onload = function(){
+		var oDiv = document.getElementById('div1');
+		var lastX = getCookie('x');
+		var lastY = getCookie('y');
+		if(lastX){
+			oDiv.style.left = lastX+'px';
+		}
+		if(lastY){
+			oDiv.style.top = lastY+'px';
+		}
+		oDiv.onmousedown = function(ev){
+			var e = ev || event;
+			var dx = e.offsetX; //或者 dx = e.clientX - this.offsetLeft;
+			var dy = e.offsetY; //鼠标相对于当前元素左上角的坐标
+			oDiv.onmousemove = function(ev){
+				var e = ev || event;
+				var left = e.clientX - dx;
+				var top = e.clientY - dy;
+				if(left >=0 && left<=document.documentElement.clientWidth-this.offsetWidth){
+					this.style.left = left+'px';
+				}
+				if(top >=0 && top<=document.documentElement.clientHeight-this.offsetHeight){
+					this.style.top = top+'px';
+				}
+			};
+		};
+		oDiv.onmouseup = oDiv.onmouseout = function(){
+			this.onmousemove = null;
+			setCookie('x',this.offsetLeft,3600);
+			setCookie('y',this.offsetTop,3600);
+		};
+	};
+
+	//设置cookie的方法
+	function setCookie(name,value,expiresSeconds){
+		var date = new Date();
+		date.setSeconds(date.getSeconds()+expiresSeconds);
+		document.cookie = name+'='+encodeURI(value)+'; expires='+date;
+	}
+	setCookie('username','A君',30);
+	setCookie('password','A君123',30);
+
+	//获取cookie的方法
+	function getCookie(name){
+		if(typeof name == 'string' && name!=''){
+			var cookieStr = document.cookie;
+			var pairArr = cookieStr.split('; '); //注意后面有空格
+			for(var i=0; i<pairArr.length; ++i){
+				var tempArr = pairArr[i].split('=');
+				if(tempArr[0] == name){
+					return decodeURI(tempArr[1]);
+				}
+			}
+		}
+	}
+
+	//删除cookie的方法
+	function removeCookie(name){
+		if(getCookie(name) != undefined){
+			setCookie(name,'',-1);
+		}
+	}
+
+
+</script>
+</body>
+</html>

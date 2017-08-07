@@ -1,0 +1,55 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="Keywords" content="">
+		<meta name="Description" content="">
+		<title></title>
+		
+		<style type="text/css">
+			body,div,p,h1,h2,h3,h4,h5,h6,ul,ol,dl,dd,fieldset{margin:0;}
+			ul,ol,input,textarea,th,td,fieldset,legend{padding:0;}
+			li{list-style:none;}
+			body{font:12px "微软雅黑";}
+			a{text-decoration:none;}
+			img,button{border:none;}
+			table{border-collapse:collapse;}
+			.clearfix:after{content:" ";display:block;clear:both;height:0;visibility:hidden;}
+			
+			.box{
+				border:1px solid red;
+			}
+		</style>
+	</head>
+<body>
+	<div>div1</div>
+	<div>div2</div>
+	<p>我是段落1</p>
+	<p>我是段落2</p>
+	<div class="box">
+		<p>我是div中的段落1</p>
+		<p>我是div中的段落2</p>
+	</div>
+<script src="../jquery-1.8.3/jquery.js"></script>
+<script type="text/javascript">
+	$(function(){
+		//wrap(html|element|fn) 把所有匹配的元素用其他元素的结构化标记包裹起来
+		//$('div').wrap('<div class="box"></div>');
+		/*$('p').wrap(function(){
+			return '<div class="box"></div>';
+		});*/
+
+		//wrapAll(html|ele) 将所有匹配的元素用单个元素包裹起来
+		//$('p').wrapAll('<div class="box"></div>');
+
+		//wrapInner(htm|element|fnl) 将每一个匹配的元素的子内容(包括文本节点)用一个HTML结构包裹起来
+		//$('p').wrapInner('<b></b>');
+		//$('p').wrapInner(document.createElement('b'));
+
+		//unwrap() 这个方法将移出元素的父元素。这能快速取消 .wrap()方法的效果。匹配的元素（以及他们的同辈元素）会在DOM结构上替换他们的父元素
+		//$('.box p').unwrap();
+
+	});
+</script>
+</body>
+</html>

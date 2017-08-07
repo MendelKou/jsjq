@@ -1,0 +1,40 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="Keywords" content="">
+		<meta name="Description" content="">
+		<title>write</title>
+		
+		<style type="text/css">
+			body,div,p,h1,h2,h3,h4,h5,h6,ul,ol,dl,dd{margin:0;}
+			ul,ol{padding:0;list-style:none;}
+			body{font-size:12px;font-family:"微软雅黑";}
+			a{text-decoration:none;color:#000;}
+			img,button{border:none;}
+
+			
+			
+		</style>
+	</head>
+<body>
+	<!--在页面加载时写入内容-->
+	<script>
+		document.write('<div>我是脚本输出的div</div>');
+	</script>
+</body>
+<script>
+	window.onload = function(){
+		//在页面加载完成后调用write 会重写整个文档
+		//document.write('aaaaaaa');
+
+		var str = document.body.innerHTML; //获取body中的内容
+		console.log(str);
+		str += '大声唱';
+		document.write(str);
+	};
+</script>
+</html>
+<!--
+	write() 方法可向文档写入 HTML 表达式或 JavaScript 代码。
+-->

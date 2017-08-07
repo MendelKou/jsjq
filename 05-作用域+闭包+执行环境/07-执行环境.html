@@ -1,0 +1,88 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="Keywords" content="">
+		<meta name="Description" content="">
+		<title></title>
+		
+		<style type="text/css">
+			body,div,p,h1,h2,h3,h4,h5,h6,ul,ol,dl,dd{margin:0;}
+			ul,ol{padding:0;list-style:none;}
+			body{font-size:12px;font-family:"微软雅黑";}
+			a{text-decoration:none;color:#000;}
+			img,button{border:none;}
+			
+		</style>
+	</head>
+<body>
+</body>
+<script>
+	/*
+		环境：
+			1.宿主环境(浏览器)
+			2.执行环境
+				1.全局环境：最外围的执行环境 在web中默认为window对象
+				2.局部环境：每一个函数都有自己的一个执行环境
+				3.eval
+
+	*/
+	/*var a = 1; //a是在全局环境中
+	console.log(a); //1
+	console.log(window.a); //1
+	console.log(this.a); //1
+	console.log(this===window); //true */
+
+	//函数执行完后它的执行环境就会被销毁 其中定义的变量也会销毁(如果返回到外部则不会被释放)
+	/*function show(){
+		var str = 'jdk';
+	}
+	show();
+	alert(str); //ReferenceError: str is not defined */
+
+	//js引擎会先解析 再执行
+	/*f1(); //f1
+	//f2(); //TypeError: f2 is not a function
+	//f3(); //TypeError: f3 is not a function
+
+	function f1(){ //f1会补解析
+		console.log('f1');
+	}
+	var f2 = function(){
+		console.log('f2');
+	};
+	var f3 = new Function('console.log("f3");');
+
+	f1(); //f3
+	f2(); //f2
+	f3(); //f3 */
+
+	/*function f(){return 1;}
+	console.log(f()); //4
+	var f = function(){return 2};
+	console.log(f()); //2
+	var f = new Function('return 3;');
+	console.log(f()); //3
+	function f(){return 4;}
+	console.log(f()); //3 */
+
+	//作用域链：如果函数在自己的执行环境中找不到变量 则会依次在上级查找
+	/*var a = 1;
+	function f1(){
+		var a = 11;
+		var b = 2;
+		function f2(){
+			var c = 3;
+			function f3(){
+				console.log(a);
+			}
+			f3();
+		}
+		f2();
+	}
+	f1(); //11
+	console.log(a); //1 */
+
+	
+</script>
+</html>

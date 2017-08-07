@@ -1,0 +1,42 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="Keywords" content="">
+		<meta name="Description" content="">
+		<title></title>
+		
+		<style type="text/css">
+			body,div,p,h1,h2,h3,h4,h5,h6,ul,ol,dl,dd{margin:0;}
+			ul,ol,input{padding:0;}
+			ul,ol{list-style:none;}
+			body{font:12px "微软雅黑";}
+			a{text-decoration:none;color:#000;}
+			img,button{border:none;}
+			
+		</style>
+	</head>
+<body>
+	<button id="btn">点我</button>
+</body>
+<script type="text/javascript">
+/*
+	javascript与html之间的交互式通过事件完成的 
+	事件：html与浏览器发生的一系列交互的瞬间
+	如：用户点击某个按钮执行一段js代码
+	js给元素添加事件的方法：dom对象.事件句柄 = 事件处理函数;
+	这里的事件句柄相当于事件监听器 特定的事件监听器关注特定的事件 事件发生时如何处理有我们自定义的事件处理函数来实现
+*/
+	
+	var btn = document.getElementById('btn');
+	/*btn.onclick = function(){
+		alert('你好');
+	};*/
+	//也可以这样写
+	function fn(){
+		alert('hello');
+	}
+	btn.onclick = fn;
+
+</script>
+</html>

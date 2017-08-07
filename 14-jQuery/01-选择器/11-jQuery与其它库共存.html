@@ -1,0 +1,43 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="Keywords" content="">
+		<meta name="Description" content="">
+		<title></title>
+		
+		<style type="text/css">
+			body,div,p,h1,h2,h3,h4,h5,h6,ul,ol,dl,dd,fieldset{margin:0;}
+			ul,ol,input,textarea,th,td,fieldset,legend{padding:0;}
+			li{list-style:none;}
+			body{font:12px "微软雅黑";}
+			a{text-decoration:none;}
+			img,button{border:none;}
+			table{border-collapse:collapse;}
+			.clearfix:after{content:" ";display:block;clear:both;height:0;visibility:hidden;}
+
+			
+		</style>
+	</head>
+<body>
+	
+	<input id="txt" value="abcd"/>
+<script src="../jquery-1.8.3/jquery.min.js"></script>
+<script src="../prototype.js"></script>
+<script type="text/javascript">
+	
+	//alert('prototype获取的input：'+$('txt')); //[object HTMLInputElement]
+	//alert('jQuery获取的input：'+$('#txt')); //null 最后引入的prototype中的$覆盖了jQuery的$符
+
+	//jQuery.noConflict(); //释放$权限
+	//alert('prototype获取的input：'+$('txt')); //[object HTMLInputElement]
+	//alert('jQuery获取的input：'+jQuery('#txt')); //[object Object]
+
+	/*var j = jQuery.noConflict(); //此时j相当于jQuery中的$
+	console.log($F('txt')); //prototype中的$F获取文本控件中的值
+	console.log(j('#txt').val()); */
+
+
+</script>
+</body>
+</html>

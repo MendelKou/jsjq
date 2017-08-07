@@ -1,0 +1,59 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="Keywords" content="">
+		<meta name="Description" content="">
+		<title></title>
+		
+		<style type="text/css">
+			body,div,p,h1,h2,h3,h4,h5,h6,ul,ol,dl,dd{margin:0;}
+			ul,ol,input,textarea{padding:0;}
+			li{list-style:none;}
+			body{font:12px "微软雅黑";padding-top:1px;}
+			a{text-decoration:none;}
+			img,button{border:none;}
+			
+
+		</style>
+	</head>
+<body>
+	
+</body>
+<script>
+
+	var testStr = '123 jack go dog 45-6 a_bc .net go bug bag ABC \n \t';
+	//. 匹配任何单个字符
+	//console.log(testStr.length);
+	//console.log(testStr.match(/./g));
+
+	//\d 匹配但个数字字符 等价于[0-9]
+	//console.log(testStr.match(/\d/g));
+	//console.log(testStr.match(/[0-9]/g));
+
+	//\D 匹配任何单个非数字字符 等价于[^0-9]
+	//console.log(testStr.match(/\D/g));
+	//console.log(testStr.match(/[^0-9]/g));
+
+	//\w 匹配单个字母或下划线 等价于[a-zA-Z0-9_]
+	/*console.log(testStr.match(/\w/g));
+	console.log(testStr.match(/[a-zA-Z0-9_]/g));
+	console.log(testStr.match(/[_a-zA-Z0-9]/g)); */
+
+	//\W \w的补集 等价于[^a-zA-Z0-9_]
+	//console.log(testStr.match(/\W/g));
+	//console.log(testStr.match(/[^a-zA-Z0-9_]/g));
+
+	//\s 匹配任何空白字符 等价于[ \f\n\r\t\v]
+	//console.log(testStr.match(/\s/g));
+	//console.log(testStr.match(/[ \f\n\r\t\v]/g));
+
+	//\S 匹配任何非空白字符 等价于[^ \f\n\r\t\v]
+	console.log(testStr.match(/\S/g));
+	console.log(testStr.match(/[^ \f\n\r\t\v]/g));
+
+	
+
+	
+</script>
+</html>

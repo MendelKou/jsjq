@@ -1,0 +1,34 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="Keywords" content="">
+		<meta name="Description" content="">
+		<title></title>
+		
+		<style type="text/css">
+			body,div,p,h1,h2,h3,h4,h5,h6,ul,ol,dl,dd{margin:0;}
+			ul,ol{padding:0;list-style:none;}
+			body{font-size:12px;font-family:"微软雅黑";}
+			a{text-decoration:none;color:#000;}
+			img,button{border:none;}
+		</style>
+
+		<!--
+		<script type="text/javascript">
+			/*默认从上到下依次解释执行 此时div还没有加载所以返回null*/
+			var oDiv = document.getElementById('div1');
+			console.log(oDiv);
+		</script>
+		-->
+
+		<script type="text/javascript" defer="defer">
+			/*defer属性将脚本的执行延迟到文档加载完 所以下面可以获取到 注释：该属性只能在 Internet Explorer 中运行。*/
+			var oDiv = document.getElementById('div1');
+			console.log(oDiv);
+		</script>
+	</head>
+<body>
+	<div id="div1"></div>
+</body>
+</html>

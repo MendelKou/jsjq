@@ -1,0 +1,68 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="Keywords" content="">
+		<meta name="Description" content="">
+		<title></title>
+		
+		<style type="text/css">
+			body,div,p,h1,h2,h3,h4,h5,h6,ul,ol,dl,dd{margin:0;}
+			ul,ol{padding:0;list-style:none;}
+			body{font-size:12px;font-family:"微软雅黑";}
+			a{text-decoration:none;color:#000;}
+			img,button{border:none;}
+
+			#div1{
+				width:100px;
+				height:100px;
+				background:red;
+				position:fixed;
+			}
+		</style>
+	</head>
+<body>
+	<div id="div1"></div>
+</body>
+<script type="text/javascript">
+	/*var oDiv = document.getElementById('div1');
+	var str = prompt('请输入一句话');
+	if(str==null){
+		oDiv.innerText = '你点击了取消';
+	}else if(str==''){
+		oDiv.innerText = '你的输入为空';
+	}else{
+		oDiv.innerText = str;
+	}*/
+
+
+	/*document.onkeydown = function(e){
+		var oEvent = e || event;
+		if(oEvent.keyCode == 37){
+			console.log('你按下了左方向键');
+		}else if(oEvent.keyCode == 38){
+			console.log('你按下了上方向键');
+		}else if(oEvent.keyCode == 39){
+			console.log('你按下了右方向键');
+		}else if(oEvent.keyCode == 40){
+			console.log('你按下了下方向键');
+		}
+	}; */
+
+	var oDiv = document.getElementById('div1');
+	document.onkeydown = function(e){
+		var oEvent = e || event;
+		var left = oDiv.offsetLeft;
+		var top = oDiv.offsetTop;
+		if(oEvent.keyCode == 37){
+			oDiv.style.left = left-10+'px';
+		}else if(oEvent.keyCode == 38){
+			oDiv.style.top = top-10+'px';
+		}else if(oEvent.keyCode == 39){
+			oDiv.style.left = left+10+'px';
+		}else if(oEvent.keyCode == 40){
+			oDiv.style.top = top+10+'px';
+		}
+	};
+</script>
+</html>

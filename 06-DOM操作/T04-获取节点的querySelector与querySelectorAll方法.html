@@ -1,0 +1,51 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="Keywords" content="">
+		<meta name="Description" content="">
+		<title></title>
+		
+		<style type="text/css">
+			body,div,p,h1,h2,h3,h4,h5,h6,ul,ol,dl,dd{margin:0;}
+			ul,ol{padding:0;list-style:none;}
+			body{font-size:12px;font-family:"微软雅黑";}
+			a{text-decoration:none;color:#000;}
+			img,button{border:none;}
+			
+			
+		</style>
+	</head>
+<body>
+	<button id="visitBtn">查看</button>
+	<button id="addBtn">添加</button>
+	<ul id="list01">
+		<li>111111</li>
+		<li>222222</li>
+		<li>333333</li>
+	</ul>
+</body>
+<script type="text/javascript">
+
+	var addBtn = document.getElementById('addBtn');
+	var visitBtn = document.getElementById('visitBtn');
+	var lis = document.getElementsByTagName('li');
+	var lis2 = document.querySelectorAll('li');
+
+	addBtn.onclick = function(){
+		var list = document.getElementById('list01');
+		var tLis = list.getElementsByTagName('li');
+		var li = document.createElement('li');
+		li.innerHTML = 'item'+(tLis.length+1);
+		list.insertBefore(li,tLis[0]);
+	};
+	visitBtn.onclick = function(){
+		console.log('lis.length='+lis.length);
+		console.log('lis[1].innerHTML='+lis[1].innerHTML);
+		console.log('lis2.length='+lis2.length);
+		console.log('lis2[1].innerHTML='+lis2[1].innerHTML);
+	};
+	//观察测试结果发现 document.getElementByXXX获得dom或dom集合会随着后面对dom的修改动态变化
+	//document.querySelector获取的dom始终是获取时的状态
+</script>
+</html>

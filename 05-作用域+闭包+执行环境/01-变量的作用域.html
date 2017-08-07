@@ -1,0 +1,48 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="Keywords" content="">
+		<meta name="Description" content="">
+		<title></title>
+		
+		<style type="text/css">
+			body,div,p,h1,h2,h3,h4,h5,h6,ul,ol,dl,dd{margin:0;}
+			ul,ol{padding:0;list-style:none;}
+			body{font-size:12px;font-family:"微软雅黑";}
+			a{text-decoration:none;color:#000;}
+			img,button{border:none;}
+			
+		</style>
+	</head>
+<body>
+</body>
+<script>
+	/*
+		作用域是二段代码的执行范围
+		变量根据作用域分为两种：
+			1.全局变量
+				1)在最外层函数之外定义的变量
+				2)在函数内没有用var 直接通过赋值定义的变量
+			2.局部变量
+				1)函数内部通过var定义的变量
+				2)函数的参数
+	*/
+	var a = 1; //全局变量
+	function f1(d){
+		var b = 2; //局部变量
+		c = 3; //全局变量
+		console.log('a='+a);
+		console.log('b='+b);
+		console.log('c='+c);
+		console.log('d='+d);
+	}
+	f1(4);
+	console.log('=============================');
+	console.log('a='+a);
+	//console.log('b='+b); // ReferenceError: b is not undefined
+	console.log('c='+c);
+	//console.log('d='+d); //ReferenceError: b is not undefined
+	
+</script>
+</html>

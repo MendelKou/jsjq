@@ -1,0 +1,72 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="Keywords" content="">
+		<meta name="Description" content="">
+		<title></title>
+		
+		<style type="text/css">
+			body,div,p,h1,h2,h3,h4,h5,h6,ul,ol,dl,dd,fieldset{margin:0;}
+			ul,ol,input,textarea,th,td,fieldset,legend{padding:0;}
+			li{list-style:none;}
+			body{font:12px "微软雅黑";}
+			a{text-decoration:none;}
+			img,button{border:none;}
+			table{border-collapse:collapse;}
+			.clearfix:after{content:" ";display:block;clear:both;height:0;visibility:hidden;}
+		</style>
+		
+	</head>
+<body>
+	<button id="btn1">button1</button>
+	<button id="btn2">button2</button>
+	<button id="btn3">button3</button>
+	<button id="btn4">button4</button>
+
+<script type="text/javascript">
+window.onload = function(){
+	var btn1 = document.getElementById('btn1');
+	var btn2 = document.getElementById('btn2');
+	var btn3 = document.getElementById('btn3');
+	var btn4 = document.getElementById('btn4');
+	
+	//innerHTML 元素内部的html字符串内容
+	//console.log(document.innerHTML);//undefined
+	//console.log(document.documentElement.innerHTML);
+	//console.log(btn1.outerHTML);//包括当前元素在内的html内容字符串
+
+	//IE引入了insertAdjacentHTML方法 它将html字符串插入到元素定的相邻位置 IE8也支持
+	//第一个参数为beforebegin,afterbegin,beforeend,afterend五个字符串之一 第二个参数为添加的html字符串
+
+	btn2.onclick = function(){
+		//btn1.insertAdjacentHTML('beforebegin','<p>段落</p>');
+		//btn1.insertAdjacentHTML('afterbegin','<p>段落</p>');
+		//btn1.insertAdjacentHTML('beforeend','<p>段落</p>');
+		btn1.insertAdjacentHTML('afterend','<p>段落</p>');
+	};
+
+	btn3.onclick = function(){
+
+
+	};
+};
+</script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

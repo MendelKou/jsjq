@@ -1,0 +1,37 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="Keywords" content="">
+		<meta name="Description" content="">
+		<title></title>
+		
+		<style type="text/css">
+			body,div,p,h1,h2,h3,h4,h5,h6,ul,ol,dl,dd{margin:0;}
+			/*ul,ol{padding:0;list-style:none;}*/
+			body{font-size:12px;font-family:"微软雅黑";}
+			/*a{text-decoration:none;color:#000;}*/
+			img,button{border:none;}
+			
+			#list li{font-size:20px;margin:10px;}
+		</style>
+	</head>
+<body>
+	<ul id="list">
+		<li>111111111111<a href="javascript:void(0);">删除1</a></li>
+		<li>222222222222<a href="javascript:void(0);">删除2</a></li>
+		<li>333333333333<a href="javascript:void(0);">删除3</a></li>
+		<li>444444444444<a href="javascript:void(0);">删除4</a></li>
+	</ul>
+</body>
+<script>
+	
+	var oUL = document.getElementById('list');
+	var oLiSet = oUL.getElementsByTagName('a');
+	for(var i=0; i<oLiSet.length; ++i){
+		oLiSet[i].onclick = function(){
+			this.parentNode.parentNode.removeChild(this.parentNode);
+		};
+	}
+</script>
+</html>

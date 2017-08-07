@@ -1,0 +1,100 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="Keywords" content="">
+		<meta name="Description" content="">
+		<title></title>
+		
+		<style type="text/css">
+			body,div,p,h1,h2,h3,h4,h5,h6,ul,ol,dl,dd,fieldset{margin:0;}
+			ul,ol,input,textarea,th,td,fieldset,legend{padding:0;}
+			li{list-style:none;}
+			body{font:12px "微软雅黑";}
+			a{text-decoration:none;}
+			img,button{border:none;}
+			table{border-collapse:collapse;}
+			.clearfix:after{content:" ";display:block;clear:both;height:0;visibility:hidden;}
+		</style>
+		
+	</head>
+<body>
+	<button id="btn1">button1</button>
+	<button id="btn2">button2</button>
+	<button id="btn3">button3</button>
+	<button id="btn4">button4</button>
+	<!--
+		canvas 行内块元素 默认大小为300x150
+	-->
+	<canvas id="canvas" width="800" height="500"></canvas>
+
+<script type="text/javascript">
+window.onload = function(){
+	var btn1 = document.getElementById('btn1');
+	var btn2 = document.getElementById('btn2');
+	var btn3 = document.getElementById('btn3');
+	var btn4 = document.getElementById('btn4');
+	
+	btn2.onclick = function(){
+	};
+
+	btn3.onclick = function(){
+	};
+
+	//ES6类语法
+	class Person
+	{
+		constructor(name,gender){
+			this.name = name;
+			this._gender = gender;
+			Person.count++;
+		}
+
+		//静态方法中的this指的是类
+		static get count(){
+			return this._count?this._count:0;
+		}
+		static set count(val){
+			this._count = val;
+		}
+
+		get gender(){
+			return '保密';
+		}
+		set gender(val){
+			this._gender = val;
+		}
+
+		say(){
+			console.log(this.name +','+this.gender);
+		}
+
+	}
+
+	var p = new Person('Jack','male');
+	var p2 = new Person('Tom','female');
+	p.say();
+	console.log(Person.count);//2
+	console.log(p._gender);//male
+	console.log(Person._count);//2
+
+};
+</script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

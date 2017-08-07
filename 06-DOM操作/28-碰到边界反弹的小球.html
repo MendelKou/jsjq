@@ -1,0 +1,57 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="Keywords" content="">
+		<meta name="Description" content="">
+		<title></title>
+		
+		<style type="text/css">
+			body,div,p,h1,h2,h3,h4,h5,h6,ul,ol,dl,dd{margin:0;}
+			ul,ol{padding:0;list-style:none;}
+			body{font-size:12px;font-family:"微软雅黑";}
+			a{text-decoration:none;color:#000;}
+			img,button{border:none;}
+
+			#div1{width:100px;height:100px;border-radius:50%;position:absolute;background:red;}
+			
+		</style>
+	</head>
+<body>
+	<div id="div1"></div>
+</body>
+<script>
+	window.onload = function(){
+		var oDiv = document.getElementById('div1');
+		var xSpeed = 10;
+		var ySpeed = 10;
+		setInterval(function(){
+			var clientWidth = document.documentElement.clientWidth;
+			var clientHeight = document.documentElement.clientHeight;
+			var offsetLeft = oDiv.offsetLeft;
+			var offsetTop = oDiv.offsetTop;
+			oDiv.style.left = offsetLeft+xSpeed+'px';
+			oDiv.style.top = offsetTop+ySpeed+'px';
+			
+			if(oDiv.offsetLeft > clientWidth-oDiv.offsetWidth){
+				xSpeed = -xSpeed;
+				oDiv.style.left = clientWidth-oDiv.offsetWidth+'px';
+
+			}else if(oDiv.offsetLeft<0){
+				xSpeed = -xSpeed;
+				oDiv.style.left = '0';
+			}
+
+			if(oDiv.offsetTop > clientHeight-oDiv.offsetHeight){
+				ySpeed *= -1;
+				oDiv.style.top = clientHeight-oDiv.offsetHeight+'px';
+			}else if(oDiv.offsetTop<0){
+				ySpeed *= -1;
+				oDiv.style.top = '0';
+			}
+			
+		},30);
+		 
+	};
+</script>
+</html>

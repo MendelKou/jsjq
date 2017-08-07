@@ -1,0 +1,159 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="Keywords" content="">
+		<meta name="Description" content="">
+		<title></title>
+		
+		<style type="text/css">
+			body,div,p,h1,h2,h3,h4,h5,h6,ul,ol,dl,dd{margin:0;}
+			ul,ol{padding:0;list-style:none;}
+			body{font-size:12px;font-family:"微软雅黑";}
+			a{text-decoration:none;color:#000;}
+			img,button{border:none;}
+			
+		</style>
+	</head>
+<body>
+</body>
+<script>
+	//一般情况下在函数之外无法访问到函数内部定义的局部变量
+	/*function fn(){
+		var a = 1;
+	}
+	console.log(a); //访问不到 ReferenceError: a is not defined */
+
+	//js中的闭包就是能内访问一个函数内部的局部变量的函数
+	/*function fn(){
+		var a = 1;
+		//由于fn返回的这个函数会使用变量a 所以在调用fn后a依然存在
+		return function(){
+			return a;
+		};
+	}
+	var f = fn(); //执行fn后返回一个函数
+	var result = f(); //执行f后返回fn中定义的局部变量a
+	console.log(result); //1
+	//可以简写如下
+	console.log(fn()()); */
+
+	//变量累加
+	//1.使用全局变量实现
+	/*var num = 1;
+	function addNum(){
+		num++;
+	}
+	addNum();
+	addNum();
+	addNum();
+	console.log(num);//4 */
+	//2.使用闭包实现
+	/*function fn(){
+		var num = 1;
+		return function(){
+			return num++;
+		};
+	}
+	var add = fn();
+	add();
+	add();
+	add();
+	console.log(add());//4 */
+
+	//闭包有时会导致函数中的变量长久存在不被释放 从而容易造成内存占用问题
+	
+	//循环中的变量修改问题
+	/*function fn(){
+		var arr = [];
+		for(var i=0; i<3; ++i){
+			arr[i] = function(){ //由于i的变化导致所以函数都返回最后的i的值
+				return i;
+			};
+		}
+		return arr;
+	}
+	var farr = fn();
+	//会打印3次3
+	for(var i=0; i<farr.length; ++i){
+		console.log(farr[i]());
+	} */
+
+	//使用闭包解决
+	/*function fn(){
+		var arr = [];
+		for(var i=0; i<3; ++i){
+			arr[i] = (function(i){
+				return function(){
+					return i;
+				};
+			})(i);
+		}
+		return arr;
+	}
+	var farr = fn();
+	for(var i=0; i<farr.length; ++i){
+		console.log(farr[i]());
+	} */
+
+	//闭包中的this问题
+	/*var obj = {
+		name:'Tom',
+		age:12,
+		say:function(){
+			console.log(this.name+','+this.age); //这里的this指的是obj
+		},
+		fn:function(){
+			console.log(this); //这里的this指的是obj
+			return function(){
+				console.log(this); //这里的this指的是window
+				return this;
+			};
+		}
+	};
+	obj.say();
+	var rs = obj.fn()();
+	console.log(rs===window); //true */
+
+	//块级作用域：在花括号中的语句集是一个块 块中定义的变量 在块外不可见
+	/*function fn(){
+		var a = 1;
+	}
+	fn();
+	console.log(a); //ReferenceError: a is not defined */
+
+	//js中没有块级作用域 if,for,while等语句并不会创建作用域 它们之中定义的变量在外部是可以访问的
+	/*if(true){
+		var str = 'abc';
+	}
+	console.log(str); //abc
+
+	for(var i=0; i<3; ++i){
+		
+	}
+	console.log(i); //3
+
+	do{
+		var a = 1;
+	}while(false);
+	console.log(a); */
+
+	//可以作用函数作用域模仿块级作用域
+	/*(function(){
+		var a = 1;
+		console.log(a); 
+	})();
+	console.log(a); //ReferenceError: a is not defined */
+
+	//通过函数作用域避免变量冲突
+	(function(){
+		var str = 'Tom'; //A程序员定义的变量str
+		console.log(str);
+	})();
+	(function(){
+		var str = 'Jack'; //B程序员定义的变量str
+		console.log(str);
+	})();
+
+</script>
+</html>

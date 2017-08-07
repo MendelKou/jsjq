@@ -1,0 +1,41 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="Keywords" content="">
+		<meta name="Description" content="">
+		<title></title>
+		
+		<style type="text/css">
+			body,div,p,h1,h2,h3,h4,h5,h6,ul,ol,dl,dd{margin:0;}
+			ul,ol{padding:0;list-style:none;}
+			body{font-size:12px;font-family:"微软雅黑";}
+			a{text-decoration:none;color:#000;}
+			img,button{border:none;}
+			
+		</style>
+	</head>
+<body>
+	
+</body>
+<script type="text/javascript">
+	/*
+		三目运算：表达式1?表达式2:表达式3
+		如果表达式1为真则结果为表达式2的值否则表达式3的值
+	*/
+	//console.log(''==0); //true
+	//console.log(Number('')); //0
+	var str = prompt('请输入一个数值');
+	if(str!=null && str!='' && !isNaN(Number(str))){
+		var num = Number(str);
+		var result = num>0?'大于0':'小于等于0';
+		alert(result);
+	}
+
+	
+</script>
+</html>
+<!--
+prompt(text,defaultText)
+如果用户单击提示框的取消按钮，则返回 null。如果用户单击确认按钮，则返回输入字段当前显示的文本。
+-->

@@ -1,0 +1,45 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="Keywords" content="">
+		<meta name="Description" content="">
+		<title></title>
+		
+		<style type="text/css">
+			body,div,p,h1,h2,h3,h4,h5,h6,ul,ol,dl,dd{margin:0;}
+			ul,ol,input,textarea{padding:0;}
+			li{list-style:none;}
+			body{font:12px "微软雅黑";padding-top:1px;}
+			a{text-decoration:none;}
+			img,button{border:none;}
+			
+
+		</style>
+	</head>
+<body>
+	
+</body>
+<script>
+	//test方法用来检测传入的字符串是否匹配当前的正则表达式
+	//console.log(/\d+/.test('a123z'));//true
+	//console.log(/^\d+$/.test('a123z'));//false
+
+	/*
+	exec() 方法的功能非常强大，它是一个通用的方法，而且使用起来也比 test() 方法以及支持正则表达式的 String 对象的方法更为复杂。
+	如果 exec() 找到了匹配的文本，则返回一个结果数组。否则，返回 null。此数组的第 0 个元素是与正则表达式相匹配的文本，第 1 个元素是与 RegExpObject 的第 1 个子表达式相匹配的文本（如果有的话），第 2 个元素是与 RegExpObject 的第 2 个子表达式相匹配的文本（如果有的话），以此类推。除了数组元素和 length 属性之外，exec() 方法还返回两个属性。index 属性声明的是匹配文本的第一个字符的位置。input 属性则存放的是被检索的字符串 string。我们可以看得出，在调用非全局的 RegExp 对象的 exec() 方法时，返回的数组与调用方法 String.match() 返回的数组是相同的。
+	但是，当 RegExpObject 是一个全局正则表达式时，exec() 的行为就稍微复杂一些。它会在 RegExpObject 的 lastIndex 属性指定的字符处开始检索字符串 string。当 exec() 找到了与表达式相匹配的文本时，在匹配后，它将把 RegExpObject 的 lastIndex 属性设置为匹配文本的最后一个字符的下一个位置。这就是说，您可以通过反复调用 exec() 方法来遍历字符串中的所有匹配文本。当 exec() 再也找不到匹配的文本时，它将返回 null，并把 lastIndex 属性重置为 0。*/
+
+	var str = '100以内的质数有25个,最后一个时97,2是最小的素数,111';
+	//非全局匹配时每次都是从投开始搜索 reg.lastIndex始终为0 下面的while将是死循环
+	//var reg = /\d+/; 
+	//全局匹配时 找到了匹配的字符串后 会在下一次继续在后面查找
+	var reg = /\d+/g; 
+	var arr = null;
+	while((arr=reg.exec(str)) != null){
+		console.log('匹配到了'+arr[0]+',索引为'+arr.index+',下次搜索的起始位置为'+reg.lastIndex);
+	}
+		
+
+</script>
+</html>

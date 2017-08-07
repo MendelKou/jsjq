@@ -1,0 +1,45 @@
+<!doctype html>
+<html>
+	<head>
+		<title></title>
+		<meta charset="utf-8">
+		<meta name="keywords" content="">
+		<meta name="description" content="">
+		<style type="text/css">
+			*{margin:0;padding:0;}
+			body{font:12px "Microsoft Yahei";padding-top:1px;}
+
+			.wrap{width:200px;margin:50px auto 0;overflow:hidden;}
+			.wrap .box{height:200px;background:#ccc;color:#333;line-height:200px;text-align:center;font-size:30px;}
+			#btn1{float:left}
+			#btn2{float:right}
+			#btn1,#btn2{padding:0 10px;}
+		</style>
+	</head>
+	<body>
+		<div class="wrap">
+			<div class="box" id="box1">小明</div>
+			<button id="btn1">开始</button>
+			<button id="btn2">停止</button>
+		</div>
+		
+	</body>
+<script>
+	window.onload = function(){
+		var data = ['小明','阿狗','翠花','蛋蛋','洋洋','咪咪','东东','贝贝'];
+		var startBtn = document.getElementById('btn1');
+		var endBtn = document.getElementById('btn2');
+		var box = document.getElementById('box1');
+		var timerId;
+		startBtn.onclick = function(){
+			clearInterval(timerId);
+			timerId = setInterval(function(){
+				box.innerHTML = data[parseInt(Math.random()*data.length)];
+			},100);
+		};
+		endBtn.onclick = function(){
+			clearInterval(timerId);
+		};
+	};
+</script>
+</html>

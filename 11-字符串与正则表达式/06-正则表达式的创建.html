@@ -1,0 +1,50 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="Keywords" content="">
+		<meta name="Description" content="">
+		<title></title>
+		
+		<style type="text/css">
+			body,div,p,h1,h2,h3,h4,h5,h6,ul,ol,dl,dd{margin:0;}
+			ul,ol,input,textarea{padding:0;}
+			li{list-style:none;}
+			body{font:12px "微软雅黑";padding-top:1px;}
+			a{text-decoration:none;}
+			img,button{border:none;}
+			
+
+		</style>
+	</head>
+<body>
+	
+</body>
+<script>
+	//创建正则表达式的方式
+	var testStr = '123 jack go 456 abc go';
+	//1.通过new RegExp
+	//var regExp = new RegExp('go');
+	//var bool = regExp.test(testStr); //正则表达式对象的test方法用于检测字符串是否匹配该模式
+	//console.log(bool); //true
+	//console.log(new RegExp('\\d+').test(testStr)); //true 注意用字符串表示正则表达式中的转义符\时需要转移
+
+	//2.通过双斜杠来创建
+	/*var reg = /go/;
+	console.log(reg.test(testStr)); //true
+	console.log(/\d+/.test(testStr)); //true
+	console.log(/^\d+$/.test(testStr)); //false 
+	console.log(/Go/.test(testStr)); //false 
+	console.log(/Go/i.test(testStr)); //true 后缀i表示忽略大小写 */
+
+	//用new方式创建正则表达式对象时也可以使用双斜杠
+	//var reg = new RegExp(/\d+/); //这样做是多次一举 因为效果和var reg = /\d+/;一样
+	//console.log(reg.test(testStr)); //true
+	//console.log(new RegExp(/Go/i).test(testStr)); //true
+
+	//用new方式创建正则表达式时 如果传递的是字符串 那么后缀(i,g,m)由第二个参数传入
+	//var reg = new RegExp('Go','i');
+	//console.log(reg.test(testStr)); //true
+
+</script>
+</html>

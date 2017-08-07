@@ -1,0 +1,64 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="Keywords" content="">
+		<meta name="Description" content="">
+		<title></title>
+		
+		<style type="text/css">
+			body,div,p,h1,h2,h3,h4,h5,h6,ul,ol,dl,dd,fieldset{margin:0;}
+			ul,ol,input,textarea,th,td,fieldset,legend{padding:0;}
+			li{list-style:none;}
+			body{font:12px "微软雅黑";}
+			a{text-decoration:none;}
+			img,button{border:none;}
+			table{border-collapse:collapse;}
+			.clearfix:after{content:" ";display:block;clear:both;height:0;visibility:hidden;}
+			
+		</style>
+	</head>
+<body>
+	
+	<p class="p1">p1</p>
+	<p class="p2">p2</p>
+	<p>p3</p>
+	<p class="p4">p4</p>
+
+
+	<p class="txt1">p5</p>
+	<p class="txt-2">p6</p>
+	<p class="txt_3">p7</p>
+	<p class="txtabc">p8</p>
+	<p class="abc-txt">p9</p>
+	<p class="abctxt">p10</p>
+
+	<a href="#" target="_blank">a1</a>
+	<a href="#" target="_self">a2</a>
+
+	
+<script src="../jquery-1.8.3/jquery.min.js"></script>
+<script type="text/javascript">
+	$(function(){
+		//[attr] 选择具有给定属性的元素
+		//$('p[class]').css('background','red');
+
+		//[attr=value] 匹配指定的属性等于指定的值得元素
+		//$('[class=p1]').css('background','red');
+
+		//[attr!=value] 选择没有attr属性或attr属性不等于value的元素
+		//$('p[class!=p1]').css('background','red');
+
+		//[attr^=value] 匹配给定的属性attr的值以value开头的元素
+		//$('p[class^=txt]').css('color','red');
+		
+		//[attr$=value] 匹配给定的属性attr的值以value结尾的元素
+		//$('p[class$=txt]').css('color','red');
+
+		//复合属性选择器
+		$('a[href][target="_blank"]').css('color','red');
+		
+	});
+</script>
+</body>
+</html>

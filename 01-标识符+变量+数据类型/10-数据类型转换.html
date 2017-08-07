@@ -1,0 +1,43 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="Keywords" content="">
+		<meta name="Description" content="">
+		<title></title>
+		
+		<style type="text/css">
+			body,div,p,h1,h2,h3,h4,h5,h6,ul,ol,dl,dd{margin:0;}
+			ul,ol{padding:0;list-style:none;}
+			body{font-size:12px;font-family:"微软雅黑";}
+			a{text-decoration:none;color:#000;}
+			img,button{border:none;}
+			
+		</style>
+	</head>
+<body>
+	
+</body>
+<script type="text/javascript">
+
+	//隐式转换
+	var str = 'ok';
+	if(str){
+		console.log('IfIsExecuted');
+	}else{
+		console.log('ElseIsExecuted');
+	}
+
+	console.log(1+'a');
+
+	//显示转换
+	console.log(Number('0xff')); //255
+	console.log(Boolean('0xff'));
+	console.log(String(null));
+
+	console.log(parseInt(2.5)); //2
+	console.log(parseFloat('2.5a')); //2.5
+	
+
+</script>
+</html>

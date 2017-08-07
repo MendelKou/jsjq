@@ -1,0 +1,31 @@
+<!doctype html>
+<html>
+	<head>
+		<title></title>
+		<meta charset="utf-8">
+		<meta name="keywords" content="">
+		<meta name="description" content="">
+		<style type="text/css">
+			*{margin:0;padding:0;}
+			body{padding-top:1px;height:3000px;}
+			#div1{width:100px;height:100px;background:red;position:absolute;right:0;}
+		</style>
+	</head>
+<body>
+	<div id="div1"></div>
+</body>
+<script>
+	var div1 = document.getElementById('div1');
+	window.onload = window.onresize = window.onscroll = function(){
+		/*console.log('document.documentElement.clientWidth='+document.documentElement.clientWidth);
+		console.log('document.body.clientWidth='+document.body.clientWidth);
+		console.log('document.documentElement.clientHeight='+document.documentElement.clientHeight);
+		console.log('document.body.clientHeight='+document.body.clientHeight);
+		console.log('document.documentElement.scrollTop='+document.documentElement.scrollTop);
+		console.log('document.body.scrollTop='+document.body.scrollTop);*/
+
+		div1.style.top = (document.documentElement.clientHeight-div1.offsetHeight)/2+document.body.scrollTop+'px';
+
+	};
+</script>
+</html>

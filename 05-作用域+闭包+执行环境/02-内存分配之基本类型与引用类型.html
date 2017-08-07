@@ -1,0 +1,69 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="Keywords" content="">
+		<meta name="Description" content="">
+		<title></title>
+		
+		<style type="text/css">
+			body,div,p,h1,h2,h3,h4,h5,h6,ul,ol,dl,dd{margin:0;}
+			ul,ol{padding:0;list-style:none;}
+			body{font-size:12px;font-family:"微软雅黑";}
+			a{text-decoration:none;color:#000;}
+			img,button{border:none;}
+			
+		</style>
+	</head>
+<body>
+</body>
+<script>
+	/*
+		基本类型直接存的是值 number,boolean,string 都是基本类型
+		应用类型存的是地址 数组,对象属于引用类型
+	*/
+	
+	/*var a = 1;
+	var b = a; //相当于把a中存的值复制一份存到b中
+	b = 2; //b的改变不会影响a
+	console.log(a); //1  */
+
+	/*var str1 = 'abc';
+	var str2 = str1;
+	str2 = 'xyz';
+	console.log(str1); //abc */
+
+	/*var obj1 = {name:'Tom'};
+	var obj2 = obj1; //obj1与obj2指向同一个对象
+	obj2.name = 'Jack';
+	console.log(obj1.name); //Jack  
+	console.log(obj1===obj2); //true */
+
+	/*var arr1 = [1,2,3];
+	var arr2 = arr1; //arr1与arr2指向同一个数组
+	arr2[0] = 10;
+	console.log(arr1); //[10, 2, 3]
+	console.log(arr1===arr2); //true */
+
+	//复制数组
+	//方法1
+	/*var arr1 = [1,2,3];
+	var arr2 = [];
+	for(var i=0; i<arr1.length; ++i){
+		arr2.push(arr1[i]);
+	}
+	console.log(arr2); //[1,2,3];
+	console.log(arr1==arr2); //false
+	arr2[0] = 100;
+	console.log(arr1); //[1,2,3]; */
+	//方法2
+	/*var arr1 = [1,2,3];
+	var arr2 = arr1.concat(); //
+	console.log(arr2);//[1, 2, 3]
+	console.log(arr1==arr2);//false */
+
+
+	
+	
+</script>
+</html>

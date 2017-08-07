@@ -1,0 +1,39 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="Keywords" content="">
+		<meta name="Description" content="">
+		<title></title>
+		
+		<style type="text/css">
+			body,div,p,h1,h2,h3,h4,h5,h6,ul,ol,dl,dd{margin:0;}
+			ul,ol,input{padding:0;}
+			li{list-style:none;}
+			body{font:12px "微软雅黑";}
+			a{text-decoration:none;color:#000;}
+			img,button{border:none;}
+			strong{font-size:30px;}
+
+		</style>
+	</head>
+<body>
+<script>
+	//字符串对象的split方法把字符串在指定的字符处分割为字符串数组
+	var str = '2017-03-01';
+	//var strArr = str.split('-');
+	//第二个参数可以限制返回的数组长度
+	//var strArr = str.split('-',2);
+	//如果使用空字符分割那么每一个字符都会被分割出来
+	//var strArr = str.split('');
+	//如果分割字符串正好是字符串的末尾 则分割结果的最后一个空字符串
+	//var strArr = str.split('01'); //此时返回["2", "7-03-", ""]
+	//如果分割字符串正好是字符串的开始 则分割结果的第一个空字符串
+	//var strArr = str.split('20'); //此时返回["", "17-03-01"]
+	//如果没有此分割字符串 则返回的数组只包含原字符串
+	var strArr = str.split('xx'); 
+	console.log(strArr.length);
+	console.log(strArr);
+</script>
+</body>
+</html>

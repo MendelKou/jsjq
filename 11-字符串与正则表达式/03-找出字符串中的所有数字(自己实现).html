@@ -1,0 +1,77 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="Keywords" content="">
+		<meta name="Description" content="">
+		<title></title>
+		
+		<style type="text/css">
+			body,div,p,h1,h2,h3,h4,h5,h6,ul,ol,dl,dd{margin:0;}
+			ul,ol,input{padding:0;}
+			li{list-style:none;}
+			body{font:12px "微软雅黑";}
+			a{text-decoration:none;}
+			img,button{border:none;}
+			
+		</style>
+	</head>
+<body>
+	
+</body>
+<script>
+	//首先我们看看0~9这是个字符的编码 48~57
+	/*var str = '0123456789';
+	for(var i=0; i<str.length; ++i){
+		console.log(str.charAt(i)+'的unicode编码为'+str.charCodeAt(i));
+	}*/
+	
+	/*var str = "ok12htr78rgth74540hyt5uk5yuk45ku555jy789";
+	var arr = [];//存放结果的数组
+	var temp = '';
+	for(var i=0; i<str.length; ++i){
+		var charCode = str.charCodeAt(i);
+		if(charCode >= 48 && charCode <= 57){
+			temp += str[i];
+		}else if(temp){
+			arr.push(temp);
+			temp = '';
+		}
+	}
+	if(temp){
+		arr.push(temp);
+		temp = '';
+	}
+	console.log(arr.toString());*/
+	//计算每个字符串的unicode编码值 个人觉得这样的效率可能不高
+
+	//字符串与数值比较 时会把字符串转换为数值 如果不能转换为数值则比较结果为假
+	/*if('0'==0){
+		console.log('ok');
+	}*/
+	/*if('a'==0){
+		console.log('true');
+	}else{
+		console.log('false');
+	}*/
+
+	var str = "ok12htr78rgth74540hyt5uk5yuk45ku555jy789";
+	var arr = [];//存放结果的数组
+	var temp = '';
+	for(var i=0; i<str.length; ++i){
+		var ch = str.charAt(i);
+		if(ch >= 0 && ch <= 9){
+			temp += str[i];
+		}else if(temp){
+			arr.push(temp);
+			temp = '';
+		}
+	}
+	if(temp){
+		arr.push(temp);
+		temp = '';
+	}
+	console.log(arr.toString());
+
+</script>
+</html>

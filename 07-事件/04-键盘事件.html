@@ -1,0 +1,56 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="Keywords" content="">
+		<meta name="Description" content="">
+		<title></title>
+		
+		<style type="text/css">
+			body,div,p,h1,h2,h3,h4,h5,h6,ul,ol,dl,dd{margin:0;}
+			ul,ol,input{padding:0;}
+			ul,ol{list-style:none;}
+			body{font:12px "微软雅黑";}
+			a{text-decoration:none;color:#000;}
+			img,button{border:none;}
+
+			.box1{width:100px;height:100px;position:absolute;background:red;}
+		</style>
+	</head>
+<body>
+	<textarea id="tt" rows="10" cols="40"></textarea><br>
+	<strong id="strn"></strong>
+</body>
+<script type="text/javascript">
+/*
+	键盘事件:
+		onkeydown 按下某个键时触发 如果按下释放 则会重复触发
+		onkeypress 按下某个字符键时触发 如果按下释放 则会重复触发
+		onkeyup 鼠标字符键抬起时触发
+	
+*/
+var oTxt = document.getElementById('tt');
+//var num = 0;
+/*oTxt.onkeydown = function(){
+	console.log(num++);
+};*/
+/*oTxt.onkeypress = function(){
+	console.log(num++);
+};*/
+
+var oStrong = document.getElementById('strn');
+oTxt.onkeyup = function(){
+	var inputNum = oTxt.value.length;
+	
+	if(inputNum<=140){
+		oStrong.innerHTML = '你还可以输入'+(140-inputNum)+'个字符';
+	}else{
+		oTxt.value = oTxt.value.substr(0,140);
+	}
+};
+
+
+
+
+</script>
+</html>

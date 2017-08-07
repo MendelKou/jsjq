@@ -1,0 +1,46 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="Keywords" content="">
+		<meta name="Description" content="">
+		<title></title>
+		
+		<style type="text/css">
+			body,div,p,h1,h2,h3,h4,h5,h6,ul,ol,dl,dd{margin:0;}
+			ul,ol{padding:0;list-style:none;}
+			body{font-size:12px;font-family:"微软雅黑";}
+			a{text-decoration:none;color:#000;}
+			img,button{border:none;}
+			
+		</style>
+	</head>
+<body>
+</body>
+<script>
+	/*
+		回调函数：通过函数指针来调用函数
+		可以反函数作为参数传递 这样就可以根据传入的函数参数调用不同的函数
+	*/
+	/*function add(num1,num2){
+		return num1+num2;
+	}
+	function minus(num1,num2){
+		return num1-num2;
+	}
+	function math(num1,num2,fn){
+		return fn(num1,num2);
+	}
+	console.log(math(1,2,add));//3
+	console.log(math(1,2,minus));//-1
+
+	//通过匿名函数简化
+	console.log(math(1,2,function(a,b){return a/b;}));//0.5 */
+
+	var result = (function(a,b,fn){
+		return fn(a,b);
+	})(2,3,function(a,b){return a*b;});
+	console.log(result); //6
+	
+</script>
+</html>

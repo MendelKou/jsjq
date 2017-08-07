@@ -1,0 +1,40 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="Keywords" content="">
+		<meta name="Description" content="">
+		<title></title>
+		
+		<style type="text/css">
+			body,div,p,h1,h2,h3,h4,h5,h6,ul,ol,dl,dd,fieldset{margin:0;}
+			ul,ol,input,textarea,th,td,fieldset,legend{padding:0;}
+			li{list-style:none;}
+			body{font:12px "微软雅黑";}
+			a{text-decoration:none;}
+			img,button{border:none;}
+			table{border-collapse:collapse;}
+			.fL{float:left;} .fR{float:right;}
+			.clearfix:after{content:" ";display:block;clear:both;height:0;visibility:hidden;}
+			.box{width:600px;margin:0 auto;background:#ccc;}
+		</style>
+	</head>
+<body>
+	<div class="box">啦<br/>啦<br/>啦<br/>啦<br/>啦<br/>啦<br/>啦<br/>啦<br/>啦<br/>啦<br/>啦<br/>啦<br/>啦<br/>啦<br/>啦<br/>啦<br/>啦<br/>啦<br/>啦<br/>啦<br/>啦<br/>啦<br/>啦<br/>啦<br/>啦<br/>啦<br/>啦<br/>啦<br/>啦<br/>啦<br/>啦<br/>啦<br/>啦<br/>啦<br/>啦<br/>啦<br/>啦<br/>啦<br/>啦<br/>啦<br/>啦<br/>啦<br/>啦<br/>啦<br/>啦<br/>啦<br/>啦<br/>啦<br/>啦<br/>啦<br/>啦<br/>啦<br/>啦<br/>啦<br/>啦<br/>啦<br/>啦<br/>啦<br/>啦<br/>啦<br/>啦<br/>啦<br/>啦<br/>啦<br/>啦<br/>啦<br/>啦</div>
+
+<script type="text/javascript">
+	window.onscroll = function(){
+		//谷歌下始终为0 火狐与IE8正常
+		var dst = document.documentElement.scrollTop;
+		//谷歌下正常 火狐与IE8始终为0
+		var bst = document.body.scrollTop;
+		console.log('document.documentElement.scrollTop='+dst);
+		console.log('document.body.scrollTop='+bst);
+
+		//兼容写法
+		var st = document.documentElement.scrollTop || document.body.scrollTop;
+		console.log('scrollTop='+st);
+	};
+</script>
+</body>
+</html>

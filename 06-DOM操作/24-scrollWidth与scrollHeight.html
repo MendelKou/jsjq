@@ -1,0 +1,48 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="Keywords" content="">
+		<meta name="Description" content="">
+		<title></title>
+		
+		<style type="text/css">
+			body,div,p,h1,h2,h3,h4,h5,h6,ul,ol,dl,dd{margin:0;}
+			ul,ol{padding:0;list-style:none;}
+			body{font-size:12px;font-family:"微软雅黑";}
+			a{text-decoration:none;color:#000;}
+			img,button{border:none;}
+			
+			#div1{
+				width:100px;
+				height:100px;
+				background:red;
+				padding:10px;
+				border:1px solid blue;
+				overflow:auto;
+			}
+		</style>
+	</head>
+<body>
+	<div id="div1">
+		dkfakdfkdfkdfdkfdkfdkfdkfkd<br>
+		dkfakdfkdfkdfdkfdkfdkfdkfkd<br>
+		dkfakdfkdfkdfdkfdkfdkfdkfkd<br>
+		dkfakdfkdfkdfdkfdkfdkfdkfkd<br>
+		dkfakdfkdfkdfdkfdkfdkfdkfkd<br>
+		dkfakdfkdfkdfdkfdkfdkfdkfkd<br>
+		dkfakdfkdfkdfdkfdkfdkfdkfkd<br>
+		dkfakdfkdfkdfdkfdkfdkfdkfkd<br>
+		dkfakdfkdfkdfdkfdkfdkfdkfkd<br>
+		dkfakdfkdfkdfdkfdkfdkfdkfkd<br>
+	</div>
+</body>
+<script>
+	window.onload = function(){
+		var oDiv = document.getElementById('div1');
+		//scrollWidth与scrollHeight是元素中滚动内容的大小 如果没有滚动则与clientWidth相同
+		console.log(oDiv.scrollWidth);
+		console.log(oDiv.scrollHeight);
+	};
+</script>
+</html>

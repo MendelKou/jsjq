@@ -1,0 +1,70 @@
+<!doctype html>
+<html>
+	<head>
+		<title></title>
+		<meta charset="utf-8">
+		<meta name="keywords" content="">
+		<meta name="description" content="">
+		<style type="text/css">
+			*{margin:0;padding:0;}
+			body{padding-top:1px;}
+			#div1{width:200px;height:200px;margin:50px auto 0;background:red;border:1px solid #000;}
+			#div2{width:100px;height:100px;margin:50px auto 0;background:green;}
+		</style>
+	</head>
+	<body>
+		<div id="div1">
+			<div id="div2"></div>
+		</div>
+	</body>
+<script>
+/*
+	
+*/
+	window.onload = function(){
+		var div1 = document.getElementById('div1');
+		var div2 = document.getElementById('div2');
+		div1.onclick = function(){
+			console.log('div1的点击事件');
+		};
+		/*div2.onclick = function(){
+			console.log('div2的点击事件处理函数1');
+		};
+		div2.onclick = function(){
+			console.log('div2的点击事件处理函数2');
+		}*/
+		//以上给div2看似绑定了两个事件 但是后面的会把前面的覆盖掉
+
+		//解决方案1
+		/*div2.onclick = function(){
+			console.log('div2的点击事件处理函数1');
+		};
+		if(typeof div2.onclick == 'function'){
+			var f1 = div2.onclick;
+		}
+		div2.onclick = function(){
+			if(f1){
+				f1();
+			}
+			console.log('div2的点击事件处理函数2');
+		};*/
+
+		//解决方案2
+		//要绑定事件的元素对象.addEventListener(事件类型,事件处理函数,true/flase)
+		//true表示在捕获阶段处理事件 false表示在冒泡阶段处理事件
+		//div2.addEventListener('click',function(){alert(1);},false); //IE8不支持
+		//div2.addEventListener('click',function(){alert(2);},false); //不会覆盖前面的事件
+		//兼容写法
+		if(div2.addEventListener){
+			div2.addEventListener('click',function(){alert(1);},false); 
+			div2.addEventListener('click',function(){alert(2);},false); 
+		}else{
+			//IE8中后面绑定的函数先调用
+			div2.attachEvent('onclick',function(){alert(1);},false); 
+			div2.attachEvent('onclick',function(){alert(2);},false); 
+		}
+
+
+	};
+</script>
+</html>

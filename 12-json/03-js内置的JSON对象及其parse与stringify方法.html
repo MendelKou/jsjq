@@ -1,0 +1,92 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="Keywords" content="">
+		<meta name="Description" content="">
+		<title></title>
+		
+		<style type="text/css">
+			body,div,p,h1,h2,h3,h4,h5,h6,ul,ol,dl,dd,fieldset{margin:0;}
+			ul,ol,input,textarea,th,td,fieldset,legend{padding:0;}
+			li{list-style:none;}
+			body{font:12px "微软雅黑";}
+			a{text-decoration:none;}
+			img,button{border:none;}
+			table{border-collapse:collapse;}
+			.clearfix:after{content:" ";display:block;clear:both;height:0;visibility:hidden;}
+			
+		</style>
+	</head>
+<body>
+<script>
+
+//js中的内置的JSON对象是专门用来处理json的 IE7以下不支持(可以引入json2.js解决)
+//console.log(JSON);
+
+//JSON对象的parse方法用来解析json
+//语法：JSON.parse(text[, reviver])
+
+/*var jsonStr = '{"name":"Tom","age":23,"isMarried":false}'; 
+var obj = JSON.parse(jsonStr);
+console.log(obj);
+console.log(typeof obj);
+console.log(obj.name);
+console.log(obj.age);
+console.log(obj.isMarried);*/
+
+/*var jsonStr = '[{"name":"Tom","age":23},{"name":"Jack","age":22}]';
+var arr = JSON.parse(jsonStr);
+console.log(arr.length); //2
+console.log(arr[1].name); //Jack  */
+
+//parse方法的第二个指是一个可选的函数 以对原值进行改造后再返回
+/*var jsonStr = '{"1":1,"2":2,"3":3}';
+var obj = JSON.parse(jsonStr,function(k,v){
+	console.log(k); //查看解析过程 为什么最后一个k是空字符串
+	if(k != ''){
+		return v*2; 
+	}else{
+		return v;
+	}
+});
+console.log(obj); */
+
+/*JSON.parse('{"1": 1, "2": 2,"3": {"4": 4, "5": {"6": 6}}}', function (k, v) {
+    console.log(k); // 输出当前的属性名，从而得知遍历顺序是从内向外的，
+                    // 最后一个属性名会是个空字符串。
+    return v;       // 返回原始属性值，相当于没有传递 reviver 参数。
+});*/
+
+//数组的k为索引
+/*JSON.parse('[1,2,3]',function(k,v){
+	console.log(k);
+	return v;
+});*/
+
+//JSON对象的stringify方法可以把js对象转换为json字符串 即实现js对象的序列化
+//语法：JSON.stringify(value[, replacer [, space]])
+//var obj = {name:'李丽',age:23,gender:'女',isMarried:true};
+//console.log(JSON.stringify(obj)); //{"name":"李丽","age":23,"gender":"女","isMarried":true}
+//如果第二个参数是一个函数 则在序列化的过程中每个属性的值会经过该函数的处理后再返回
+/*console.log(JSON.stringify(obj,function(k,v){
+	if(k == 'age'){
+		return '***';
+	}
+	return v;
+}));*/ //{"name":"李丽","age":"***","gender":"女","isMarried":true}
+//如果第二个参数是一个数组 则只会序列化数组中列出的属性
+//console.log(JSON.stringify(obj,['name','gender'])); //{"name":"李丽","gender":"女"}
+//console.log(JSON.stringify(obj,[])); //{}
+
+//alert(JSON.stringify(obj));
+//第三个参数若为一个数字(0~10) 表示输出用多少个空格缩进
+//alert(JSON.stringify(obj,null,10));
+//如果参数为字符串 则字符串的前十个字符串作为缩进用的字符
+//alert(JSON.stringify(obj,null,'123456'));
+//alert(JSON.stringify(obj,null,'1234567890123'));
+//alert(JSON.stringify(obj,null,'='));
+
+</script>
+</body>
+</html>

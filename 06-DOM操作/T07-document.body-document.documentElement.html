@@ -1,0 +1,83 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="Keywords" content="">
+		<meta name="Description" content="">
+		<title></title>
+		
+		<style type="text/css">
+			body,div,p,h1,h2,h3,h4,h5,h6,ul,ol,dl,dd,fieldset{margin:0;}
+			ul,ol,input,textarea,th,td,fieldset,legend{padding:0;}
+			li{list-style:none;}
+			body{font:12px "微软雅黑";}
+			a{text-decoration:none;}
+			img,button{border:none;}
+			table{border-collapse:collapse;}
+			.clearfix:after{content:" ";display:block;clear:both;height:0;visibility:hidden;}
+		</style>
+		
+	</head>
+<body>
+	<button id="btn1">button1</button>
+	<button id="btn2">button2</button>
+	<button id="btn3">button3</button>
+	<button id="btn4">button4</button>
+
+	<p>段落1</p>
+	<div id="box">
+		<div>
+			<p>box中的段落</p>
+		</div>
+	</div>
+	
+<script type="text/javascript">
+window.onload = function(){
+	var btn1 = document.getElementById('btn1');
+	var btn2 = document.getElementById('btn2');
+	var btn3 = document.getElementById('btn3');
+	var btn4 = document.getElementById('btn4');
+
+	//var pEles = document.getElementsByTagName('p');
+	/*var pEles = document.getElementById('box').getElementsByTagName('p');
+	console.log(pEles);
+	console.log(pEles.length);*/
+	//下面两个等价
+	//console.log(pEles[0]);
+	//console.log(pEles.item(0));
+
+	/*var html = document.getElementsByTagName('html')[0];
+	var body = document.getElementsByTagName('body')[0];
+	console.log(document.body);//html文档中的body元素
+	console.log(document.body === body);//true
+	console.log(document.documentElement);//文档的根元素
+	console.log(document.documentElement === html);//true */
+	
+	//console.log(document.all[0]);
+	//console.log(document.nodeType);//document节点类型为9
+	//console.log(document.childNodes);
+
+	console.log(document.body.parentNode);
+	console.log(document.parentNode);//null
+	
+
+};
+</script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

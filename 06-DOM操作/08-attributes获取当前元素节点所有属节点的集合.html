@@ -1,0 +1,32 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="Keywords" content="">
+		<meta name="Description" content="">
+		<title></title>
+		
+		<style type="text/css">
+			body,div,p,h1,h2,h3,h4,h5,h6,ul,ol,dl,dd{margin:0;}
+			ul,ol{padding:0;list-style:none;}
+			body{font-size:12px;font-family:"微软雅黑";}
+			a{text-decoration:none;color:#000;}
+			img,button{border:none;}
+
+			
+			
+		</style>
+	</head>
+<body>
+	<div id="div1" title="divone" class="box" x="1"></div>
+</body>
+<script>
+	//节点的attributes属性表示节点所有属性的集合
+	var oDiv = document.getElementById('div1');
+	console.log(oDiv.attributes.length); //4 可以获取到自定义的属性
+	console.log(oDiv.attributes[0].nodeType);
+	console.log(oDiv.attributes[0].nodeName);
+	console.log(oDiv.attributes[0].nodeValue);
+	console.log(oDiv.attributes[3].nodeValue);
+</script>
+</html>

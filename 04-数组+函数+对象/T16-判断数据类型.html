@@ -1,0 +1,118 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="Keywords" content="">
+		<meta name="Description" content="">
+		<title></title>
+		
+		<style type="text/css">
+			body,div,p,h1,h2,h3,h4,h5,h6,ul,ol,dl,dd,fieldset{margin:0;}
+			ul,ol,input,textarea,th,td,fieldset,legend{padding:0;}
+			li{list-style:none;}
+			body{font:12px "微软雅黑";}
+			a{text-decoration:none;}
+			img,button{border:none;}
+			table{border-collapse:collapse;}
+			.clearfix:after{content:" ";display:block;clear:both;height:0;visibility:hidden;}
+		</style>
+		
+	</head>
+<body>
+	<button id="btn1">button1</button>
+	<button id="btn2">button2</button>
+	<button id="btn3">button3</button>
+	<button id="btn4">button4</button>
+
+<script type="text/javascript">
+window.onload = function(){
+	var btn1 = document.getElementById('btn1');
+	var btn2 = document.getElementById('btn2');
+	var btn3 = document.getElementById('btn3');
+	var btn4 = document.getElementById('btn4');
+	
+	var str = '';
+	var num = 1;
+	var flag = true;
+	var obj = {};
+	var arr = [];
+	var date = new Date();
+	var reg = /\d+/;
+	var f = function(){};
+
+	//typeof只能判断出string,number,boolean,object,function,undefined 类型
+	console.log('==========typeof==============================================================');
+	console.log(typeof null);//object
+	console.log(typeof undefined);//undefined
+	console.log(typeof str);//string
+	console.log(typeof num);//number
+	console.log(typeof flag);//boolean
+	console.log(typeof obj);//object
+	console.log(typeof arr);//object
+	console.log(typeof date);//object
+	console.log(typeof reg);//object
+	console.log(typeof f);//function
+
+	//instanceof
+	console.log('==========instanceof==============================================================');
+	console.log(str instanceof String);//false
+	console.log(new String('abc') instanceof String);//true
+	console.log(num instanceof Number);//false
+	console.log(flag instanceof Boolean);//false
+	console.log(obj instanceof Object);//true
+	console.log(arr instanceof Array);//true
+	console.log(date instanceof Date);//true
+	console.log(reg instanceof RegExp);//true
+	console.log(f instanceof Function);//true
+	console.log(null instanceof Object);//false
+
+	//constructor
+	console.log('==========constructor==============================================================');
+	console.log(str.constructor === String);//true
+	console.log(num.constructor === Number);//true
+	console.log(flag.constructor === Boolean);//true
+	console.log(obj.constructor === Object);//true
+	console.log(arr.constructor === Array);//true
+	console.log(f.constructor === Function);//true
+	console.log(reg.constructor === RegExp);//true
+
+	//Object原型的toString方法会以[object 类型]的格式返回一个字符串
+	//建议使用下面的方法判断类型
+	console.log('===========toString=============================================================');
+	console.log(Object.prototype.toString.call(str));//[object String]
+	console.log(Object.prototype.toString.call(num));//[object Number]
+	console.log(Object.prototype.toString.call(flag));//[object Boolean]
+	console.log(Object.prototype.toString.call(obj));//[object Object]
+	console.log(Object.prototype.toString.call(arr));//[object Array]
+	console.log(Object.prototype.toString.call(date));//[object Date]
+	console.log(Object.prototype.toString.call(reg));//[object RegExp]
+	console.log(Object.prototype.toString.call(f));//[object Function]
+	console.log(Object.prototype.toString.call(null));//[object Null]
+	console.log(Object.prototype.toString.call(undefined));//[object Undefined]
+
+	
+	btn2.onclick = function(){
+	};
+
+	btn3.onclick = function(){
+	};
+};
+</script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

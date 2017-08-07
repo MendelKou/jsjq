@@ -1,0 +1,165 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="Keywords" content="">
+		<meta name="Description" content="">
+		<title></title>
+		
+		<style type="text/css">
+			body,div,p,h1,h2,h3,h4,h5,h6,ul,ol,dl,dd,fieldset{margin:0;}
+			ul,ol,input,textarea,th,td,fieldset,legend{padding:0;}
+			li{list-style:none;}
+			body{font:12px "微软雅黑";}
+			a{text-decoration:none;}
+			img,button{border:none;}
+			table{border-collapse:collapse;}
+			.clearfix:after{content:" ";display:block;clear:both;height:0;visibility:hidden;}
+			
+			#imgBox,#imgBox *{margin:0;padding:0;}
+			#imgBox{
+				width:630px;
+				height:630px;
+				margin:20px auto 0;
+				border:1px solid #000;
+			}
+			#imgList{
+				position:relative;
+				height:100%;
+			}
+			#imgList li{
+				position:absolute;
+				list-style:none;
+			}
+			#imgList li.bor-red{
+				border:1px solid red;
+			}
+		</style>
+	</head>
+<body>
+	<div id="imgBox">
+		<ul id="imgList">
+			<li><img src="04-img/1.jpg" alt="" width="200" height="200"/></li>
+			<li><img src="04-img/2.jpg" alt="" width="200" height="200"/></li>
+			<li><img src="04-img/3.jpg" alt="" width="200" height="200"/></li>
+			<li><img src="04-img/4.jpg" alt="" width="200" height="200"/></li>
+			<li><img src="04-img/5.jpg" alt="" width="200" height="200"/></li>
+			<li><img src="04-img/6.jpg" alt="" width="200" height="200"/></li>
+			<li><img src="04-img/7.jpg" alt="" width="200" height="200"/></li>
+			<li><img src="04-img/8.jpg" alt="" width="200" height="200"/></li>
+			<li><img src="04-img/9.png" alt="" width="200" height="200"/></li>
+		</ul>
+	</div>
+
+<script type="text/javascript" src="../jquery-1.8.3/jquery.min.js"></script>
+
+<script type="text/javascript">
+	$(function(){
+		//初始排列
+		$lis = $('#imgList li');
+		var posArr = [];
+		$lis.each(function(index){
+			this.index = index;
+			var row = parseInt(index/3);
+			var col = index%3;
+			var pos = {
+				left:col*($(this).width()+10)+5+'px',
+				top:row*($(this).width()+10)+5+'px'
+			}
+			posArr.push(pos);
+			$(this).css(pos);
+		});
+		//事件处理
+		$lis.on('mousedown',function(ev){
+			var $li = $(this);
+			$li.css('z-index',999);
+			var x0 = ev.pageX;
+			var y0 = ev.pageY;
+			var pos = $li.position();//返回定位的left与top构成的对象
+			$(document).on({
+				'mousemove.kmd':function(ev){
+					var x1 = ev.pageX;
+					var y1 = ev.pageY;
+					var left = x1-x0+pos.left;
+					var top = y1-y0+pos.top;
+					$li.css({left:left+'px',top:top+'px'});
+					if(isColliding($li)){
+						findCloset($li);
+					}else{
+						$lis.removeClass('bor-red');
+					}
+				},
+				'mouseup.kmd':function(){
+					if($lis.hasClass('bor-red')){
+						mySwap($li);
+						$lis.removeClass('bor-red');
+					}else{
+						$li.animate(posArr[$li[0].index]);
+					}
+					$li.css('z-index',0);
+					$(document).off('mousemove.kmd mouseup.kmd');
+				}
+			});
+			return false; //为什么不加这句 拖拽后鼠标不能及时释放
+		});
+
+		//检查是否发生了碰撞
+		function isColliding($moveLi){
+			var flag = false;
+			$lis.each(function(){
+				if(this != $moveLi[0]){
+					var left = $(this).position().left;
+					var top = $(this).position().top;
+					var w = $(this).width();
+					var h = $(this).height();
+					var left2 = $moveLi.position().left;
+					var top2 = $moveLi.position().top;
+					var w2 = $moveLi.width();
+					var h2 = $moveLi.height();
+					if(left2 >= left-w2 && left2 <= left+w && top2 >= top-h2 && top2 <= top+h){
+						flag = true;
+						return false; //return false表示停止遍历
+					}
+				}
+			});
+			return flag;
+		}
+
+		//碰撞时标出最近的一个
+		function findCloset($moveLi){
+			var minDist = 9999999;
+			var closetIndex = -1;
+			var centerX = $moveLi.position().left+$moveLi.width()/2;
+			var centerY = $moveLi.position().top+$moveLi.height()/2;
+			$lis.each(function(index){
+				if(this != $moveLi[0]){
+					$li = $(this);
+					var dx = $li.position().left+$li.width()/2-centerX;
+					var dy = $li.position().top+$li.height()/2-centerY;
+					var dist = Math.sqrt(dx*dx+dy*dy);
+					if(dist < minDist){
+						minDist = dist;
+						closetIndex = index;
+					}
+				}
+			});
+			if(closetIndex != -1){
+				$lis.removeClass('bor-red');
+				$lis.eq(closetIndex).addClass('bor-red');
+			}
+		}
+		
+		//交换位置
+		function mySwap($moveLi){
+			var $closetLi = $lis.filter('.bor-red');
+			$moveLi.animate(posArr[$closetLi[0].index]);
+			$closetLi.animate(posArr[$moveLi[0].index]);
+
+			var index = $closetLi[0].index;
+			$closetLi[0].index = $moveLi[0].index;
+			$moveLi[0].index = index;
+		}
+	});
+</script>
+</body>
+</html>

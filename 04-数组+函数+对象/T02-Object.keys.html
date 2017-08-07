@@ -1,0 +1,37 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="Keywords" content="">
+		<meta name="Description" content="">
+		<title></title>
+		
+		<style type="text/css">
+			body,div,p,h1,h2,h3,h4,h5,h6,ul,ol,dl,dd,fieldset{margin:0;}
+			ul,ol,input,textarea,th,td,fieldset,legend{padding:0;}
+			li{list-style:none;}
+			body{font:12px "微软雅黑";}
+			a{text-decoration:none;}
+			img,button{border:none;}
+			table{border-collapse:collapse;}
+			.clearfix:after{content:" ";display:block;clear:both;height:0;visibility:hidden;}
+			
+			
+		</style>
+	</head>
+<body>
+	
+<script type="text/javascript">
+	var obj = {x:'xxx'};
+	if(typeof Object.keys == 'function'){
+		var props = Object.keys(obj);//ECMAScript5引入的Object.keys方法可返回对象可枚举的自有属性
+		console.log(props);
+		console.log(props instanceof Array);//true
+	}else{
+		console.log('不支持Object.keys方法');
+	}
+	
+
+</script>
+</body>
+</html>

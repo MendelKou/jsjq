@@ -1,0 +1,106 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="Keywords" content="">
+		<meta name="Description" content="">
+		<title></title>
+		
+		<style type="text/css">
+			body,div,p,h1,h2,h3,h4,h5,h6,ul,ol,dl,dd,fieldset{margin:0;}
+			ul,ol,input,textarea,th,td,fieldset,legend{padding:0;}
+			li{list-style:none;}
+			body{font:12px "微软雅黑";}
+			a{text-decoration:none;}
+			img,button{border:none;}
+			table{border-collapse:collapse;}
+			.clearfix:after{content:" ";display:block;clear:both;height:0;visibility:hidden;}
+			
+		</style>
+	</head>
+<body>
+
+	<img id="img1" src="../images/6.jpg" alt="美女" width="400" />
+	<img id="img2" src="../images/4.jpg" alt="美女" width="400" x='x1' zzz='z'/><br>
+	<input type="radio" name="gender" value="m" checked="checked"/>男
+	<input type="radio" name="gender" value="w"/>女<br>
+	<input type="checkbox" checked="checked"/>篮球
+	<input type="checkbox" />足球<br>
+	
+<script src="../jquery-1.8.3/jquery.js"></script>
+<script type="text/javascript">
+	$(function(){
+
+		//attr(name|properties|key,value|fn) 设置或返回被选元素的属性值。
+
+		//获取属性
+		//console.log($('#img1').attr('src'));
+		//console.log($('#img2').attr('src'));
+		/*
+		console.log($('#img2').attr('width'));
+		console.log($('#img2').attr('height')); //undefined
+		console.log($('#img2').attr('x')); //x1 可以获取到自定义属性 
+		*/
+		/*
+		console.log($('input[type=radio]:eq(0)').attr('checked'));//checked
+		console.log($('input[type=radio]:eq(1)').attr('checked'));//undefined
+		console.log($('input[type=checkbox]:eq(0)').attr('checked'));//checked
+		console.log($('input[type=checkbox]:eq(1)').attr('checked'));//undefined
+		*/
+
+		//设置属性
+		//$('#img1').attr('src','../images/1.jpg');
+		//$('#img1').attr('x','abc'); //添加自定义属性
+		//$('img').attr('src','../images/5.jpg'); //为所有图片设置src属性
+		//同时设置多个属性
+		//$('#img1').attr({src:'../images/2.jpg',width:200});
+		//第二个参数可以是函数
+		/*
+		$('#img1').attr('title',function(){
+			console.log(this.src);
+			return this.src;
+		});
+		*/
+//=====================================================================================================
+		//removeAttr(name) 从每一个匹配的元素中删除一个属性
+		//$('#img1').removeAttr('src');
+		//$('#img2').removeAttr('x'); //可以删除自定义属性
+
+//=====================================================================================================
+		//prop(name|properties|key,value|fn) 1.6新增
+		//获取属性
+		//console.log($('#img1').prop('src'));
+		//console.log($('img').prop('src')); //如果选中了多个元素 则只会获取第一个元素的属性
+		//console.log($('#img2').prop('width'));
+		//console.log($('#img2').prop('zzz')); //undefined 获取不到自定义属性
+		/*
+		console.log($('input[type=radio]:eq(0)').prop('checked'));//true
+		console.log($('input[type=radio]:eq(1)').prop('checked'));//false
+		console.log($('input[type=checkbox]:eq(0)').prop('checked'));//true
+		console.log($('input[type=checkbox]:eq(1)').prop('checked'));//false
+		*/
+
+		//设置属性
+		//$('#img1').prop('src','../images/3.jpg');
+		//设置多个属性
+		//$('#img1').prop({src:'../images/3.jpg',width:200});
+		//第二个参数可以是函数
+		//$('#img1').prop('title',function(){return 'abc';});
+		//$('#img1').prop('xxxx','x'); //无法设置自定义属性
+
+//=====================================================================================================
+		//removeProp(name) 用来删除由.prop()方法设置的属性集
+		//$('#img1').removeProp('src'); //删除后src属性值为undefined 而删除后图片还未加载 所有加载时会报找不到文件的错误
+		//$('#img1').removeProp('width');//删除后width属性值为0
+		//$('#img2').removeProp('zzz'); //删除不了
+
+		//attr与prop的区别
+		//项目： 获取或设置或删除自定义属性  获取选中的单选框或复选框的返回值  获取未选中的单选框或复选框的返回值
+		//attr			yes							checked									undefined
+		//prop			no								true										false
+
+
+	});
+</script>
+</body>
+</html>

@@ -1,0 +1,73 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="Keywords" content="">
+		<meta name="Description" content="">
+		<title></title>
+		
+		<style type="text/css">
+			body,div,p,h1,h2,h3,h4,h5,h6,ul,ol,dl,dd{margin:0;}
+			ul,ol,input{padding:0;}
+			ul,ol{list-style:none;}
+			body{font:12px "微软雅黑";padding-top:1px;}
+			a{text-decoration:none;color:#000;}
+			img,button{border:none;}
+
+			#div1{
+				width:100px;
+				height:100px;
+				background:red;
+				margin:50px auto;
+				border:1px solid blue;
+			}
+			#div2{
+				width:50px;
+				height:50px;
+				background:green;
+				margin:25px 0 0 25px;
+			}
+		</style>
+		
+	</head>
+<body>
+	<div id="div1">
+		<div id="div2"></div>
+	</div>
+</body>
+<script type="text/javascript">
+/*clientX 设置或获取鼠标指针位置相对于窗口客户区域的 x 坐标，其中客户区域不包括窗口自身的控件和滚动条。 
+clientY 设置或获取鼠标指针位置相对于窗口客户区域的 y 坐标，其中客户区域不包括窗口自身的控件和滚动条。 
+offsetX 设置或获取鼠标指针位置相对于触发事件的对象的 x 坐标。 
+offsetY 设置或获取鼠标指针位置相对于触发事件的对象的 y 坐标。 
+screenX 设置或获取获取鼠标指针位置相对于用户屏幕的 x 坐标。 
+screenY 设置或获取鼠标指针位置相对于用户屏幕的 y 坐标。 
+x 设置或获取鼠标指针位置相对于父文档的 x 像素坐标。 
+y 设置或获取鼠标指针位置相对于父文档的 y 像素坐标。*/
+	window.onload = function(){
+		var oDiv1 = document.getElementById('div1');
+		oDiv1.onclick = function(ev){
+			var oEvent = ev || event;
+			console.log('screenX='+oEvent.screenX+',screenY='+oEvent.screenY);
+			console.log('clientX='+oEvent.clientX+',clientY='+oEvent.clientY);
+			console.log('offsetX='+oEvent.offsetX+',offsetY='+oEvent.offsetY);
+			
+		};
+		var oDiv2 = document.getElementById('div2');
+		oDiv2.onclick = function(ev){
+			var oEvent = ev || event;
+			
+			//禁止事件冒泡的兼容写法
+			/*if(oEvent.stopPropagation){
+				oEvent.stopPropagation();
+			}else{
+				event.cancelBubble = true;
+			}*/
+
+			console.log('screenX='+oEvent.screenX+',screenY='+oEvent.screenY);
+			console.log('clientX='+oEvent.clientX+',clientY='+oEvent.clientY);
+			console.log('offsetX='+oEvent.offsetX+',offsetY='+oEvent.offsetY);
+		};
+	};
+</script>
+</html>

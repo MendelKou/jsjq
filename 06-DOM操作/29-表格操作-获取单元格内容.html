@@ -1,0 +1,80 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="Keywords" content="">
+		<meta name="Description" content="">
+		<title></title>
+		
+		<style type="text/css">
+			body,div,p,h1,h2,h3,h4,h5,h6,ul,ol,dl,dd{margin:0;}
+			ul,ol{padding:0;list-style:none;}
+			body{font-size:12px;font-family:"微软雅黑";}
+			a{text-decoration:none;color:#000;}
+			img,button{border:none;}
+
+			#tab1{
+				width:300px;
+				margin:20px auto 0;
+				font-size:15px;
+				border-collapse:collapse;
+			}
+			#tab1 td,#tab1 th{
+				border:1px solid #000;
+			}
+			
+		</style>
+	</head>
+<body>
+	<table id="tab1">
+		<thead>
+			<tr>
+				<th>编号</th>
+				<th>姓名</th>
+				<th>性别</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td>001</td>
+				<td>张三</td>
+				<td>男</td>
+			</tr>
+			<tr>
+				<td>002</td>
+				<td>李四</td>
+				<td>男</td>
+			</tr>
+			<tr>
+				<td>003</td>
+				<td>李花</td>
+				<td>女</td>
+			</tr>
+		</tbody>
+	</table>
+</body>
+<script>
+	window.onload = function(){
+		var oTab = document.getElementById('tab1');
+		//alert(oTab);//[object HTMLTableElement]
+		/*var str = oTab.getElementsByTagName('thead')[0].getElementsByTagName('tr')[0].
+		getElementsByTagName('th')[0].innerHTML;
+		console.log(str);*/
+		/*var str = oTab.getElementsByTagName('tbody')[0].getElementsByTagName('tr')[1].
+		getElementsByTagName('td')[1].innerHTML;
+		console.log(str);*/
+		/*由上面的操作可以发现 用普通的dom操作获取表格中的数据很繁琐
+			为此表格元素对象提供了一些特有属性
+			rows 表格中所有行的数组
+			cells 某一行中所有单元格的数组(是rows中的元素的属性 不是table的属性)
+			tBodies 表格中所有tbody的数组
+		*/
+		/*console.log(oTab.rows.length);
+		console.log(oTab.tBodies.length);
+		console.log(oTab.tBodies[0].rows.length);*/
+		//使用rows于cells获取单元格中的数据
+		//console.log(oTab.rows[2].cells[1].innerHTML);
+		//console.log(oTab.tBodies[0].rows[2].cells[1].innerHTML);
+	};
+</script>
+</html>

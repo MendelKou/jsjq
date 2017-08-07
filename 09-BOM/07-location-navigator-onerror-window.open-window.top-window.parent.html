@@ -1,0 +1,189 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="Keywords" content="">
+		<meta name="Description" content="">
+		<title></title>
+		
+		<style type="text/css">
+			body,div,p,h1,h2,h3,h4,h5,h6,ul,ol,dl,dd,fieldset{margin:0;}
+			ul,ol,input,textarea,th,td,fieldset,legend{padding:0;}
+			li{list-style:none;}
+			body{font:12px "微软雅黑";}
+			a{text-decoration:none;}
+			img,button{border:none;}
+			table{border-collapse:collapse;}
+			.clearfix:after{content:" ";display:block;clear:both;height:0;visibility:hidden;}
+		</style>
+		
+	</head>
+<body>
+	<button id="btn1">点我</button>
+	<div id="box"></div>
+	<div id="count"></div>
+	
+<script type="text/javascript">
+	var btn1 = document.getElementById('btn1');
+
+	//window.location.search表示文档URL中以?开始的参数部分
+	//console.log(window.location.search);
+	
+	//定时器应用函数
+	//html5允许给setTimeout与setInterval传入额外的参数 这些参数会传给定时器调用的函数
+	/*function invoke(f,start,interval,end){
+		if(invoke.arguments.length === 1){
+			start = 0;
+		}
+		if(invoke.arguments.length <= 2){
+			setTimeout(f,start,Math.random());
+		}else{
+			setTimeout(function(){
+				var timerId = setInterval(f,interval,Math.random());
+				if(end){
+					setTimeout(function(){
+						clearInterval(timerId);
+					},end);
+				}
+			},start);
+		}
+	}
+
+	function run(r){
+		console.log(new Date().toTimeString()+' '+r);
+	} */
+	
+	//invoke(run);
+	//invoke(run,1000);
+	//invoke(run,1000,1000);
+	//invoke(run,1000,1000,3000);
+
+	//console.log(document.URL); //保存文档首页载入时的URL
+	//console.log(document.location.hash); //url中的"片段标识符"
+
+	//解析url查询字符串中的参数
+	/*function urlArgs(){
+		var qs = document.location.search;
+		if(qs === '' || qs === '?'){
+			return null;
+		}
+		qs = qs.substring(1);
+		var arr = qs.split('&');
+		var argArr = [];
+		for(var i=0; i<arr.length; ++i){
+			var str = arr[i];
+			var pos = str.indexOf('=');
+			if(pos > -1){
+				var obj = {};
+				obj[str.substring(0,pos)] = decodeURIComponent(str.substring(pos+1));
+				argArr.push(obj);
+			}
+		}
+		if(argArr.length === 0){
+			return null;
+		}
+		return argArr;
+	}
+	console.log(urlArgs()); */
+
+	
+	/*btn1.onclick = function(){
+		//assign载入新的文档 之前的地址进入历史记录
+		//document.location.assign('http://www.baidu.com/');
+		//replace用新文档替换当前文档 但会从历史记录中删除当前文档
+		//document.location.replace('http://www.baidu.com/');
+		//重新载入当前文档
+		//document.location.reload();
+		//跳转到新地址的另一种方法是将新地址直接赋给location或location.href
+		//document.location = 'http://www.baidu.com/';
+	}; */
+	//console.log(history.length);
+	
+	
+	/*console.log(navigator.appName);
+	console.log(navigator.appVersion);
+	console.log(navigator.userAgent);
+	console.log(navigator.platform); */
+
+	/*console.log(navigator.onLine);
+	//确定用户地理位置信息的接口
+	console.log(navigator.geolocation);
+	console.log(navigator.javaEnabled);
+	console.log(navigator.cookieEnabled); */
+
+	/*for(var k in navigator){
+		console.log(k+'='+navigator[k]);
+	}*/
+
+	/*for(var k in screen){
+		console.log(k+'='+screen[k]);
+	}*/
+	
+	/*for(var k in window){
+		console.log(k+'='+window[k]);
+	}*/
+	
+
+	/*var name,sure;
+	do{
+		name =  prompt("What's is your name?");
+		sure = name !== 'null' && name.replace(/^\s|\s+$/g,'') !== '';
+		if(sure){
+			sure = confirm("Are you sure your name is "+name+' ?');
+		}
+	}while(!sure);
+	alert('Hello '+name); */
+
+	/*btn1.onclick = function(){
+		throw new Erro('wrong');
+	};
+
+	window.onerror = function(msg,url,line){
+		console.log('msg='+msg+',url='+url+',line='+line);
+		if(navigator.userAgent.indexOf('Firefox') > -1){
+			return false; //火狐返回false取消浏览器的错误显示
+		}else{
+			return true; //谷歌返回true取消浏览器的错误显示
+		}
+		
+	}; */
+
+	//如果没有全局变量名与元素的id相同 则可以通过id直接引用元素
+	/* count = 1;
+	box.style.cssText = 'height:20px;background:red;';
+	count.style.cssText = 'height:30px;background:blue;'; //count是上面声明的变量 */
+
+	btn1.onclick = function(){
+		//open方法返回打开窗口的window对象
+		var wo = window.open('http://www.baidu.com/','_blank','width=500,height=400,left=100');
+		console.log(wo);
+		console.log(wo.opener);
+		console.log(wo.opener === window);
+	};
+	
+	/*console.log(self === window);
+	//顶级窗口以下为true
+	console.log(top === window);
+	console.log(parent === window); */
+
+
+
+</script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

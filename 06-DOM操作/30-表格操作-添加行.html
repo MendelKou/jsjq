@@ -1,0 +1,98 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="Keywords" content="">
+		<meta name="Description" content="">
+		<title></title>
+		
+		<style type="text/css">
+			body,div,p,h1,h2,h3,h4,h5,h6,ul,ol,dl,dd{margin:0;}
+			ul,ol{padding:0;list-style:none;}
+			body{font-size:12px;font-family:"微软雅黑";}
+			a{text-decoration:none;color:#000;}
+			img,button{border:none;}
+
+			#tab1{
+				width:300px;
+				margin-top:10px;
+				font-size:16px;
+				border-collapse:collapse;
+			}
+			#tab1 td,#tab1 th{
+				border:1px solid #000;
+			}
+			
+		</style>
+	</head>
+<body>
+	<label>姓名:<input type="text" id="nameInput"/></label>
+	<label><input type="radio" id="manRadio" name="gender" value="男" checked="checked"/>男</label>
+	<label><input type="radio" name="gender" value="女" />女</label>
+	<input type="button" id="addBtn" value="添加"/>
+	<table id="tab1">
+		<thead>
+			<tr>
+				<th>编号</th>
+				<th>姓名</th>
+				<th>性别</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td>001</td>
+				<td>张三</td>
+				<td>男</td>
+			</tr>
+			<tr>
+				<td>002</td>
+				<td>李四</td>
+				<td>男</td>
+			</tr>
+			<tr>
+				<td>003</td>
+				<td>李花</td>
+				<td>女</td>
+			</tr>
+		</tbody>
+	</table>
+</body>
+<script>
+	window.onload = function(){
+		var oTab = document.getElementById('tab1');
+		var oBtn = document.getElementById('addBtn');
+		var nameInput = document.getElementById('nameInput');
+		var manRadio = document.getElementById('manRadio');
+		oBtn.onclick = function(){
+			var name = nameInput.value;
+			if(name.replace(/(^\s+)|(\s+$)/g,'')){
+				var gender = manRadio.checked ? '男' : '女';
+				//使用普通的dom操作插入行的行
+				/*var oTr = document.createElement('tr');
+				var oTdNum = document.createElement('td');
+				var oTdName = document.createElement('td');
+				var oTdGender = document.createElement('td');
+				oTdNum.innerHTML = oTab.getElementsByTagName('tbody')[0].getElementsByTagName('tr').length+1+'';
+				oTdName.innerHTML = name;
+				oTdGender.innerHTML = gender;
+				oTr.appendChild(oTdNum);
+				oTr.appendChild(oTdName);
+				oTr.appendChild(oTdGender);
+				oTab.getElementsByTagName('tbody')[0].appendChild(oTr); */
+
+				//使用表格的特有属性及方法插入
+				//var tr = oTab.tBodies[0].insertRow(); //此时oTab.tBodies[0].rows.length会增1
+				var tr = oTab.tBodies[0].insertRow(0); //在指定的行之前插入
+				var cellNum = tr.insertCell();
+				cellNum.innerHTML = oTab.tBodies[0].rows.length+'';
+				tr.insertCell().innerHTML = name;
+				tr.insertCell().innerHTML = gender;
+
+			}else{
+				alert('请输入姓名');
+			}
+		};
+		
+	};
+</script>
+</html>

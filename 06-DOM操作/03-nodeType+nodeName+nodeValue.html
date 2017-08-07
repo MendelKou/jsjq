@@ -1,0 +1,40 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="Keywords" content="">
+		<meta name="Description" content="">
+		<title></title>
+		
+		<style type="text/css">
+			body,div,p,h1,h2,h3,h4,h5,h6,ul,ol,dl,dd{margin:0;}
+			ul,ol{padding:0;list-style:none;}
+			body{font-size:12px;font-family:"微软雅黑";}
+			a{text-decoration:none;color:#000;}
+			img,button{border:none;}
+			
+			#div1{
+				border:4px solid red;
+			}
+		</style>
+	</head>
+<body>
+	<div id="div1">我是div1<p>我是段落1</p><!--我是注释--></div>
+</body>
+<script>
+	/*					nodeType		nodeName			nodeValue
+		元素节点			1			 元素名(大写)		null
+		属性节点			2			 属性名				属性值
+		文本节点			3			 #text				文本
+		注释节点			8			 #comment			注释内容
+	*/
+	var oDiv = document.getElementById('div1');
+	var nodes = oDiv.childNodes;
+	console.log(nodes.length);
+	console.log(nodes[0].nodeType+','+nodes[0].nodeName+','+nodes[0].nodeValue);
+	console.log(nodes[1].nodeType+','+nodes[1].nodeName+','+nodes[1].nodeValue);
+	console.log(nodes[2].nodeType+','+nodes[2].nodeName+','+nodes[2].nodeValue);
+	var attr = oDiv.attributes[0];
+	console.log(attr.nodeType+','+attr.nodeName+','+attr.nodeValue);
+</script>
+</html>

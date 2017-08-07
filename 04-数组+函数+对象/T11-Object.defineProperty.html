@@ -1,0 +1,108 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="Keywords" content="">
+		<meta name="Description" content="">
+		<title></title>
+		
+		<style type="text/css">
+			body,div,p,h1,h2,h3,h4,h5,h6,ul,ol,dl,dd,fieldset{margin:0;}
+			ul,ol,input,textarea,th,td,fieldset,legend{padding:0;}
+			li{list-style:none;}
+			body{font:12px "微软雅黑";}
+			a{text-decoration:none;}
+			img,button{border:none;}
+			table{border-collapse:collapse;}
+			.clearfix:after{content:" ";display:block;clear:both;height:0;visibility:hidden;}
+
+		</style>
+	</head>
+<body>
+	
+<script type="text/javascript">
+	/*
+	var obj = {name:'Jack'};
+	console.log(obj.name);//读
+	obj.name = 'Rose'; //写
+	obj.age = 23;
+	//遍历
+	for(var k in obj){
+		console.log(k+'='+obj[k]);
+	}
+	console.log(delete obj.age);//true
+	console.log(delete obj.name);//true
+	console.log(obj.name);//undefined
+	console.log(obj.age);//undefined
+	//从上面的结果可知用普通方式设置的对象的属性是可读可写可配置的
+	*/
+
+	var obj = {};
+	Object.defineProperty(obj,'name',
+		{
+			value:'Tom',
+			writable:true, //默认为false
+			//enumerable:true, //默认为false
+			configurable:false //默认为false
+		}
+	);
+	console.log(obj.name);//Tom
+	obj.name = 'Richard'
+	console.log(obj.name);//Tom 证明默认不可写
+	for(var k in obj){//默认不可遍历
+		console.log(k+'='+obj[k]);
+	}
+	console.log(delete obj.name);//false 默认不可配置
+	console.log(obj.name);
+
+	console.log('==============================================');
+	//当configurable设置为false之后 如果writable之前为false则value属性无法更改 其它属性描述仅不可以从false变为false
+	Object.defineProperty(obj,'name',
+		{
+			//value:'Bill'
+			//writable:false
+			//enumerable:true
+			//configurable:true
+		}
+	);
+	console.log(obj.name);
+	obj.name = 'Jim';
+	console.log(obj.name);
+	for(var k in obj){
+		console.log(k+'='+obj[k]);
+	}
+	console.log(delete obj.name);
+	console.log(obj.name);
+
+	console.log('==============================================');
+	console.log(Object.getOwnPropertyNames(obj));//返回所有自有属性名集合
+	console.log(Object.keys(obj));//返回所有可枚举的自有属性名集合
+
+	console.log('==============================================');
+	//获取对象指定属性的描述符
+	console.log(Object.getOwnPropertyDescriptor(obj,'name'));
+	//如果为非自有属性 则返回undefined
+	console.log(Object.getOwnPropertyDescriptor(obj,'toString'));//undefined
+
+
+
+
+</script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,45 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="Keywords" content="">
+		<meta name="Description" content="">
+		<title></title>
+		
+		<style type="text/css">
+			body,div,p,h1,h2,h3,h4,h5,h6,ul,ol,dl,dd,fieldset{margin:0;}
+			ul,ol,input,textarea,th,td,fieldset,legend{padding:0;}
+			li{list-style:none;}
+			body{font:12px "微软雅黑";}
+			a{text-decoration:none;}
+			img,button{border:none;}
+			table{border-collapse:collapse;}
+			.clearfix:after{content:" ";display:block;clear:both;height:0;visibility:hidden;}
+			
+		</style>
+	</head>
+<body>
+<script type="text/javascript">
+	var  a = 1; //用var声明的全局变量是不可以用delete删除的
+	b = 2;
+	this.c = 3;
+	(function(){
+		d = 4;
+	})();
+	console.log(a);
+	console.log(b);
+	console.log(c);
+	console.log(d);
+
+	console.log(delete a);//false
+	console.log(delete b);//true
+	console.log(delete c);//true
+	console.log(delete d);//true
+
+	console.log(a);//1
+	//console.log(b); //ReferenceError: b is not defined
+	//console.log(c); //ReferenceError: c is not defined
+	//console.log(d); //ReferenceError: d is not defined
+</script>
+</body>
+</html>

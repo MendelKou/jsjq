@@ -1,0 +1,33 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="Keywords" content="">
+		<meta name="Description" content="">
+		<title></title>
+		
+		<style type="text/css">
+			body,div,p,h1,h2,h3,h4,h5,h6,ul,ol,dl,dd{margin:0;}
+			ul,ol{padding:0;list-style:none;}
+			body{font-size:12px;font-family:"微软雅黑";height:5000px;}
+			a{text-decoration:none;color:#000;}
+			img,button{border:none;}
+			
+			#btn1{position:fixed;right:10px;top:50%;}
+		</style>
+	</head>
+<body>
+	<button id="btn1">返回顶部</button>
+</body>
+<script>
+	window.onload = function(){
+		var btn = document.getElementById('btn1');
+		btn.onclick = function(){
+			//document.body.scrollTop = 0;//IE8与火狐无效
+			//document.documentElement.scrollTop = 0; //Chrome无效
+			//兼容写法
+			document.documentElement.scrollTop ? document.documentElement.scrollTop = 0 : document.body.scrollTop = 0;
+		};
+	};
+</script>
+</html>

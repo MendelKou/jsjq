@@ -1,0 +1,384 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="Keywords" content="">
+		<meta name="Description" content="">
+		<title></title>
+		
+		<style type="text/css">
+			#box1{width:300px;height:200px;border:1px solid red;}
+			body,div,p,h1,h2,h3,h4,h5,h6,ul,ol,dl,dd,fieldset{margin:0;}
+			ul,ol,input,textarea,th,td,fieldset,legend{padding:0;}
+			li{list-style:none;}
+			body{font:12px "微软雅黑";}
+			a{text-decoration:none;}
+			img,button{border:none;}
+			table{border-collapse:collapse;}
+			.clearfix:after{content:" ";display:block;clear:both;height:0;visibility:hidden;}
+			th,td{border:1px solid #000;}
+			.dnd{width:400px;margin:20px auto 0;border:5px solid #000;padding:5px;}
+			.dnd li{height:30px;line-height:30px;font-size:20px;text-align:center;border:5px solid blue;
+			margin:10px 0;}
+			.dnd li.c1{border-color:red;}
+		</style>
+	</head>
+<body>
+	<button id="btn1">button1</button>
+	<button id="btn2">button2</button>
+	<button id="btn3">button3</button>
+	<button id="btn4">button4</button>
+
+	<ul class="dnd">
+		<li>li-1</li>
+		<li class="c1">li-2</li>
+		<li>li-3</li>
+		<li>li-4</li>
+	</ul>
+
+<!--
+<script src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+-->
+<script type="text/javascript">
+/*
+	在DOM就绪或文档加载完毕的时候以document为上下文执行给定的函数
+*/
+var whenReady = (function(){
+	var ready = false;
+	var funcs = [];
+
+	function handler(ev){
+		if(ready){
+			return;
+		}
+		var e = ev || window.event;
+		if(e.type === 'readystatechange' && document.readyState !== 'complete'){
+			return;
+		}
+		for(var i=0; i<funcs.length; ++i){
+			console.log(e.type);
+			funcs[i].call(document);
+		}
+		ready = true;
+		funcs = null;
+	}
+
+	if(document.addEventListener){
+		//DOMContentLoaded事件表示DOM就绪 最佳的执行DOM事件绑定的时机 但有的浏览器可能不支持
+		document.addEventListener('DOMContentLoaded',handler,false);
+		document.addEventListener('readystatechange',handler,false);
+		window.addEventListener('load',handler,false);
+	}else{
+		document.attachEvent('onreadystatechange',handler);
+		window.attachEvent('onload',handler);
+	}
+
+	return function(f){
+		if(ready){
+			f.call(document); //若准备完毕则立即执行
+		}else{
+			funcs.push(f); //否则加入到队列等待
+		}
+	};
+})();
+/*
+	定义一个将元素作为内容包裹到一个自定义窗体
+	窗体可以响应鼠标滚轮事件以滚动内容
+	参数1：被包裹的元素
+	参数2: 窗体宽度 不小于50  可选 默认为50
+	参数3：窗体高度 不小于50  可选 默认为50
+	参数4：内容的初始水平偏移 应该<=0 可选 默认为0
+	参数4：内容的初始垂直偏移 应该<=0 可选 默认为0
+*/
+function enclose(ele,frameWidth,frameHeight,contentLeft,contentTop){
+	frameWidth = frameWidth === undefined ? 50 : Math.max(frameWidth,50);
+	frameHeight = frameHeight === undefined ? 50 : Math.max(frameHeight,50);
+	contentLeft = contentLeft === undefined ? 0 : Math.min(Math.max(frameWidth-ele.offsetWidth,contentLeft),0);
+	contentTop = contentTop === undefined ? 0 : Math.min(Math.max(frameHeight-ele.offsetHeight,contentTop),0);
+
+	//创建窗体 设置样式
+	var frame = document.createElement('div');
+	frame.className = 'enclose';
+	frame.style.boxSizing = 'border-box'; //便于调整大小
+	frame.style.position = 'relative';
+	frame.style.width = frameWidth+'px';
+	frame.style.height = frameHeight+'px';
+	ele.style.position = 'absolute';
+	ele.style.left = contentLeft+'px';
+	ele.style.top = contentTop+'px';
+
+	//追加到文档
+	ele.parentNode.insertBefore(frame,ele);
+	frame.appendChild(ele);
+
+	//添加鼠标滚轮事件处理
+	//有些浏览器需要特殊处理
+	var isFirefox = window.navigator.userAgent.indexOf('Firefox') !== -1;
+	if(isFirefox && typeof document.onwheel === 'undefined'){
+		document.addEventListener('DOMMouseScroll',wheelHandler,false);
+	}else if(typeof document.onwheel !== 'undefined'){
+		document.onwheel = wheelHandler; //新浏览器
+	}else{
+		document.onmousewheel = wheelHandler; //大多数浏览器
+	}
+
+	function wheelHandler(e){
+		var e = e || window.event;
+		console.log(e.type);
+		//统一滚动量为正负1 为0表示不支持
+		var deltaX = e.deltaX/(isFirefox?-3:-100) || e.wheelDeltaX/120 || 0;
+		var deltaY = e.deltaY/(isFirefox?-3:-100) || e.wheelDeltaY/120 || e.wheelDelta/120 || e.detail/-3 || 0;
+	
+		//console.log('deltaX='+deltaX);
+		//console.log('deltaY='+deltaY);
+
+		if(e.altKey){ //如果按下ctrl 则调整大小
+			frameWidth = frame.offsetWidth;
+			frameWidth -= deltaX*10;
+			//frameWidth = Math.min(frameWidth,ele.offsetWidth); //不大于内容
+			//frameWidth = Math.max(frameWidth,50); //不小于50
+			frame.style.width = frameWidth+'px';
+
+			frameHeight = frame.offsetHeight;
+			frameHeight -= deltaY*10;
+			//frameHeight = Math.min(frameHeight,ele.offsetHeight); //不大于内容
+			//frameHeight = Math.max(frameHeight,50); //不小于50
+			frame.style.height = frameHeight+'px';
+			console.log('frameHeight='+frameHeight);
+		}else{
+			contentLeft = ele.offsetLeft;
+			contentLeft -= deltaX*10;
+			//contentLeft = Math.min(contentLeft,0);
+			//contentLeft = Math.max(frame.offsetWidth-ele.offsetWidth,contentLeft);
+			ele.style.left = contentLeft+'px';
+			
+
+			contentTop = ele.offsetTop;
+			contentTop -= deltaY*10;
+			//contentTop = Math.min(contentTop,0);
+			//contentTop = Math.max(frame.offsetHeight-ele.offsetHeight,contentTop);
+			ele.style.top = contentTop+'px';
+			console.log('top='+contentLeft);
+		}
+
+		//禁止事件传播
+		if(e.stopPropagation){
+			e.stopPropagation();
+		}else{
+			e.cancelBubble = false;
+		}
+	}
+}
+window.onload = function(){
+	var body = document.getElementsByTagName('body')[0];
+	var btn1 = document.getElementById('btn1');
+	var btn2 = document.getElementById('btn2');
+	var btn3 = document.getElementById('btn3');
+	var btn4 = document.getElementById('btn4');
+
+	//屏蔽浏览器右键菜单
+	btn2.oncontextmenu = function(){
+		return false;
+	};
+
+	btn1.onclick = function(ev){
+		var e = ev || window.event;
+		console.log('btn1');
+	};
+	btn2.onclick = function(ev){
+		var e = ev || window.event;
+		console.log('btn2');
+	};
+	btn3.onclick = function(ev){
+		var e = ev || window.event;
+		console.log('btn3');
+	};
+
+	window.onscroll = function(ev){
+		console.log('onscroll');
+	};
+
+	fdnd();
+
+	
+
+};
+/*
+$(function(){
+	//jQuery
+});
+*/
+
+/*
+DnD API相当复杂 且浏览器也不完全兼容
+这个例子基本正确 但每个浏览器会有一点不同 每个似乎都有独有的bug
+这些代码不会尝试浏览器特有的解决方案
+*/
+function fdnd(){
+	//查找所有的<ul class="dnd">元素 并对其调用dnd函数
+	var lists = document.getElementsByTagName('ul');
+	var regexp = /^\s*dnd\s+|\s+dnd\s+|\s+dnd\s*$|^\s*dnd\s*$/;
+	for(var i=0; i<lists.length; ++i){
+		if(regexp.test(lists[i].className)){
+			dnd(lists[i]);
+		}
+	}
+	//为列表元素添加拖放事件处理程序
+	function dnd(list){
+		var original_class = list.className; //保存原始css类
+		var entered = 0; //跟踪进入和离开
+		//当拖放对象首次进入列表时调用这个处理程序
+		//它会检查拖放对象包含的数据格式它是否能处理
+		//如果能 它返回false来表示有兴趣放置
+		//在这种情况下它会高亮拖放目标 让用户知道感兴趣
+		list.ondragenter = function(e){
+			e = e || window.event;
+			var from = e.relatedTarget;
+			//dragenter和dragleave事件冒泡
+			//它使得在像<ul>元素有<li>子元素的情况下 何时高亮显示或取消高亮显示元素变得棘手
+			//在定义relatedTarget的浏览器中 我们能追踪它 
+			//否则 我们需要通过统计进入和离开的次数
+			//如果从列表外面进入或第一次进入 那么需要做一些处理
+			entered++;
+			if((from && !isChild(from,list)) || entered === 1){
+				//所有的DnD信息都在dataTransfer对象上
+				var dt = e.dataTransfer;
+				//dt.types对象列出可用的拖放数据的类型或格式
+				//HTML5定义这个对象有contains方法
+				//在一些浏览器中 它是一个有indexOf()方法的数组
+				//在IE8以及之前的版本中 它根本不存在
+				var types = dt.types; //可用数据格式
+
+				//如果没有任何类型的数据或可用数据是纯文本格式
+				//那么高亮显示列表让用户知道我们正在监听拖放，同时返回false让浏览器知晓
+				if(!types || //IE
+					(types.contains && types.contains('text/plain')) || //HTML5
+					(types.indexOf && types.indexOf('text/plain') !== -1)) //webkit
+					{
+						list.className = 'c1';
+						return false;
+					}
+					//如果我们无法识别数据类型 我们不希望拖放
+					return; //没有取消
+			}
+			return false; //如果不是第一次进入 我们继续保持兴趣
+		};
+
+		//当鼠标指针悬停在列表上时 会调用这个处理程序
+		//我们必须定义这个处理程序并返回false 否则这个拖放操作取消
+		list.ondragover = function(e){return false;};
+
+		//当拖放对象移出列表或从其子元素中移出时 会调用这个处理程序
+		//如果我们真正离开这个列表(不是仅仅从一个列表到另一个) 那么取消高亮显示
+		list.ondragleave = function(e){
+			e = e || window.event;
+			var to = e.relatedTarget;
+			//如果我们要到列表以外的元素或打破离开和进入次数的平衡
+			//那么取消高亮显示列表
+			entered--;
+			if((to && !isChild(to,list)) || entered <= 0){
+				list.className = original_class;
+				entered = 0;
+			}
+			return false;
+		};
+
+		//当实际放置时 会调用这个程序 我们会接受放下的文本并将其放到一个新的<li>元素中
+		list.ondrop = function(e){
+			e = e || window.event;
+			//获得放置的纯文本数据
+			//Text是text/plain的昵称
+			//IE不支持text/plain 所以在这里使用Text
+			var dt = e.dataTransfer; //dataTransfer对象
+			var text = dt.getData('Text'); //获取放置的纯文本数据
+			//如果得到一些文本 把它放入到列表尾部的新项中
+			if(text){
+				var item = document.createElement('li'); //创建新的li
+				item.draggable = true; //使他可拖动
+				item.innerHTML = text;
+				list.appendChild(item); //把它添加到列表中
+				//恢复列表的原始样式且重置进入次数
+				list.className = original_class;
+				entered = 0;
+				return false;
+			}
+
+		};
+
+		//使原始的所有列表项都可拖动
+		var items = list.getElementsByTagName('li');
+		for(var i=0; i<items.length; ++i){
+			items[i].draggable = true;
+		}
+
+		//为拖动列表项注册事件处理程序 注意我们把处理程序放在列表上 让事件从列表项向上冒泡
+		//当在列表中开始拖动对象 会调用这个处理程序
+		list.ondragstart = function(e){
+			var e = e || window.event;
+			var target = e.target || e.srcElement;
+			//如果它不是从li向上冒泡 那么忽略它
+			if(target.tagName !== 'LI') return false;
+			var dt = e.dataTransfer;
+			//设置拖动的数据和数据类型
+			dt.setData('Text',target.innerText || target.textContent);
+			//设置允许复制和移动这些数据
+			dt.effectAllowed = 'copyMove';
+		};
+
+		//当成功放置后 将调用这个处理程序
+		list.ondragend = function(e){
+			e = e || window.event;
+			var target = e.target || e.srcElement;
+			//如果这个拖放操作是move 那么要删除列表项
+			//在IE8中 它将是'none' 除非在之前的ondrop处理程序中显式设置为move
+			//但为IE强制设置move会阻止其他浏览器给用户选择复制还是移动的机会
+			if(e.dataTransfer.dropEffect === 'move'){
+				target.parentNode.removeChild(target);
+			}
+		};
+
+		//这是在ondragenter和ondragleave使用的工具函数
+		//如果a是b的子元素则返回false
+		function isChild(a,b){
+			for(; a; a=a.parentNode){
+				if(a === b){
+					return true;
+				}
+			}
+			return false;
+		}
+	}
+}
+</script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,58 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="Keywords" content="">
+		<meta name="Description" content="">
+		<title></title>
+		
+		<style type="text/css">
+			body,div,p,h1,h2,h3,h4,h5,h6,ul,ol,dl,dd{margin:0;}
+			ul,ol,input{padding:0;}
+			li{list-style:none;}
+			body{font:12px "微软雅黑";}
+			a{text-decoration:none;color:#000;}
+			img,button{border:none;}
+			strong{font-size:30px;}
+
+		</style>
+	</head>
+<body>
+	<strong id="str"></strong>
+<script>
+	window.onload = function(){
+		var targetTime = new Date(2017,3,1,12,0,0);
+		//计算两个时间点的时间差 以字符串形式返回相差时间的描述
+		function getTimeDiffStr(nowTime,targetTime){
+			var secondDiff = (targetTime.getTime() - nowTime.getTime())/1000; //相差的秒数
+			var dateDiff = parseInt(secondDiff/(24*3600)); //相差的天数
+			secondDiff %= 24*3600;
+			var hourDiff = parseInt(secondDiff/3600); //相差的小时数
+			secondDiff %= 3600;
+			var minuteDiff = parseInt(secondDiff/60); //相差的分钟数
+			secondDiff %= 60; //相差的秒数
+			secondDiff = parseInt(secondDiff);
+			var result = '';
+			if(dateDiff > 0){
+				result += dateDiff+'天';
+			}
+			if(hourDiff > 0){
+				result += hourDiff+'时';
+			}
+			if(minuteDiff > 0){
+				result += minuteDiff+'分';
+			}
+			if(secondDiff > 0){
+				result += secondDiff+'秒';
+			}
+			return result;
+		}
+
+		var oStrong = document.getElementById('str');
+		setInterval(function(){
+			oStrong.innerHTML = '距'+targetTime+'还有:<br>'+getTimeDiffStr(new Date(),targetTime);
+		},200);
+	};
+</script>
+</body>
+</html>

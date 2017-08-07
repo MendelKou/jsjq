@@ -1,0 +1,71 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="Keywords" content="">
+		<meta name="Description" content="">
+		<title></title>
+		
+		<style type="text/css">
+			body,div,p,h1,h2,h3,h4,h5,h6,ul,ol,dl,dd{margin:0;}
+			ul,ol,input{padding:0;}
+			li{list-style:none;}
+			body{font:12px "微软雅黑";}
+			a{text-decoration:none;color:#000;}
+			img,button{border:none;}
+			strong{font-size:30px;}
+
+		</style>
+	</head>
+<body>
+	<input type="text" id="input1"/>
+	<button id="btn">获取cookie</button>
+	<button id="btn2">删除cookie</button>
+<script>
+	window.onload = function(){
+		var oInput = document.getElementById('input1');
+		var btn = document.getElementById('btn');
+		var btnRemove = document.getElementById('btn2');
+		btn.onclick = function(){
+			alert(getCookie(oInput.value));
+		};
+		btnRemove.onclick = function(){
+			removeCookie(oInput.value);
+		};
+
+	};
+
+	//封装设置cookie的方法
+	function setCookie(name,value,expiresSeconds){
+		var date = new Date();
+		date.setSeconds(date.getSeconds()+expiresSeconds);
+		document.cookie = name+'='+encodeURI(value)+'; expires='+date.toUTCString();
+	}
+	setCookie('username','A君',30);
+	setCookie('password','A君123',30);
+
+	//封装获取cookie的方法
+	function getCookie(name){
+		if(typeof name == 'string' && name!=''){
+			var cookieStr = document.cookie;
+			var pairArr = cookieStr.split('; '); //注意后面有空格
+			for(var i=0; i<pairArr.length; ++i){
+				var tempArr = pairArr[i].split('=');
+				if(tempArr[0] == name){
+					return decodeURI(tempArr[1]);
+				}
+			}
+		}
+	}
+
+	//封装一个删除cookie的方法
+	function removeCookie(name){
+		if(getCookie(name) != undefined){
+			setCookie(name,'',-1);
+		}
+	}
+
+
+</script>
+</body>
+</html>

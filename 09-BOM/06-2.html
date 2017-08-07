@@ -1,0 +1,45 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="Keywords" content="">
+		<meta name="Description" content="">
+		<title></title>
+		
+		<style type="text/css">
+			body,div,p,h1,h2,h3,h4,h5,h6,ul,ol,dl,dd,fieldset{margin:0;}
+			ul,ol,input,textarea,th,td,fieldset,legend{padding:0;}
+			li{list-style:none;}
+			body{font:12px "微软雅黑";}
+			a{text-decoration:none;}
+			img,button{border:none;}
+			table{border-collapse:collapse;}
+			.fL{float:left;} .fR{float:right;}
+			.clearfix:after{content:" ";display:block;clear:both;height:0;visibility:hidden;}
+			
+		</style>
+	</head>
+<body>
+	<p id="p1"></p>
+	<p id="p2"></p>
+	<button id="btn1">确定</button>
+	<button id="btn2">关闭</button>
+<script>
+	var p1 = document.getElementById('p1');
+	var p2 = document.getElementById('p2');
+	var btn1 = document.getElementById('btn1');
+	var btn2 = document.getElementById('btn2');
+
+	p1.innerHTML = window.dialogArguments[1];
+	p1.innerHTML = window.dialogArguments[2];
+
+	btn1.onclick = function(){
+		window.returnValue = parseInt(p1.innerHTML)+parseInt(p2.innerHTML);
+		window.close();
+	};
+	btn2.onclick = function(){
+		window.close();
+	};
+</script>
+</body>
+</html>

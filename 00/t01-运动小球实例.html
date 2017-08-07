@@ -1,0 +1,58 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="Keywords" content="">
+		<meta name="Description" content="">
+		<title></title>
+		
+		<style type="text/css">
+			body,div,p,h1,h2,h3,h4,h5,h6,ul,ol,dl,dd,fieldset{margin:0;}
+			ul,ol,input,textarea,th,td,fieldset,legend{padding:0;}
+			li{list-style:none;}
+			
+			a{text-decoration:none;}
+			img,button{border:none;}
+			table{border-collapse:collapse;}
+			.fL{float:left;} .fR{float:right;}
+			.clearfix:after{content:" ";display:block;clear:both;height:0;visibility:hidden;}
+			
+			body{font:12px "微软雅黑";position:relative;min-height:300px;
+			border:1px solid red;}
+			#btn1{
+				
+			}
+			#ball{
+				width:100px;
+				height:100px;
+				border-radius:50%;
+				background:red;
+				position:absolute;
+				top:50px;
+				left:50px;
+			}
+		</style>
+	</head>
+<body>
+	<button id="btn1">走起</button>
+	<div id="ball"></div>
+<script type="text/javascript">
+	var ball = document.getElementById('ball');
+	var btn = document.getElementById('btn1');
+	var timerId;
+	btn.onclick = function(){
+		if(!timerId){
+			timerId = setInterval(function(){
+				var dx = (1000-ball.offsetLeft)/30;
+				if(dx>=1){
+					ball.style.left = ball.offsetLeft+dx+'px';
+				}else{
+					clearInterval(timerId);
+				}
+				console.log(new Date().getTime());
+			},20);
+		}
+	};
+</script>
+</body>
+</html>

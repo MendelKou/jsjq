@@ -1,0 +1,71 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="Keywords" content="">
+		<meta name="Description" content="">
+		<title></title>
+		
+		<style type="text/css">
+			body,div,p,h1,h2,h3,h4,h5,h6,ul,ol,dl,dd,fieldset{margin:0;}
+			ul,ol,input,textarea,th,td,fieldset,legend{padding:0;}
+			li{list-style:none;}
+			body{font:12px "微软雅黑";}
+			a{text-decoration:none;}
+			img,button{border:none;}
+			table{border-collapse:collapse;}
+			.clearfix:after{content:" ";display:block;clear:both;height:0;visibility:hidden;}
+			
+			#div1{width:200px;height:200px;background:red;display:none;}
+		</style>
+	</head>
+<body>
+	<div id="div1" class="box"></div>
+	<button id="btn1">slideDown</button>
+	<button id="btn2">slideUp</button>
+	<button id="btn3">slideToggle</button>
+	
+<script type="text/javascript" src="../jquery-1.8.3/jquery.min.js"></script>
+<script type="text/javascript">
+	$(function(){
+		$('#btn1').on('click',function(){
+			//slideDown([speed],[easing],[fn]) 
+			//通过高度变化（向下增大）来动态地显示所有匹配的隐藏元素，在显示完成后可选地触发一个回调函数
+
+			$('#div1').slideDown();
+			//$('#div1').slideDown('slow');
+			//$('#div1').slideDown(2000);
+			//$('#div1').slideDown('linear');
+			//$('#div1').slideDown(function(){console.log(Math.random());});
+
+			
+
+		});
+		
+		$('#btn2').on('click',function(){
+			//slideUp([speed,[easing],[fn]])
+			//通过高度变化（向上减小）来动态地隐藏所有匹配的元素，在隐藏完成后可选地触发一个回调函数
+
+			$('#div1').slideUp();
+			//$('#div1').slideUp('slow');
+			//$('#div1').slideUp(2000);
+			//$('#div1').slideUp('linear');
+			//$('#div1').slideUp(2000,'linear');
+			//$('#div1').slideUp(function(){console.log(new Date().toString());});
+
+		});
+
+		$('#btn3').on('click',function(){
+			//slideToggle([speed],[easing],[fn]) 通过高度变化切换匹配元素的可见性
+			$('#div1').slideToggle();
+			//$('#div1').slideToggle('slow');
+			//$('#div1').slideToggle(2000);
+			//$('#div1').slideToggle(2000,'linear');
+			//$('#div1').slideToggle(2000,function(){console.log(new Date().getTime());});
+		});
+
+		
+	});
+</script>
+</body>
+</html>

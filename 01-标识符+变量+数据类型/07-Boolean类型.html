@@ -1,0 +1,64 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="Keywords" content="">
+		<meta name="Description" content="">
+		<title></title>
+		
+		<style type="text/css">
+			body,div,p,h1,h2,h3,h4,h5,h6,ul,ol,dl,dd{margin:0;}
+			ul,ol{padding:0;list-style:none;}
+			body{font-size:12px;font-family:"微软雅黑";}
+			a{text-decoration:none;color:#000;}
+			img,button{border:none;}
+			
+		</style>
+	</head>
+<body>
+	
+</body>
+<script type="text/javascript">
+	/*
+		Boolean类型的值只有两个值：true,false
+		任何类型的值都可以转换为Boolean类型
+	*/
+
+	//各种类型的值隐式转换为Boolean类型的结果
+	var a1 = 0; //false
+	var a2 = 1; //true
+	var a3 = ""; //false
+	var a4 = " "; //true
+	var a5 = undefined; //false
+	var a6 = NaN; //false
+	var a7 = null; //false
+	var a8 = new Object(); //true
+	var a9 = []; //true
+	var a10 = [1]; //true
+	var a11 = {}; //true
+	var a12 = {name:'tom'}; //true
+	
+	/*if(a9){
+		console.log('true');
+	}else{
+		console.log('false');
+	}*/
+
+	//Boolean(x) 可以将x强制转换为Boolean类型
+	console.log(Boolean(a1));
+	console.log(Boolean(a2));
+	console.log(Boolean(a3));
+	console.log(Boolean(a4));
+	console.log(Boolean(a5));
+	console.log(Boolean(a6));
+	console.log(Boolean(a7));
+	console.log(Boolean(a8));
+	console.log(Boolean(a9));
+	console.log(Boolean(a10));
+	console.log(Boolean(a11));
+	console.log(Boolean(a12));
+	console.log(Boolean(Infinity));//true
+	console.log(Boolean(-Infinity));//true
+
+</script>
+</html>

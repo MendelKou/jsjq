@@ -1,0 +1,49 @@
+<!doctype html>
+<html>
+	<head>
+		<title></title>
+		<meta charset="utf-8">
+		<meta name="keywords" content="">
+		<meta name="description" content="">
+		<style type="text/css">
+			*{margin:0;padding:0;}
+			body{padding-top:1px;}
+			#div1{width:200px;height:200px;margin:50px auto 0;background:red;}
+		</style>
+	</head>
+	<body>
+		<div id="div1">dfadf</div>
+	</body>
+<script>
+	window.onload = function(){
+		var div1 = document.getElementById('div1');
+		//绑定事件 要绑定事件的元素对象.addEventListener(事件类型,事件处理函数,true/flase)
+		//解除addEventListener绑定的事件 与绑定时的参数一致 匿名函数无法解绑
+		/*div1.addEventListener('click',function(){alert('div1');},false);
+		div1.removeEventListener('click',function(){alert('div1');},false); //匿名函数无法解绑 */
+
+		function fn(){
+			alert(this.innerHTML); //IE8中为undefined 因为ie10以下把this解释为window
+			alert(div1.innerHTML); //正常
+		};
+		//div1.addEventListener('click',fn,false);
+		//div1.removeEventListener('click',fn,false);
+		//IE8不支持 addEventListener与removeEventListener
+
+		if(div1.addEventListener){
+			div1.addEventListener('click',fn,false);
+		}else{
+			div1.attachEvent('onclick',fn,false);
+		}
+		//兼容写法
+		if(div1.removeEventListener){
+			div1.removeEventListener('click',fn,false);
+		}else{
+			div1.detachEvent('onclick',fn);
+		}
+		
+
+
+	};
+</script>
+</html>

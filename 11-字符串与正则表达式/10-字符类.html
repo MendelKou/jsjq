@@ -1,0 +1,50 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="Keywords" content="">
+		<meta name="Description" content="">
+		<title></title>
+		
+		<style type="text/css">
+			body,div,p,h1,h2,h3,h4,h5,h6,ul,ol,dl,dd{margin:0;}
+			ul,ol,input,textarea{padding:0;}
+			li{list-style:none;}
+			body{font:12px "微软雅黑";padding-top:1px;}
+			a{text-decoration:none;}
+			img,button{border:none;}
+			
+
+		</style>
+	</head>
+<body>
+	
+</body>
+<script>
+	var testStr = '123 jack go dog 456 abc go bug bag ABC';
+
+	//[abc] 匹配其中任何一个字符
+	//console.log(testStr.match(/[abc]/g));
+	//console.log(testStr.match(/[ag]/g));
+
+	//[^abc] 匹配不在其中的任何一个字符
+	//console.log(testStr.match(/[^abc]/g));
+	//console.log(testStr.match(/[^abc ]/g));
+
+	//xxx|yyy 匹配其中之一
+	//console.log(testStr.match(/go|c/g));
+
+	//[a-z]匹配a~z之间的任何一个字母 相当于[abcdefghijklmnopqrstuvwxyz]
+	//[A-z]匹配A~Z之间的任何一个字母 相当于[ABCDEFGHIJKLMNOPQRSTUVWXYZ]
+	//[0-9]匹配一个数字字符  相当于[0123456789]
+	/*console.log(testStr.match(/[a-c]/g));
+	console.log(testStr.match(/[A-C]/g));
+	console.log(testStr.match(/[0-4]/g)); */
+
+	//组合使用
+	console.log(testStr.match(/b[ua]g/g));
+
+
+	
+</script>
+</html>

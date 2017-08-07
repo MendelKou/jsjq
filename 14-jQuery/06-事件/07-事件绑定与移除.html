@@ -1,0 +1,125 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="Keywords" content="">
+		<meta name="Description" content="">
+		<title></title>
+		
+		<style type="text/css">
+			body,div,p,h1,h2,h3,h4,h5,h6,ul,ol,dl,dd,fieldset{margin:0;}
+			ul,ol,input,textarea,th,td,fieldset,legend{padding:0;}
+			li{list-style:none;}
+			body{font:12px "微软雅黑";}
+			a{text-decoration:none;}
+			img,button{border:none;}
+			table{border-collapse:collapse;}
+			.clearfix:after{content:" ";display:block;clear:both;height:0;visibility:hidden;}
+			
+			.box{width:100px;height:100px;margin:20px auto;}
+			#div1{background:red;}
+			#div10{border:1px solid red;}
+		</style>
+	</head>
+<body>
+	<div id="div1" class="box">div1</div>
+	<button id="btn1">按钮1</button>
+	
+
+<script type="text/javascript" src="../jquery-1.8.3/jquery.min.js"></script>
+<script type="text/javascript">
+	$(function(){
+		//bind(type,[data],fn) 为每个匹配元素的特定事件绑定事件处理函
+		/*$('#div1').bind('click',function(){
+			console.log(new Date().getTime());
+		});
+		$('#div1').bind('mouseenter',function(e){
+			console.log(e.type+new Date().getTime());
+		});*/
+		//同时绑定多个事件类型
+		/*$('#div1').bind('mouseenter mouseleave',function(e){
+			console.log(e.type);
+		});*/
+		//同时绑定多个事件类型及事件处理函数
+		/*$('#div1').bind({
+			mouseenter:function(){console.log('mouseenter');},
+			mouseleave:function(){console.log('mouseeleave')},
+			click:function(){console.log('click')}
+		});*/
+		
+		/*$('#div10').bind('click',function(){ //无效 不能为未来动态添加的元素提前绑定事件
+			$(this).toggleClass('box');
+		});*/
+
+		//unbind(type,[data|fn]]) 从每一个匹配的元素中删除绑定的事件
+		//$('#div1').unbind('click');
+		//如果没有提供参数则删除绑定的所有事件
+		//$('#div1').unbind();
+		//新jQuery将bind,unbind等方法废弃 推荐使用新的on与off方法
+
+
+		//on(events,[selector],[data],fn) 与bind作用相同 但
+		/*$('#div1').on('click',function(){
+			console.log(new Date().getTime());
+		});*/
+		/*$('#div1').on('mouseenter',function(){
+			console.log(new Date().getTime());
+		});*/
+		/*$('#div10').on('click',function(){ //提前绑定无效
+			console.log(new Date().getTime());
+		});*/
+		/*$(document).on('click','#div10',function(){ //提前绑定有效
+			console.log(new Date().getTime());
+		});*/
+		
+
+		//off(events,[selector],[fn]) off() 方法移除用.on()绑定的事件处理程序
+		//$('#div1').off('click');
+		//$('#div1').off('click mouseenter');
+		//$('#div1').off();//移除所有事件
+
+		//one(type,[data],fn) 为每个匹配的元素绑定一个一次性的事件
+		//$('#div1').one('click',function(){console.log('aaa');});
+
+		//事件命名空间
+		/*$('#div1').on('click.bg',function(){ //第一个程序员写的
+			$(this).css('background','green');
+		});
+			$('#div1').on('click.color',function(){ //第二个程序员写的
+			$(this).css('color','#fff');
+		});*/
+
+		//live(type, [data], fn) 给所有匹配的元素附加一个事件处理函数，即使这个元素是以后再添加进来的也有效
+		//新的jQuery已废弃该方法
+		//$('#div10').live('click',function(){console.log(Math.random());});
+
+		//die(type, [fn]) 从元素中删除先前用.live()绑定的所有事件.(此方法与live正好完全相反。)
+		//新的jQuery已废弃该方法
+		//$('#div10').die('click');
+
+		//delegate(selector,[type],[data],fn) 
+		//指定的元素（属于被选元素的子元素）添加一个或多个事件处理程序，并规定当这些事件发生时运行的函数。
+		//使用 delegate() 方法的事件处理程序适用于当前或未来的元素（比如由脚本创建的新元素）。
+		//新的jQuery已废弃该方法
+		//$('body').delegate('#div10','click',function(){console.log(Math.random());});
+
+		//删除由 delegate() 方法添加的一个或多个事件处理程序
+		//新的jQuery已废弃该方法
+		//$('body').undelegate('#div10','click');
+
+		//trigger(type[,data]) 在每一个匹配的元素上触发某类事件。
+		/*$('#btn1').on('click',function(){
+			$('#div1').trigger('click');
+		});*/
+
+
+
+		
+		$('body').append('<div id="div10" class="box">div10</div>');
+
+
+	});
+
+</script>
+</body>
+</html>

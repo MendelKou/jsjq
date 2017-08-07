@@ -1,0 +1,86 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="Keywords" content="">
+		<meta name="Description" content="">
+		<title></title>
+		
+		<style type="text/css">
+			body,div,p,h1,h2,h3,h4,h5,h6,ul,ol,dl,dd{margin:0;}
+			ul,ol,input,textarea{padding:0;}
+			li{list-style:none;}
+			body{font:12px "微软雅黑";padding-top:1px;}
+			a{text-decoration:none;}
+			img,button{border:none;}
+			
+			.box{width:504px;margin:20px auto 0;font-size:14px;}
+			.box textarea{width:500px;height:300px;padding:2px;resize:none;border:1px solid #666;}
+			.box .search{height:32px;text-align:center;margin-top:10px;}
+			.box .search input[type="text"]{line-height:30px;width:280px;}
+			.box .search input[type="button"]{height:32px;padding:0 5px;}
+			.box2{width:500px;height:200px;border:1px solid #000;margin:10px auto 0;}
+			.cred{color:red;}
+		</style>
+	</head>
+<body>
+	<div class="box">
+		<textarea id="tt"></textarea>
+		<div class="search">
+			<input type="text" placeholder="请输入你要查找的文本" id="txt"/>
+			<input type="button" value="查找" id="btn"/>
+		</div>
+	</div>
+	<div class="box2" id="div-show"></div>
+	
+</body>
+<script>
+	window.onload = function(){
+		var oTt = document.getElementById('tt');
+		var oTxt = document.getElementById('txt');
+		var oBtn = document.getElementById('btn');
+		var oDivShow = document.getElementById('div-show');
+		var str; //保存textarea中的文本
+		oTt.onkeyup = function(){
+			str = this.value;
+		};
+		oTxt.onkeyup = oBtn.onclick = mySearch;
+
+		//查找的方法
+		function mySearch(){
+			var searchTxt = oTxt.value; //要查找的文本
+			//indexOf在查找空字符串是返回的结果始终大于等于0 所以传空字符串的话下面的while循环将是死循环
+			if(searchTxt.replace(/(^\s+)|(\s+$)/g,'')==''){
+				return;
+			}
+			var indexArr = []; //匹配的文本的索引数组
+			var index =  -1;
+			while((index = str.indexOf(searchTxt,index+1)) >= 0){
+				indexArr.push(index);
+			}
+			var result = '';
+			if(indexArr.length > 0){
+				result += str.substring(0,indexArr[0]);
+				for(var i=0; i<indexArr.length; ++i){
+					result += '<span class="cred">'
+					+str.substring(indexArr[i],indexArr[i]+searchTxt.length)
+					+'</span>';
+					if(i<indexArr.length-1){
+						result +=str.substring(indexArr[i]+searchTxt.length,indexArr[i+1]);
+					}else{
+						result += str.substring(indexArr[i]+searchTxt.length);
+					}
+				}
+			}
+			if(result){
+				oDivShow.innerHTML = result;
+			}
+		}
+
+		//按下键时结果区域情空
+		oTxt.onkeydown = function(){
+			oDivShow.innerHTML = '';
+		};
+	};
+</script>
+</html>

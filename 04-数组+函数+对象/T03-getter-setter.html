@@ -1,0 +1,48 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="Keywords" content="">
+		<meta name="Description" content="">
+		<title></title>
+		
+		<style type="text/css">
+			body,div,p,h1,h2,h3,h4,h5,h6,ul,ol,dl,dd,fieldset{margin:0;}
+			ul,ol,input,textarea,th,td,fieldset,legend{padding:0;}
+			li{list-style:none;}
+			body{font:12px "微软雅黑";}
+			a{text-decoration:none;}
+			img,button{border:none;}
+			table{border-collapse:collapse;}
+			.clearfix:after{content:" ";display:block;clear:both;height:0;visibility:hidden;}
+			
+			
+		</style>
+	</head>
+<body>
+	
+<script type="text/javascript">
+	var p = {
+		x:1,
+		y:1,
+		get	r(){return Math.sqrt(this.x*this.x+this.y*this.y);},
+		set	r(newValue){
+			var oldValue = Math.sqrt(this.x*this.x+this.y*this.y);
+			var ratio = newValue/oldValue;
+			this.x *= ratio;
+			this.y *= ratio;
+		},
+		get	theta(){return Math.atan2(this.y,this.x)*180/Math.PI;}
+	};
+	for(var k in p){
+		console.log(k+'='+p[k]);
+	}
+	p.r = p.r*2;
+	for(var k in p){
+		console.log(k+'='+p[k]);
+	}
+	p.theta = Math.PI; //只读属性不可修改
+
+</script>
+</body>
+</html>

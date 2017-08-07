@@ -1,0 +1,151 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="Keywords" content="">
+		<meta name="Description" content="">
+		<title></title>
+		
+		<style type="text/css">
+			body,div,p,h1,h2,h3,h4,h5,h6,ul,ol,dl,dd,fieldset{margin:0;}
+			ul,ol,input,textarea,th,td,fieldset,legend{padding:0;}
+			li{list-style:none;}
+			body{font:12px "微软雅黑";}
+			a{text-decoration:none;}
+			img,button{border:none;}
+			table{border-collapse:collapse;}
+			.clearfix:after{content:" ";display:block;clear:both;height:0;visibility:hidden;}
+			
+			
+		</style>
+	</head>
+<body>
+	
+<script type="text/javascript">
+	/*var p = {
+		x:1,
+		y:1,
+		get	r(){return Math.sqrt(this.x*this.x+this.y*this.y);},
+		set	r(newValue){
+			var oldValue = Math.sqrt(this.x*this.x+this.y*this.y);
+			var ratio = newValue/oldValue;
+			this.x *= ratio;
+			this.y *= ratio;
+		},
+		get	theta(){return Math.atan2(this.y,this.x)*180/Math.PI;}
+	};*/
+	//存取器属性是可枚举的
+	/*for(var k in p){
+		console.log(k+'='+p[k]);
+	}
+	p.r = p.r*2;
+	for(var k in p){
+		console.log(k+'='+p[k]);
+	}
+	p.theta = Math.PI; //只读属性不可修改  */
+
+
+	//属性的特性：value(值) writable(可写性) enumerable(可枚举性) configurable可配置性
+	//对于存取器属性 分别有getter与setter方法代替value与writable
+	//我们在ECMAScript3中定义的对象的这些特性是不能设置的
+	//ECMAScript5中增加了获取与设置对象属性特性的方法
+
+	//Object.getOwnPropertyDescriptor(obj,prop)  描述符获取对象指定属性的特性
+	//var desc = Object.getOwnPropertyDescriptor(p,'x');
+	//console.log(desc);// {value: 1, writable: true, enumerable: true, configurable: true}
+	/*console.log(Object.getOwnPropertyDescriptor(p,'r'));//{enumerable: true, configurable: true}
+	console.log(Object.getOwnPropertyDescriptor(p,'theta'));//{set: undefined, enumerable: true, configurable: true}
+	console.log(Object.getOwnPropertyDescriptor(p,'toString'));//undefined 只能获取自有属性的特性 */
+
+
+	//Object.defineProperty(obj,prop,desc) 设置对象指定属性的特性
+	//var o = {x:1,y:2};
+	//console.log(Object.getOwnPropertyDescriptor(o,'x'));
+
+	//Object.defineProperty(o,'x',{enumerable:false});//不必全部列出
+	//console.log(Object.getOwnPropertyDescriptor(o,'x'));
+	//console.log(Object.keys(o));//["y"]
+
+	/*Object.defineProperty(o,'x',{writable:false});
+	o.x = 11;//不可写
+	console.log(o.x);//1  */
+
+	/*Object.defineProperty(o,'x',{get:function(){return 'xxx';}});
+	console.log(o.x);//xxx
+	o.x = 11;//不可写
+	console.log(o.x);//xxx */
+
+	//如果设置的属性不存在 则会创建新的属性
+	/*Object.defineProperty(o,'z',{value:1});//没有设置的特性默认为false或undefined
+	console.log(o.z);
+	console.log(Object.getOwnPropertyDescriptor(o,'z'));// {value: 1, writable: false, enumerable: false, configurable: false} */
+
+	//Object.defineProperties(obj,map) 同时修改对象的多个属性特性 此时必须写出全部特性 否则无效
+	/*Object.defineProperties(o,{
+		'x':{value:1,writable:true,enumerable:false,configurable:true},
+		'y':{value:2,writable:false,enumerable:true,configurable:true}
+	});
+	console.log(Object.getOwnPropertyDescriptor(o,'x'));
+	console.log(Object.getOwnPropertyDescriptor(o,'y')); */
+
+	//如果属性是不可配置的 则不能修改它的可配置性与枚举性
+	//Object.defineProperty(o,'x',{configurable:false});
+	//console.log(Object.getOwnPropertyDescriptor(o,'x'));
+	//Object.defineProperty(o,'x',{configurable:true}); //TypeError: Cannot redefine property: x
+	//Object.defineProperty(o,'x',{enumerable:false});  //TypeError: Cannot redefine property: x
+
+	//如果存取器是不可配置的 则不能修改它的getter与setter方法 也不能将其转换为数据属性
+	/*console.log(Object.getOwnPropertyDescriptor(p,'r'));
+	Object.defineProperty(p,'r',{configurable:false});
+	console.log(Object.getOwnPropertyDescriptor(p,'r'));*/
+	//Object.defineProperty(p,'r',{get:function(){return 'r';}}); //TypeError: Cannot redefine property: r
+	//Object.defineProperty(p,'r',{value:1});// TypeError: Cannot redefine property: r
+
+	//如果数据属性是不可配置的 则不能将其转换为存取器属性 不能将它的可写性从false转为true
+	//Object.defineProperty(p,'x',{configurable:false});
+	//Object.defineProperty(p,'x',{get:function(){return 1;}});//TypeError: Cannot redefine property: x
+	//Object.defineProperty(p,'x',{writable:false});
+	//Object.defineProperty(p,'x',{writable:true}); //TypeError: Cannot redefine property: x
+
+	//定义一个可将给定对象的属性及其特性复制到当前对象的方法extend
+	/*Object.defineProperty(Object.prototype,
+	'extend',{
+		writable:false,
+		enumerale:false,
+		configurable:true,
+		value:function(o){
+			if(typeof o != 'object') return;
+			var names = Object.getOwnPropertyNames(o);//得到所有自有属性包括不可枚举属性
+			for(var i=0; i<names.length; ++i){
+				var name = names[i];
+				if(!(name in this)){
+					Object.defineProperty(this,name,Object.getOwnPropertyDescriptor(o,name));
+				}
+			}
+		}
+	});
+	var a = {};
+	Object.defineProperties(a,{
+		'x':{value:'xxx',writable:true,enumerable:false,configurable:true},
+		'y':{value:1,writable:false,enumerable:true,configurable:true},
+		'z':{value:2,writable:false,enumerable:true,configurable:true}
+	});
+	var b = {z:'zzz'};
+	b.extend(a);
+	console.log(b); */
+
+	/*var obj = {x:1};
+	console.log(obj);
+	console.log(obj.__lookupSetter__('r')); //获取对象指定的存取器属性 如果不存在 则返回undefined
+	console.log(obj.__lookupGetter__('r')); //获取对象指定的存取器属性 如果不存在 则返回undefined
+
+	obj.__defineSetter__('r',function(r){this.x = r; });
+	obj.__defineGetter__('r',function(){ return this.x; });
+
+	console.log(obj.__lookupSetter__('r')); 
+	console.log(obj.__lookupGetter__('r'));  */
+	
+
+</script>
+</body>
+</html>

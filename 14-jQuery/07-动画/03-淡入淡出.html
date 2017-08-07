@@ -1,0 +1,77 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="Keywords" content="">
+		<meta name="Description" content="">
+		<title></title>
+		
+		<style type="text/css">
+			body,div,p,h1,h2,h3,h4,h5,h6,ul,ol,dl,dd,fieldset{margin:0;}
+			ul,ol,input,textarea,th,td,fieldset,legend{padding:0;}
+			li{list-style:none;}
+			body{font:12px "微软雅黑";}
+			a{text-decoration:none;}
+			img,button{border:none;}
+			table{border-collapse:collapse;}
+			.clearfix:after{content:" ";display:block;clear:both;height:0;visibility:hidden;}
+			
+			#div1{width:200px;height:200px;background:red;display:none;}
+		</style>
+	</head>
+<body>
+	<div id="div1" class="box"></div>
+	<button id="btn1">fadeIn</button>
+	<button id="btn2">fadeOut</button>
+	<button id="btn3">fadeTo</button>
+	<button id="btn4">fadeToggle</button>
+	
+<script type="text/javascript" src="../jquery-1.8.3/jquery.min.js"></script>
+<script type="text/javascript">
+	$(function(){
+		$('#btn1').on('click',function(){
+			//fadeIn([speed],[easing],[fn]) 
+			//通过不透明度的变化来实现所有匹配的隐藏元素的淡入效果，并在动画完成后可选地触发一个回调函
+
+			$('#div1').fadeIn();
+			//$('#div1').fadeIn('slow');
+			//$('#div1').fadeIn(2000);
+			//$('#div1').fadeIn(2000,'linear');
+			//$('#div1').fadeIn(2000,function(){console.log('淡入完毕');});
+
+		});
+
+		$('#btn2').on('click',function(){
+			//fadeOut([speed],[easing],[fn])
+			//通过不透明度的变化来实现所有匹配元素的淡出效果，并在动画完成后可选地触发一个回调函数
+			$('#div1').fadeOut();
+			//$('#div1').fadeOut('slow');
+			//$('#div1').fadeOut(2000);
+			//$('#div1').fadeOut(2000,'linear');
+			//$('#div1').fadeOut(2000,function(){console.log(Math.random());});
+
+		});
+
+		$('#btn3').on('click',function(){
+			//fadeTo([[speed],opacity,[easing],[fn]])
+			//把所有匹配元素的不透明度以渐进方式调整到指定的不透明度，并在动画完成后可选地触发一个回调函数。
+			$('#div1').fadeTo('slow',0.5);
+			//$('#div1').fadeTo(2000,0.5);
+			//$('#div1').fadeTo(2000,0.5,function(){console.log(Math.random());});
+		});
+
+		$('#btn4').on('click',function(){
+			//fadeToggle([speed,[easing],[fn]])
+			//通过不透明度的变化来开关所有匹配元素的淡入和淡出效果，并在动画完成后可选地触发一个回调函数
+			$('#div1').fadeToggle();
+			//$('#div1').fadeToggle('slow');
+			//$('#div1').fadeToggle(2000);
+			//$('#div1').fadeToggle(2000,'linear');
+			//$('#div1').fadeToggle(2000,'linear',function(){console.log(Math.random());});
+
+		});
+		
+	});
+</script>
+</body>
+</html>

@@ -1,0 +1,91 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="Keywords" content="">
+		<meta name="Description" content="">
+		<title></title>
+		
+		<style type="text/css">
+			body,div,p,h1,h2,h3,h4,h5,h6,ul,ol,dl,dd,fieldset{margin:0;}
+			ul,ol,input,textarea,th,td,fieldset,legend{padding:0;}
+			li{list-style:none;}
+			body{font:12px "微软雅黑";}
+			a{text-decoration:none;}
+			img,button{border:none;}
+			table{border-collapse:collapse;}
+			.clearfix:after{content:" ";display:block;clear:both;height:0;visibility:hidden;}
+			th,td{border:1px solid #000;}
+			#table{width:600px;margin:0 auto;}
+		</style>
+		
+	</head>
+<body>
+	<button id="btn1">button1</button>
+	<button id="btn2">button2</button>
+	<button id="btn3">button3</button>
+	<button id="btn4">button4</button>
+
+	<ul id="list">
+		<li>li1</li>
+	</ul>
+<script type="text/javascript">
+window.onload = function(){
+	var body = document.getElementsByTagName('body')[0];
+	var btn1 = document.getElementById('btn1');
+	var btn2 = document.getElementById('btn2');
+	var btn3 = document.getElementById('btn3');
+	var btn4 = document.getElementById('btn4');
+
+	var list = document.getElementById('list');
+
+	//屏蔽浏览器右键菜单
+	btn2.oncontextmenu = function(){
+		return false;
+	};
+
+	btn2.onclick = function(){
+		var i = list.getElementsByTagName('li').length;
+		/*
+			DocumentFragment元素的特性：
+				1.parentNode为null 
+				2.其它元素插入DocumentFragment元素相当于插入它的子元素 插入后此DocumentFragment元素子元素清空 相当于DocumentFragment的子元素转移到了被插入的元素中
+				3.没有innerHTML属性
+		*/
+		var frag = document.createDocumentFragment();
+		for(j = i+1; j <= i+5; ++j){
+			var li = document.createElement('li');
+			li.innerHTML = '<li>li'+j+'</li>';
+			frag.appendChild(li);
+		}
+		//console.log(frag.innerHTML);//undefined
+		/*for(var k in frag){
+			console.log(k);
+		}*/
+		//frag.innerHTML = str; //无效
+		console.log(frag.childNodes);
+		list.appendChild(frag);
+		console.log(frag.childNodes);
+	};
+
+	
+};
+</script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

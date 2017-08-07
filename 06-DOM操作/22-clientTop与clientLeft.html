@@ -1,0 +1,42 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="Keywords" content="">
+		<meta name="Description" content="">
+		<title></title>
+		
+		<style type="text/css">
+			body,div,p,h1,h2,h3,h4,h5,h6,ul,ol,dl,dd{margin:0;}
+			ul,ol{padding:0;list-style:none;}
+			body{font-size:12px;font-family:"微软雅黑";}
+			a{text-decoration:none;color:#000;}
+			img,button{border:none;}
+			
+			#div1{
+				width:100px;
+				height:100px;
+				background:red;
+				border:20px solid blue;
+				border-top-width:10px;
+				border-left-width:30px;
+			}
+		
+		</style>
+	</head>
+<body>
+	<div id="div1">
+	</div>
+</body>
+<script>
+	window.onload = function(){
+		var oDiv = document.getElementById('div1');
+		//clientLeft 左边框的粗细
+		console.log(oDiv.clientLeft);
+		//clientTop 上边框的粗细
+		console.log(oDiv.clientTop);
+		console.log(oDiv.clientRight); //undefined
+		console.log(oDiv.clientBottom); //undefined
+	};
+</script>
+</html>

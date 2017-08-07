@@ -1,0 +1,85 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="Keywords" content="">
+		<meta name="Description" content="">
+		<title></title>
+		
+		<style type="text/css">
+			body,div,p,h1,h2,h3,h4,h5,h6,ul,ol,dl,dd{margin:0;}
+			ul,ol{padding:0;list-style:none;}
+			body{font-size:12px;font-family:"微软雅黑";}
+			a{text-decoration:none;color:#000;}
+			img,button{border:none;}
+
+			
+		</style>
+	</head>
+<body>
+	<div id="div1"></div>
+</body>
+<script type="text/javascript">
+	/*switch语句也是一种分支结构 
+		从与给定值匹配的case出开始执行直到switch结束或遇到break结束
+		如果没有匹配的case则执行default之后的语句直到switch结束或遇到break结束
+		如果没有匹配的case且没有default则不执行任何语句
+
+	*/
+
+	/*var n = 0;
+	switch(n){
+		case 0:
+			console.log(0);
+			break;
+		case 1:
+			console.log(1);
+			break;
+		case 2:
+			console.log(2);
+			break;
+		case 3:
+			console.log(3);
+			break;
+		default:
+			console.log('others');
+			break;
+	} */
+
+
+	//下面的例子告诉我们 最后在default后面加上break 这样即使default放到其他位置也不会有影响
+	/*var n = 5;
+	switch(n){
+		default:
+			console.log('others');
+		case 0:
+			console.log(0);
+			break;
+		case 1:
+			console.log(1);
+			break;
+		case 2:
+			console.log(2);
+	}*/
+
+	//js中的switch语句中的表达式可以是任何类型 switch语句进行的是全等比较
+	var arg = 1;
+	switch(arg){
+		case null:
+			console.log('null');
+			break;
+		case undefined:
+			console.log('undefined');
+			break;
+		case '':
+			console.log('空字符串');
+			break;
+		case '1':
+			console.log('字符串1');
+			break;
+		case NaN:
+			console.log('NaN');
+			break;
+	}
+</script>
+</html>

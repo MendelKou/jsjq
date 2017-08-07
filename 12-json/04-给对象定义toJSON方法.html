@@ -1,0 +1,46 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="Keywords" content="">
+		<meta name="Description" content="">
+		<title></title>
+		
+		<style type="text/css">
+			body,div,p,h1,h2,h3,h4,h5,h6,ul,ol,dl,dd,fieldset{margin:0;}
+			ul,ol,input,textarea,th,td,fieldset,legend{padding:0;}
+			li{list-style:none;}
+			body{font:12px "微软雅黑";}
+			a{text-decoration:none;}
+			img,button{border:none;}
+			table{border-collapse:collapse;}
+			.clearfix:after{content:" ";display:block;clear:both;height:0;visibility:hidden;}
+			
+		</style>
+	</head>
+<body>
+<script>
+//给对象定义toJSON方法后 那么在用stringify序列话时 直接返回toJSON方法的返回值 此时stringify给出第二个参数为数组时不会起作用 第二个参数为函数时只执行一次 此时k为'' v为toJSON的返回值 但stringify的第三个参数依然可用
+/*var obj = {
+	name:'小明',
+	age:20,
+	toJSON:function(){
+		return '我是'+this.name;
+	}
+};*/
+
+//console.log(JSON.stringify(obj)); //"我是小明"
+//console.log(JSON.stringify(obj,['name'])); //"我是小明"
+/*console.log(JSON.stringify(obj,function(k,v){
+	console.log(k);
+	return v+v;
+})); //"我是小明我是小明" */
+/*console.log(JSON.stringify(obj,function(k,v){
+	return v+v;
+},5));*/ //"我是小明我是小明"
+//console.log(JSON.stringify(obj,null,5));
+
+
+</script>
+</body>
+</html>

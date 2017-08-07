@@ -1,0 +1,61 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="Keywords" content="">
+		<meta name="Description" content="">
+		<title></title>
+		
+		<style type="text/css">
+			body,div,p,h1,h2,h3,h4,h5,h6,ul,ol,dl,dd{margin:0;}
+			ul,ol{padding:0;list-style:none;}
+			body{font-size:12px;font-family:"微软雅黑";}
+			a{text-decoration:none;color:#000;}
+			img,button{border:none;}
+			
+			#div1{
+				width:100px;
+				height:100px;
+				background:red;
+				padding:10px;
+				border:1px solid blue;
+				overflow:auto;
+			}
+			body{width:200px;height:2000px;border:1px solid red;}
+		
+		</style>
+	</head>
+<body>
+	<div id="div1">
+		dkfakdfkdfkdfdkfdkfdkfdkfkd<br>
+		dkfakdfkdfkdfdkfdkfdkfdkfkd<br>
+		dkfakdfkdfkdfdkfdkfdkfdkfkd<br>
+		dkfakdfkdfkdfdkfdkfdkfdkfkd<br>
+		dkfakdfkdfkdfdkfdkfdkfdkfkd<br>
+		dkfakdfkdfkdfdkfdkfdkfdkfkd<br>
+		dkfakdfkdfkdfdkfdkfdkfdkfkd<br>
+		dkfakdfkdfkdfdkfdkfdkfdkfkd<br>
+		dkfakdfkdfkdfdkfdkfdkfdkfkd<br>
+		dkfakdfkdfkdfdkfdkfdkfdkfkd<br>
+	</div>
+</body>
+<script>
+	window.onload = function(){
+		var oDiv = document.getElementById('div1');
+		//clientWidth是元素可视区域的宽度 等于width+左右padding-垂直滚动条的宽度
+		//console.log(oDiv.clientWidth);
+		//clientHeight是元素可视区域的宽度 等于height+上下padding-垂直滚动条的宽度
+		//console.log(oDiv.clientHeight);
+
+		//document.body.clientWidth获取当前页面body元素的大小
+		console.log(document.body.clientWidth);
+		console.log(document.body.clientHeight);
+		//document.documentElement.clientWidth获取当前页面可视区域的宽度 不包括滚动条
+		console.log(document.documentElement.clientWidth);
+		console.log(document.documentElement.clientHeight);
+		//window.innerWidth获取浏览器显示网页的窗口的宽度 包括滚动条
+		console.log(window.innerWidth); ////IE8中为undefined
+		console.log(window.innerHeight); ////IE8中为undefined
+	};
+</script>
+</html>

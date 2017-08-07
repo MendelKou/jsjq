@@ -1,0 +1,93 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="Keywords" content="">
+		<meta name="Description" content="">
+		<title></title>
+		
+		<style type="text/css">
+			body,div,p,h1,h2,h3,h4,h5,h6,ul,ol,dl,dd{margin:0;}
+			ul,ol,input{padding:0;}
+			li{list-style:none;}
+			body{font:12px "微软雅黑";padding-top:1px;}
+			a{text-decoration:none;color:#000;}
+			img,button,input{border:none;}
+			strong{font-size:30px;}
+
+			.box{width:300px;background:#eee;border-radius:3px;margin:20px auto 0;padding:10px;}
+			.box form label{display:block;font-size:16px;height:30px;line-height:30px;margin:20px 0;}
+			.box form label span{display:inline-block;width:50px;height:30px;}
+			.box form label input{width:240px;height:28px;line-height:28px;}
+			.box form div{text-align:center;}
+			.box form input[type=submit]{padding:10px 20px;background:#09f;color:#fff;cursor:pointer;}
+		</style>
+	</head>
+<body>
+	<div class="box" id="div1">
+		<form action="#" method="get" id="form">
+			<label><span>用户名</span><input type="text" id="txt"/></label>
+			<label><span>密码</span><input type="password" id="pwd"/></label>
+			<div><input type="submit" value="登录"/></div>
+		</form>
+	</div>
+<script>
+	window.onload = function(){
+		var oForm = document.getElementById('form');
+		var oTxtInput = document.getElementById('txt');
+		var oPwdInput = document.getElementById('pwd');
+
+		var lastUsername = getCookie('name');
+		var lastPassword = getCookie('pwd');
+		if(lastUsername){
+			oTxtInput.value = lastUsername;
+		}
+		if(lastPassword){
+			oPwdInput.value = lastPassword;
+		}
+
+		oForm.onsubmit = function(){
+			if(confirm('需要保存用户名与密码吗?')){
+				setCookie('name',oTxtInput.value,300);
+				setCookie('pwd',oPwdInput.value,300);
+			}else{
+				removeCookie('name');
+				removeCookie('pwd');
+			}
+		};
+	};
+
+	//设置cookie的方法
+	function setCookie(name,value,expiresSeconds){
+		var date = new Date();
+		date.setSeconds(date.getSeconds()+expiresSeconds);
+		document.cookie = name+'='+encodeURI(value)+'; expires='+date;
+	}
+	setCookie('username','A君',30);
+	setCookie('password','A君123',30);
+
+	//获取cookie的方法
+	function getCookie(name){
+		if(typeof name == 'string' && name!=''){
+			var cookieStr = document.cookie;
+			var pairArr = cookieStr.split('; '); //注意后面有空格
+			for(var i=0; i<pairArr.length; ++i){
+				var tempArr = pairArr[i].split('=');
+				if(tempArr[0] == name){
+					return decodeURI(tempArr[1]);
+				}
+			}
+		}
+	}
+
+	//删除cookie的方法
+	function removeCookie(name){
+		if(getCookie(name) != undefined){
+			setCookie(name,'',-1);
+		}
+	}
+
+
+</script>
+</body>
+</html>

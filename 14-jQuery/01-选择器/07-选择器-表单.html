@@ -1,0 +1,93 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="Keywords" content="">
+		<meta name="Description" content="">
+		<title></title>
+		
+		<style type="text/css">
+			body,div,p,h1,h2,h3,h4,h5,h6,ul,ol,dl,dd,fieldset{margin:0;}
+			ul,ol,input,textarea,th,td,fieldset,legend{padding:0;}
+			li{list-style:none;}
+			body{font:12px "微软雅黑";}
+			a{text-decoration:none;}
+			img,button{border:none;}
+			table{border-collapse:collapse;}
+			.clearfix:after{content:" ";display:block;clear:both;height:0;visibility:hidden;}
+			
+		</style>
+	</head>
+<body>
+	<form action="#">
+		<input type="hidden" name="id" value="1"/>
+		<input type="text" name="name"/><br>
+		<input type="password" name="password" value="123"/><br>
+		<input type="radio" name="gender" value="m"/>男
+		<input type="radio" name="gender" value="w"/>女<br>
+		<input type="checkbox" name="interest"/>篮球
+		<input type="checkbox" name="interest"/>足球<br>
+		<input type="file"/><br>
+		<input type="image" src="images/1.jpg"/><br>
+		<input type="button" value="我是按钮"/>
+		<button type="button">我是button</button><br>
+		<select name="province">
+			<option value="Beijing">北京</option>
+			<option value="ShangHai">上海</option>
+			<option value="ShenZhen">深圳</option>
+		</select><br>
+		<textarea name="introduction" rows="10" cols="50">我...</textarea><br>
+		<input type="submit" value="提交"/><br>
+		<input type="reset" value="重置"/><br>
+	</form>
+	
+<script src="../jquery-1.8.3/jquery.min.js"></script>
+<script type="text/javascript">
+	$(function(){
+		//:input, textarea, select 和 button 元素
+		/*console.log($(':input').length);
+		alert($(':input').css('border','1px solid red'));*/
+
+		//:text 匹配文本框
+		//console.log($(':text').length);
+		//$(':text').css('border','1px solid red');
+
+		//:password 匹配密码框
+		//console.log($(':password').length);
+		//$(':password').css('background','red');
+
+		//:radio 匹配单选按钮
+		//console.log($(':radio').length);
+		//$(':radio').css({"width":20,"height":20});
+
+		//:checkbox 匹配所有复选框
+		//console.log($(':checkbox').length);
+		//$(':checkbox').css({"width":20,"height":20});
+
+		//:submit 匹配所有提交按钮
+		//console.log($(':submit').length);
+		//$(':submit').val('提交按钮');
+
+		//:image 匹配所有图像域
+		//console.log($(':image').length);
+		//$(':image').css('border','1px solid red');
+
+		//:reset 匹配所有重置按钮
+		//console.log($(':reset').length);
+		//$(':reset').css('background','red');
+
+		//:button 匹配所有按钮 包括button与type为button的input
+		/*console.log($(':button').length);
+		$(':button').css('background','red'); */
+
+		//:file 匹配所有文件域
+		//console.log($(':file').length);
+		//$(':file').css('background','red');
+	   
+		//:hidden 匹配所有不可见元素，或者type为hidden的元素
+		console.log($('input:hidden').length);
+		$('input:hidden').val(2);
+	});
+</script>
+</body>
+</html>

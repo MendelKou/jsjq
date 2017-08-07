@@ -1,0 +1,56 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="Keywords" content="">
+		<meta name="Description" content="">
+		<title></title>
+		
+		<style type="text/css">
+			body,div,p,h1,h2,h3,h4,h5,h6,ul,ol,dl,dd,fieldset{margin:0;}
+			ul,ol,input,textarea,th,td,fieldset,legend{padding:0;}
+			li{list-style:none;}
+			body{font:12px "微软雅黑";}
+			a{text-decoration:none;}
+			img,button{border:none;}
+			table{border-collapse:collapse;}
+			.clearfix:after{content:" ";display:block;clear:both;height:0;visibility:hidden;}
+			
+			.box{
+				border:1px solid red;
+			}
+		</style>
+	</head>
+<body>
+	
+
+	<div id="div1" class="box">abcdef
+		<div>我是div</div>
+		<div>我是div</div>
+		<div>我是div</div>
+	</div>
+
+	<p>我是段落1</p>
+	<p class="txt">我是段落2</p>
+	<p class="txt">我是段落3</p>
+<script src="../jquery-1.8.3/jquery.js"></script>
+<script type="text/javascript">
+	$(function(){
+		//empty() 删除所有匹配元素的所有子节点(包括文本节点)
+		//$('#div1').empty();
+
+		//remove([expr]) 从DOM中删除所有匹配的元素
+		//这个方法不会把匹配的元素从jQuery对象中删除，因而可以在将来再使用这些匹配的元素。但除了这个元素本身得以保留之外，其他的比如绑定的事件，附加的数据等都会被移除
+		//$('p').remove(); //删除所有段落
+		//console.log($('p').length); //0
+		//$('p').remove('.txt'); //删除所有带txt类的段落
+
+		//detach([expr]) 从DOM中删除所有匹配的元素
+		//这个方法不会把匹配的元素从jQuery对象中删除，因而可以在将来再使用这些匹配的元素。与remove()不同的是，所有绑定的事件、附加的数据等都会保留下来
+		//$('p').detach();
+		//$('p').detach('.txt');
+
+	});
+</script>
+</body>
+</html>

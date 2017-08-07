@@ -1,0 +1,71 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="Keywords" content="">
+		<meta name="Description" content="">
+		<title></title>
+		
+		<style type="text/css">
+			body,div,p,h1,h2,h3,h4,h5,h6,ul,ol,dl,dd{margin:0;}
+			ul,ol{padding:0;list-style:none;}
+			body{font-size:12px;font-family:"微软雅黑";}
+			a{text-decoration:none;color:#000;}
+			img,button{border:none;}
+			
+		</style>
+	</head>
+<body>
+</body>
+<script>
+	/*
+		匿名函数是没有名字的函数
+	*/
+
+	/*function show(){ //普通函数有函数名
+		console.log('go'); 
+	}
+	show(); */
+
+	/*function(){ //这是一个匿名函数 但这样写会报错 SyntaxError
+		console.log('aaa');
+	} */
+
+	//可以吧匿名函数付给一个变量 通过这个变量调用此函数
+	/*var fn = function(){
+		console.log('abc');
+	};
+	fn();*/
+
+	//临时定义并调用函数 之后此函数不存在
+	/*(function(){
+		console.log('xyz');
+	})(); */
+	
+	//可以传递参数
+	/*(function(name){
+		console.log(name);
+	})('Tom'); */
+
+	//可以把返回的值赋给变量
+	/*var result = (function(a,b){
+		return a+b;
+	})(1,2);
+	console.log(result); //3 */
+
+	//注意：下面前面没有小括号
+	/*var result = function(a,b){
+		console.log(a+'+'+b);
+		return a+b;
+	}(1,2);
+	console.log(result); */
+
+	/*var result = function add(a,b){
+		return a+b;
+	}(2,3);
+	console.log(result);
+	console.log(add(3,8)); //ReferenceError: add is not defined */
+	
+	
+</script>
+</html>

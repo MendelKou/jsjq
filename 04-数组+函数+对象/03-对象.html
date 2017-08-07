@@ -1,0 +1,174 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="Keywords" content="">
+		<meta name="Description" content="">
+		<title></title>
+		
+		<style type="text/css">
+			body,div,p,h1,h2,h3,h4,h5,h6,ul,ol,dl,dd{margin:0;}
+			ul,ol{padding:0;list-style:none;}
+			body{font-size:12px;font-family:"微软雅黑";}
+			a{text-decoration:none;color:#000;}
+			img,button{border:none;}
+			
+		</style>
+	</head>
+<body>
+</body>
+<script type="text/javascript">
+	//通过直接量的方式创建对象
+	/*var p1 = {
+		name:'Tom', //相当于java对象的属性
+		age:23,
+
+		say:function(){ //相当于java对象的方法
+			console.log('我是'+this.name+','+this.age+'岁'); //这里的this指的是当前调用方法的对象
+		},
+
+		//定义一个值为对象的属性
+		size:{
+			width:120,
+			height:280
+		}
+	}; */
+
+	//访问对象的属性
+	/*console.log(p1.name);
+	console.log(p1.age);
+	console.log(p1.size.width);
+	p1.say();//调用对象的方法  */
+
+	//对象的属性与方法可以动态地修改
+	//p1.name = 'Jack';
+	//console.log(p1.name);
+
+	//定义完对象后还可以添加新的属性或方法
+	/*p1.sex = '男';
+	p1.getSex = function(){
+		return this.sex;
+	}; */
+	//console.log(p1.sex);
+	//console.log(p1.getSex());
+
+	//删除对象的属性
+	/*delete p1.sex;
+	console.log(p1.sex); //undefined
+	console.log(p1.getSex()); //undefined */
+	//delete p1.getSex;
+	//console.log(p1.getSex);
+	//console.log(p1.getSex()); // TypeError: p1.getSex is not a function
+
+	//通过new的方式创建对象
+	/*var p2 = new Object();
+	p2.name = 'Rose';
+	p2.age = 22;
+	p2.say = function(){
+		return this.name+','+this.age;
+	}; */
+	//console.log(p2.say());
+	//访问属性的另一种方法
+	//console.log(p2['name']);
+	//console.log(p2['say']());
+
+	//使用forIn遍历对象的属性
+	/*for(var prop in p2){ //prop是属性或方法胡名称
+
+		console.log(prop+':'+p2[prop]);
+	} */
+
+	//上面两种创建对象的方式不适合创建大量同类的对象
+	//对于同类的对象我们先定义一个构造函数 它是一个模板 基于这个模板创建对象 也就是Java中的类
+	/*function Person(name,age){ //为了区别于与普通的函数 构造函数名建议大写
+		this.name = name;
+		this.age = age;
+		this.getInfo = function(){
+			return this.name+','+this.age;
+		};
+	} */
+	/*var p1 = new Person('Tom',23);
+	var p2 = new Person('Jack',22);
+	console.log(p1.name);
+	console.log(p1.age);
+	console.log(p1.getInfo());
+	console.log(p2.name);
+	console.log(p2.age);
+	console.log(p2.getInfo()); */
+
+	//js中的instanceof运算符用于判断某个对象是否为给定的函数构造出的对象或是它的子类的实例
+	/*var p = new Person('Tom',33);
+	var arr = [];
+	console.log(p instanceof Person); //true
+	console.log(p instanceof Object); //true
+	console.log(p instanceof Array); //false
+	console.log(arr instanceof Array); //true
+	console.log(arr instanceof Object); //true */
+
+	//在构造函数中通过this添加方法会造成同类对象方法重复的问题 可以把方法定在外部或使用原型prototype解决
+	/*var p1 = new Person('Tom',23);
+	var p2 = new Person('Jack',22);
+	console.log(p1.getInfo == p2.getInfo); //false */
+
+	//将对象的方法定义在构造函数的外部 以解决方法重复的问题 这种方式不太好
+	/*function Person(name,age){
+		this.name = name;
+		this.age = age;
+	}
+	function getInfo(){
+		return this.name + ',' + this.age;
+	}
+	var p1 = new Person('Tom',22);
+	var p2 = new Person('Rose',23);
+	console.log(p1.getInfo===p2.getInfo); //true */
+
+	//什么是原型(prototype)?
+	//js中的函数对象有一个prototype属性 (Function.prototype除外 它是函数对象 但没有prototype)
+	/*function f1(){}
+	var f2 = function(){};
+	var f3 = new Function();
+	console.log(f1.prototype);
+	console.log(f2.prototype);
+	console.log(f3.prototype);
+	console.log(typeof Function.prototype); //function
+	console.log(Function.prototype.prototype); //undefined */
+
+	//prototype有什么用？
+	//一个函数的prototype上添加的属性或方法可以被函数构造出的所有对象共享
+	/*function Person(name,age){
+		this.name = name;
+		this.age = age;
+	}
+	Person.prototype.getInfo = function(){
+		return this.name+','+this.age;
+	};
+	
+	var p1 = new Person('Tom',22);
+	var p2 = new Person('Rose',23);
+	console.log(p1.getInfo());
+	console.log(p2.getInfo());
+	console.log(p1.getInfo === p2.getInfo); //true */
+
+	
+	//利用prototype为数组添加一个方法
+	/*Array.prototype.add = function(){
+		var result = '';
+		for(var i=0; i<this.length; ++i){
+			result +=this[i];
+		}
+		return result;
+	};
+	var arr1 = [1,2,3];
+	var arr2 = ['Hello',',','world'];
+	var arr3 = new Array(1,2,3);
+	var arr4 = new Array('Hello',',','world');
+	console.log(arr1.add()); //123
+	console.log(arr2.add()); //Hello,world
+	console.log(arr3.add()); //123
+	console.log(arr4.add()); //Hello,world */
+
+
+	
+	
+</script>
+</html>

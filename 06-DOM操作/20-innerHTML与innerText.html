@@ -1,0 +1,38 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="Keywords" content="">
+		<meta name="Description" content="">
+		<title></title>
+		
+		<style type="text/css">
+			body,div,p,h1,h2,h3,h4,h5,h6,ul,ol,dl,dd{margin:0;}
+			ul,ol{padding:0;list-style:none;}
+			body{font-size:12px;font-family:"微软雅黑";}
+			a{text-decoration:none;color:#000;}
+			img,button{border:none;}
+			
+		
+		</style>
+	</head>
+<body>
+	<div id="div1">我是div<span>我是span</span></div>
+</body>
+<script>
+	window.onload = function(){
+		var oDiv = document.getElementById('div1');
+
+		//元素对象的innerHTML返回元素的html内容
+		//console.log(oDiv.innerHTML);//我是div<span>我是span</span>
+		//console.log(typeof oDiv.innerHTML);//string
+		//oDiv.innerHTML = '<p style="border:1px solid red;">我是段落</p>'; //会解析其中的html标签
+
+		//innerText 返回文本内容 会过滤掉标签
+		//console.log(oDiv.innerText); //我是div我是span
+		oDiv.innerText = '<p style="color:red;">我是p</p>'; //html标签会被转义为普通字符
+		
+	
+	};
+</script>
+</html>

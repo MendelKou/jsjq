@@ -1,0 +1,51 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="Keywords" content="">
+		<meta name="Description" content="">
+		<title></title>
+		
+		<style type="text/css">
+			body,div,p,h1,h2,h3,h4,h5,h6,ul,ol,dl,dd,fieldset{margin:0;}
+			ul,ol,input,textarea,th,td,fieldset,legend{padding:0;}
+			li{list-style:none;}
+			body{font:12px "微软雅黑";}
+			a{text-decoration:none;}
+			img,button{border:none;}
+			table{border-collapse:collapse;}
+			.clearfix:after{content:" ";display:block;clear:both;height:0;visibility:hidden;}
+			
+			
+		</style>
+	</head>
+<body>
+	
+<script type="text/javascript">
+	//Array的toLocalString方法对每个数组元素调用toLocalString
+	/*var arr = [new Date()];
+	console.log(arr.toString());
+	console.log(arr.toLocaleString()); */
+
+	//如果对象有toJSON方法 则在调用stringify序列化对象是直接使用此函数的返回值
+	/*var o1 = {a:1};
+	var o2 = {a:1,toJSON:function(){return 'aaaa'}};
+	console.log(JSON.stringify(o1));//{"a":1}
+	console.log(JSON.stringify(o2));//"aaaa" */
+
+	//Date型对象的toJSON方法
+	/*var date = new Date();
+	console.log(date.toJSON);
+	console.log(date.toJSON());//2017-03-29T11:32:10.666Z */
+
+	//valueOf
+	//日期对象的valueOf返回表示当前时间的毫秒数
+	console.log(new Date().valueOf());
+
+
+
+
+
+</script>
+</body>
+</html>

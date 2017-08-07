@@ -1,0 +1,125 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="Keywords" content="">
+		<meta name="Description" content="">
+		<title></title>
+		
+		<style type="text/css">
+			#box1{width:300px;height:200px;border:1px solid red;}
+			body,div,p,h1,h2,h3,h4,h5,h6,ul,ol,dl,dd,fieldset{margin:0;}
+			ul,ol,input,textarea,th,td,fieldset,legend{padding:0;}
+			li{list-style:none;}
+			body{font:12px "微软雅黑";}
+			a{text-decoration:none;}
+			img,button{border:none;}
+			table{border-collapse:collapse;}
+			.clearfix:after{content:" ";display:block;clear:both;height:0;visibility:hidden;}
+			th,td{border:1px solid #000;}
+			#clock{width:150px;height:80px;line-height:80px;text-align:center;background:#000;color:red;
+			border-radius:10px;font-size:30px;font-style:bold;}
+		</style>
+	</head>
+<body>
+	<h1>从时钟中拖出时间</h1>
+	<p id="clock">12:34</p>
+	<textarea rows="10" cols="30" id="tt"></textarea>
+
+<script type="text/javascript">
+window.onload = function(){
+	var body = document.getElementsByTagName('body')[0];
+	var clock = document.getElementById('clock');
+	var tt = document.getElementById('tt');
+
+	function displayTime(){
+		var date = new Date();
+		var h = date.getHours();
+		var m = date.getMinutes();
+		var s = date.getSeconds();
+		if(h < 10){
+			h = '0'+h;
+		}
+		if(m < 10){
+			m = '0'+m;
+		}
+		if(s < 10){
+			s = '0'+s;
+		}
+		clock.innerHTML = h+':'+m+':'+s;
+		setTimeout(displayTime,1000);
+	}
+	displayTime();
+	clock.draggable = true;
+	clock.ondragstart = function(e){
+		var e = e || window.event;
+		var dt = e.dataTransfer;
+		console.log('clock.ondragstart');
+		dt.setData('Text',new Date()+'\n'); //设置传递的文本数据 告诉浏览器拖动的是什么
+		//如果支持则设置拖动的图标
+		if(dt.setDragImage){
+			//创建拖动图标
+			var icon = new Image();
+			icon.src = 'images/1.jpg';
+			dt.setDragImage(icon,0,0);
+		}
+	};
+	clock.ondragend = function(e){
+		var e = e || window.event;
+		var dt = e.dataTransfer;
+		console.log('clock.ondragend');
+	};
+
+	tt.ondragenter = function(e){
+		var e = e || window.event;
+		console.log('tt ondragenter');
+		console.log('dataTransfer.types='+e.dataTransfer.types);
+		return false;
+	};
+	tt.ondraghover = function(e){
+		var e = e || window.event;
+		console.log('tt ondraghover');
+	};
+	tt.ondragleave = function(e){
+		var e = e || window.event;
+		console.log('tt ondragleave');
+	};
+	tt.ondrop = function(e){
+		var e = e || window.event;
+		console.log('tt ondrop');
+		console.log('data='+e.dataTransfer.getData('Text'));
+	};
+};
+</script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

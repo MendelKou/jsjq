@@ -1,0 +1,135 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="Keywords" content="">
+		<meta name="Description" content="">
+		<title></title>
+		
+		<style type="text/css">
+			body,div,p,h1,h2,h3,h4,h5,h6,ul,ol,dl,dd,fieldset{margin:0;}
+			ul,ol,input,textarea,th,td,fieldset,legend{padding:0;}
+			li{list-style:none;}
+			body{font:12px "微软雅黑";}
+			a{text-decoration:none;}
+			img,button{border:none;}
+			table{border-collapse:collapse;}
+			.clearfix:after{content:" ";display:block;clear:both;height:0;visibility:hidden;}
+
+		</style>
+	</head>
+<body>
+	
+<script type="text/javascript">
+	//将指定对象的所有属性或指定属性设置为不可写与不可配置
+	function freezeProps(obj){
+		//获取要冻结的属性名集合
+		var props = freezeProps.arguments.length === 1 ? 
+			Object.getOwnPropertyNames(obj) : 
+			Array.prototype.splice.call(freezeProps.arguments,1);
+		props.forEach(function(prop){
+			if(Object.getOwnPropertyDescriptor(obj,prop).configurable){//忽略不可配置的属性
+				Object.defineProperty(obj,prop,{writable:false,configurable:false});
+			}
+		});
+		return obj;
+	}
+
+	//将指定对象的所有属性或指定属性设置为不可枚举
+	function hideProps(obj){
+		//获取要隐藏的属性名集合
+		var props = hideProps.arguments.length === 1 ? 
+			Object.getOwnPropertyNames(obj) : 
+			Array.prototype.splice.call(hideProps.arguments,1);
+		props.forEach(function(prop){
+			if(Object.getOwnPropertyDescriptor(obj,prop).configurable){//忽略不可配置的属性
+				Object.defineProperty(obj,prop,{enumerable:false});
+			}
+		});
+		return obj;
+	}
+
+	//构造函数的参数与变量可以作为对象的私有属性
+	function Range(from,to){
+		if(from > to){
+			throw new Error('from must <= to');
+		}
+		function getFrom(){
+			return from;
+		}
+		function getTo(){
+			return to;
+		}
+		function setFrom(v){
+			if(v > to){
+				throw new Error('cannot set from > to');
+			}
+			from = v;
+		}
+		function setTo(v){
+			if(v < from){
+				throw new Error('cannot set to < from');
+			}
+			to = v;
+		}
+
+		Object.defineProperties(this,{
+			'from' : {set:setFrom,get:getFrom,enumerable:true,configurable:false},
+			'to' : {set:setTo,get:getTo,enumerable:false,configurable:false}
+		});
+	}
+	Range.prototype = hideProps({
+		constructor:Range,
+		includes:function(v){
+			return this.from <= v && v <= this.to;
+		},
+		forEach:function(fn){
+			for(var i=Math.ceil(this.from); i<=this.to; ++i){
+				fn(i);
+			}
+		},
+		toString:function(v){
+			return '['+this.from+','+this.to+']';
+		}
+	});
+
+	var r = new Range(10,15);
+	console.log(r);
+	console.log(r+'');
+	for(var k in r){
+		console.log(k+'='+r[k]);
+	}
+	console.log(r.includes(11));
+	console.log(r.includes(16));
+	r.forEach(function(v){
+		console.log(v);
+	});
+	r.from = 12;
+	console.log(r+'');
+	console.log(r.includes(11));
+	//r.from = 20;
+
+	console.log(delete r.from);
+	console.log(delete r.to);
+	console.log(r+'');
+	
+
+</script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

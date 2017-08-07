@@ -1,0 +1,124 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="Keywords" content="">
+		<meta name="Description" content="">
+		<title></title>
+		
+		<style type="text/css">
+			body,div,p,h1,h2,h3,h4,h5,h6,ul,ol,dl,dd{margin:0;}
+			ul,ol,input,textarea{padding:0;}
+			li{list-style:none;}
+			body{font:12px "微软雅黑";padding-top:1px;}
+			a{text-decoration:none;}
+			img,button{border:none;}
+			
+			.box{width:504px;margin:20px auto 0;font-size:14px;position:relative;}
+			.box .tt{width:500px;height:300px;padding:2px;resize:none;border:1px solid #666;display:block;
+				font:14px "微软雅黑";}
+			.box .textBox{display:none;width:500px;height:300px;padding:2px;border:1px solid #666;overflow:auto;
+				white-space:pre;}
+			.box .search{height:32px;text-align:center;margin-top:10px;}
+			.box .search input[type="text"]{line-height:30px;width:280px;}
+			.box .search input[type="button"]{height:32px;padding:0 5px;}
+			.cred{color:#fff;background:red;}
+		</style>
+	</head>
+<body>
+	<div class="box">
+		<textarea class="tt" id="tt"></textarea>
+		<div class="textBox" id="textBox">
+		</div>
+		<div class="search">
+			<input type="text" placeholder="请输入你要查找的文本" id="txt"/>
+			<input type="button" value="查找" id="btn"/>
+		</div>
+	</div>
+</body>
+<script>
+	window.onload = function(){
+		var oTt = document.getElementById('tt');
+		var oTxt = document.getElementById('txt');
+		var oBtn = document.getElementById('btn');
+		var oDivShow = document.getElementById('textBox');
+		var str; //保存textarea中的文本
+	
+
+		//检查字符串是否为空字符串或只包括空格的字符串
+		function isBlank(str){
+			return str.replace(/(^\s+)|(\s+$)/,'') == '';
+		}
+		//查找的方法
+		function mySearch(searchTxt){
+			//搜索前清空 上次的查询结果
+			clear();
+			var indexArr = []; //匹配的文本的索引数组
+			var index =  -1;
+			//需保证searchTxt不为空字符串 否则下面的循环为死循环 因为为空字符串时返回值不会为负数
+			while((index = str.indexOf(searchTxt,index+1)) >= 0){
+				indexArr.push(index);
+			}
+			var result = '';
+			if(indexArr.length > 0){
+				result += str.substring(0,indexArr[0]);
+				for(var i=0; i<indexArr.length; ++i){
+					result += '<span class="cred">'
+					+str.substring(indexArr[i],indexArr[i]+searchTxt.length)
+					+'</span>';
+					if(i<indexArr.length-1){
+						result +=str.substring(indexArr[i]+searchTxt.length,indexArr[i+1]);
+					}else{
+						result += str.substring(indexArr[i]+searchTxt.length);
+					}
+				}
+			}
+			if(result){
+				//查找到内容时在div中显示 并隐藏掉文本域
+				oDivShow.innerHTML = result;
+				oDivShow.style.display = 'block';
+				oTt.style.display = 'none';
+				return true;
+			}
+			return false;
+		}
+
+		//在文本框中释放按键时立即搜索
+		oTxt.onkeyup = function(){
+			if(!isBlank(oTxt.value)){
+				mySearch(oTxt.value);
+			}else{
+				clear();
+			}
+		};
+		//点击查找按钮时搜索
+		oBtn.onclick = function(){
+			if(isBlank(oTxt.value)){
+				alert('查找的文本不能为空');
+			}else{
+				if(!mySearch(oTxt.value)){
+					alert('没有查找到');
+				}
+			}
+		};
+		
+		//清空方法
+		function clear(){
+			oDivShow.innerHTML = '';
+			oDivShow.style.display = 'none';
+			oTt.style.display = 'block';
+		}
+
+		//当用户在文本域中释放按键时 被查找的文本应该改变
+		oTt.onkeyup = function(){
+			str = this.value;
+		};
+
+		//鼠标在显示查询结果区域中双击 我们认为用户要编辑文本域中的内容 所以隐藏div 显示文本域
+		oDivShow.ondblclick = function(){
+			clear();
+		};
+		
+	};
+</script>
+</html>

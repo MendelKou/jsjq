@@ -1,0 +1,194 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="Keywords" content="">
+		<meta name="Description" content="">
+		<title></title>
+		
+		<style type="text/css">
+			body,div,p,h1,h2,h3,h4,h5,h6,ul,ol,dl,dd,fieldset{margin:0;}
+			ul,ol,input,textarea,th,td,fieldset,legend{padding:0;}
+			li{list-style:none;}
+			body{font:12px "微软雅黑";}
+			a{text-decoration:none;}
+			img,button{border:none;}
+			table{border-collapse:collapse;}
+			.clearfix:after{content:" ";display:block;clear:both;height:0;visibility:hidden;}
+
+		</style>
+	</head>
+<body>
+	
+<script type="text/javascript">
+
+	// const pi = 3.14;
+	// console.log(pi);
+	// pi = 3.1415926;//Uncaught TypeError: Assignment to constant variable.
+	//const pi = 3.141;//Uncaught SyntaxError: Identifier 'pi' has already been declared
+	//var pi = 3.141;//Uncaught SyntaxError: Identifier 'pi' has already been declared
+
+	// for(var j=0; j<4; ++j){
+	// 	console.log(j);
+	// }
+	// console.log(j);//4
+
+	// //let定义的变量在就近的花括号中有效
+	// for(let i=0; i<4; ++i){
+	// 	console.log(i);
+	// }
+	// //console.log(i);//Uncaught ReferenceError: i is not defined
+
+
+	//console.log(a);//Uncaught ReferenceError: a is not defined
+	// let a = 1;
+	// console.log(a);
+
+	// let a = 1;
+	// for(let i = a+1; i<3; ++i){
+	// 	console.log(i);
+	// }
+
+	//解构赋值
+	//var [x,y] = [1,2];
+	// let [x,y] = [1,2];
+	//let [x,y] = [1];
+	//let [x,y] = [1,2,3];
+	// let [,x,y] = [1,2,3];
+	// console.log([x,y]);
+	// console.log(x);
+	// console.log(y);
+
+	// var first,second,all;
+	// //解构赋值返回整个右侧的值
+	// //all = [first,second] = [1,2];
+	// all = [first,second] = [1,[2,3]];
+	// console.log(first);
+	// console.log(second);
+	// console.log(all);
+
+	//解构赋值也可以是对象
+	// let {r:rv,g:gv,b:bv} = {r:255,g:122,b:34};
+	// console.log(r);
+	// console.log(rv);
+
+	// var obj = {name:"Rose",age:23,gender:'male'};
+	// for(let p in obj){
+	// 	console.log(p);
+	// }
+	// for each(let v in obj){
+	// 	console.log(v);
+	// }
+
+	// console.log(Math.round(1.5));
+	// console.log(Math.round(1.52));
+	// console.log(Math.round(1.4));
+
+	// function F(a,b){
+	// 	return {
+	// 		get a(){return a},
+	// 		set a(v){a = v+1000;},
+	// 		get b(){return b}
+	// 	};
+	// }
+	// var obj = F(1,2);
+	// console.log(obj.a); //obj.a会调用访问器a
+	// obj.a = 2;
+	// console.log(obj.a);
+
+	// console.log(Iterator); //火狐支持
+	// for(let a in Iterator({name:'Jack',age:23})){
+	// 	console.log(a[0]+'='+a[1]);
+	// }
+
+	// for(let a in Iterator({name:'Jack',age:23},true)){//true表示只遍历属性名
+	// 	console.log(a);
+	// }
+
+	// for(let [k,v] in Iterator({name:'Jack',age:23})){
+	// 	console.log(k+'='+v);
+	// }
+
+	// var obj = {x:1,y:2};
+	// Object.prototype.z = 3;
+	// for(var p in Iterator(obj)){//只会变量自有属性 不会遍历继承的属性
+	// 	console.log(p);
+	// }
+
+	//迭代器
+	// function range(min,max){
+	// 	return {
+	// 		get min(){return min;},
+	// 		get max(){return max;},
+	// 		includes:function(v){
+	// 			return min <= v && v <= max;
+	// 		},
+	// 		toString:function(){
+	// 			return '['+min+','+max+']';
+	// 		},
+	// 		__iterator__:function(){
+	// 			var nextValue = min;
+	// 			console.log('调用了__iterator__');
+	// 			return {
+	// 				next:function(){
+	// 					console.log('调用了next');
+	// 					if(nextValue > max){
+	// 						throw StopIteration;
+	// 					}
+	// 					return nextValue++;
+	// 				}
+	// 			};
+	// 		}
+	// 	};
+	// }
+
+	// for(let i in range(1,5)){
+	// 	console.log(i);
+	// }
+
+	//生成器函数
+	// function range(min,max){
+	// 	for(let i=min; i<max; ++i){
+	// 		yield i;
+	// 	}
+	// }
+
+	// for(let i in range(1,5)){
+	// 	console.log(i);
+	// }
+
+	//数组推导 可能不支持
+	// var arr = [x*x for(x in [1,2,3,4,5]) if(x % 2 === 0)];
+	// console.log(arr);
+
+	// try{
+	// 	for(var i=0; i<3; ++i){
+	// 		if(i === 2){
+	// 			throw 'abc';
+	// 		}
+	// 		console.log('i='+i);
+	// 	}
+	// }catch(e){
+	// 	console.log(typeof e);
+	// 	console.log(e);
+	// 	console.log(e === 'abc');
+	// }
+</script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

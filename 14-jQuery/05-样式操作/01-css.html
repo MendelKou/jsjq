@@ -1,0 +1,56 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="Keywords" content="">
+		<meta name="Description" content="">
+		<title></title>
+		
+		<style type="text/css">
+			body,div,p,h1,h2,h3,h4,h5,h6,ul,ol,dl,dd,fieldset{margin:0;}
+			ul,ol,input,textarea,th,td,fieldset,legend{padding:0;}
+			li{list-style:none;}
+			body{font:12px "微软雅黑";}
+			a{text-decoration:none;}
+			img,button{border:none;}
+			table{border-collapse:collapse;}
+			.clearfix:after{content:" ";display:block;clear:both;height:0;visibility:hidden;}
+			
+			.box{
+				border:1px solid red;
+			}
+			#div1{
+				width:100px;
+			}
+			#div2{
+				border:1px solid grren;
+			}
+		</style>
+	</head>
+<body>
+	<div class="box" id="div1">div1</div>
+	<div class="box" id="div2">div2</div>
+	<p>我是段落1</p>
+	<p>我是段落2</p>
+<script src="../jquery-1.8.3/jquery.js"></script>
+<script type="text/javascript">
+	$(function(){
+		//css(name|pro|[,val|fn]) 获取或设置匹配元素的样式
+		//获取样式
+		//console.log($('#div1').css('width')); //100px
+		//当有多个匹配元素时 只会返回第一个元素的指定样式
+		//console.log($('div').css('border')); //1px solid rgb(255, 0, 0)
+		//对于我们没有设置的样式 则返回计算后的结果
+		//console.log($('#div1').css('height'));//16px
+		//设置样式
+		//$('#div1').css('color','red');
+		//$('#div1').css({color:'#fff',background:'#000'}); //设置多个样式
+		/*$('div').css('background',function(index,value){ //index为索引 value为属性原先的值
+			return 'rgb('+parseInt(Math.random()*256)+','+parseInt(Math.random()*256)+','+
+				parseInt(Math.random()*256)+')';
+		});*/
+
+	});
+</script>
+</body>
+</html>

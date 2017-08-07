@@ -1,0 +1,119 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="Keywords" content="">
+		<meta name="Description" content="">
+		<title></title>
+		
+		<style type="text/css">
+			body,div,p,h1,h2,h3,h4,h5,h6,ul,ol,dl,dd{margin:0;}
+			ul,ol{padding:0;list-style:none;}
+			body{font-size:12px;font-family:"微软雅黑";}
+			a{text-decoration:none;color:#000;}
+			img,button{border:none;}
+			
+		</style>
+	</head>
+<body>
+	
+</body>
+<script type="text/javascript">
+	/*
+		逻辑运算：&& || !
+	*/
+
+	//&&与||的短路现象：当能通过第一个表达式确定最终的结果时 则不会对后面的表达式求值
+	/*var a = 1;
+	if(1<2 && ++a>1){
+		console.log(a); //2
+	}
+	a = 1;
+	if(1>2 && ++a>1){}
+	console.log(a); //1
+
+	a = 1;
+	if(1<2 || ++a>1){}
+	console.log(a); //1
+	a = 1;
+	if(1>2 || ++a>1){
+		console.log(a); //2
+	} */
+
+	//一些特殊值作&&的结果
+	/*var obj = new Object();
+	console.log(obj&&true); //true
+	console.log(obj&&false); //false
+	console.log(true&&obj); //返回对象obj
+	console.log(false&&obj); //false */
+		
+	//如果该两个对象&& 则返回第二个对象
+	/*console.log('aa' && 'bb'); //bb
+	console.log([1] && [2]); //[2]
+	console.log({name:"Jack"} && {name:"Rose"}); //Object {name:"Rose"} */
+
+	/*console.log(true && null); //null
+	console.log(false && null); //false
+	console.log(null && true); //null
+	console.log(null && false); //null */
+
+	/*console.log(true && NaN); //NaN
+	console.log(false && NaN); //false
+	console.log(NaN && true); //NaN
+	console.log(NaN && false); //NaN */
+
+	/*console.log(true && undefined); //undefined
+	console.log(false && undefined); //false
+	console.log(undefined && true); //undefined
+	console.log(undefined && false); //undefined */
+
+	/*console.log(false && x); //false
+	console.log(true && y); //报错ReferenceError:y is not defined */
+
+	//一些特殊值作||的结果
+	/*var obj = new Object();
+	console.log(obj||true); //返回对象obj
+	console.log(obj||false); //返回对象obj
+	console.log(true||obj); //true
+	console.log(false||obj); //返回对象obj */
+		
+	//如果该两个对象|| 则返回第一个对象
+	/*console.log('aa' || 'bb'); //aa
+	console.log([1] || [2]); //[1]
+	console.log({name:"Jack"} || {name:"Rose"}); //Object {name:"Jack"} */
+
+	/*console.log(true || null); //true
+	console.log(false || null); //null
+	console.log(null || true); //true
+	console.log(null || false); //false */
+
+	/*console.log(true || NaN); //true
+	console.log(false || NaN); //NaN
+	console.log(NaN || true); //true
+	console.log(NaN || false); //false */
+
+	/*console.log(true || undefined); //true
+	console.log(false || undefined); //undefined
+	console.log(undefined || true); //true
+	console.log(undefined || false); //false */
+
+	/*console.log(true || y); //true
+	console.log(false || x); //报错ReferenceError:x is not defined */
+
+	/*console.log(null || new Object()); //返回对象
+	console.log(new Object() || null); //返回对象
+	console.log(undefined || new Object()); //返回对象
+	console.log(new Object() || undefined); //返回对象 */
+
+	/*console.log(!new Object()); //false
+	console.log(![]); //false
+	console.log(!{}); //false
+	console.log(!null); //true
+	console.log(!undefined); //true
+	console.log(!NaN); //true */
+
+
+	
+	
+</script>
+</html>

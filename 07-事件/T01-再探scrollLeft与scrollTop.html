@@ -1,0 +1,44 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="Keywords" content="">
+		<meta name="Description" content="">
+		<title></title>
+		
+		<style type="text/css">
+			body,div,p,h1,h2,h3,h4,h5,h6,ul,ol,dl,dd{margin:0;}
+			ul,ol,input{padding:0;}
+			ul,ol{list-style:none;}
+			body{font:12px "微软雅黑";}
+			a{text-decoration:none;color:#000;}
+			img,button{border:none;}
+
+			#div1{
+				width:200px;
+				height:200px;
+				margin:50px auto;
+				overflow:auto;
+			}
+			#div2{
+				width:500px;
+				height:500px;
+				background:red;
+			}
+		</style>
+		
+	</head>
+<body>
+	<div id="div1">
+		<div id="div2"></div>
+	</div>
+</body>
+<script type="text/javascript">
+	var obj = document.getElementById('div1');
+	obj.onscroll = function(){
+		//scrollLeft是水平滚动的距离
+		//scrollTop是垂直滚动的距离
+		console.log('scrollLeft='+this.scrollLeft+',scrollTop='+this.scrollTop);
+	};
+</script>
+</html>

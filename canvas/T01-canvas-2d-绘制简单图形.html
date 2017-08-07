@@ -1,0 +1,139 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="Keywords" content="">
+		<meta name="Description" content="">
+		<title></title>
+		
+		<style type="text/css">
+			body,div,p,h1,h2,h3,h4,h5,h6,ul,ol,dl,dd,fieldset{margin:0;}
+			ul,ol,input,textarea,th,td,fieldset,legend{padding:0;}
+			li{list-style:none;}
+			body{font:12px "微软雅黑";}
+			a{text-decoration:none;}
+			img,button{border:none;}
+			table{border-collapse:collapse;}
+			.clearfix:after{content:" ";display:block;clear:both;height:0;visibility:hidden;}
+		</style>
+		
+	</head>
+<body>
+	<button id="btn1">button1</button>
+	<button id="btn2">button2</button>
+	<button id="btn3">button3</button>
+	<button id="btn4">button4</button>
+	<!--
+		canvas 行内块元素 默认大小为300x150
+	-->
+	<canvas id="canvas" width="800" height="500"></canvas>
+
+<script type="text/javascript">
+window.onload = function(){
+	var btn1 = document.getElementById('btn1');
+	var btn2 = document.getElementById('btn2');
+	var btn3 = document.getElementById('btn3');
+	var btn4 = document.getElementById('btn4');
+	
+	btn2.onclick = function(){
+	};
+
+	btn3.onclick = function(){
+	};
+
+	/*
+		使用canvas绘图步骤
+		1.获取画布
+		2.获取绘画环境
+		3.开始绘画
+		4.填充或描边
+	*/
+
+	var canvas = document.getElementById('canvas');
+	canvas.style.border = '1px solid #000';
+	var ctx = canvas.getContext('2d');
+
+	ctx.strokeStyle = 'red';
+	ctx.lineWidth = '5';
+	ctx.fillStyle = 'blue';
+
+	/*
+	ctx.beginPath();//起始一条路径或重置当前路径
+	ctx.moveTo(100,100);//把路径移动到画布中的指定点，不创建线条
+	ctx.lineTo(200,200);
+	ctx.lineTo(200,100);
+	//ctx.stroke();//绘制已定义的路径
+	ctx.closePath();//创建从当前点回到起始点的路径 画封闭图形应该调用
+	ctx.fill();//填充当前绘图（路径） 应该为封闭路径
+	*/
+	
+
+	/*
+	ctx.strokeRect(20,20,100,50);
+	ctx.fillRect(150,30,80,40);
+	*/
+	
+	/*
+	ctx.beginPath();
+	//context.arc(x,y,r,sAngle,eAngle,counterclockwise);
+	//ctx.arc(300,300,50,0,Math.PI*3/4);
+	ctx.arc(300,300,50,0,Math.PI*2);
+	ctx.stroke();
+	//ctx.fill();
+	*/
+
+	/*
+	ctx.font = '100px "Microsoft yahei"';
+	//ctx.strokeText('Hello 你好',100,100);
+	ctx.fillText('Hello 你好',100,100);
+	*/
+
+	/*
+	var gra = ctx.createLinearGradient(100,50,300,50);//渐变的坐标是相对于画布的
+	gra.addColorStop(0,'red');
+	gra.addColorStop(0.2,'blue');
+	gra.addColorStop(0.4,'green');
+	gra.addColorStop(0.6,'#fff');
+	gra.addColorStop(0.8,'green');
+	gra.addColorStop(1,'black');
+	ctx.fillStyle = gra;
+	ctx.fillRect(100,50,500,300);
+	ctx.strokeRect(100,50,500,300);
+	*/
+
+	/*
+	var gra = ctx.createRadialGradient(200,200,1,200,200,100);
+	gra.addColorStop(0,'red');
+	gra.addColorStop(1,'yellow');
+	ctx.fillStyle = gra;
+	ctx.fillRect(50,50,500,400);
+	*/
+
+	/*
+	ctx.beginPath();
+	ctx.moveTo(100,100);
+	ctx.lineTo(200,100);
+	ctx.rect(150,150,200,100);
+	ctx.stroke();
+	*/
+
+};
+</script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

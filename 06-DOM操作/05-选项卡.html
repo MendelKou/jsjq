@@ -1,0 +1,98 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="Keywords" content="">
+		<meta name="Description" content="">
+		<title></title>
+		
+		<style type="text/css">
+			body,div,p,h1,h2,h3,h4,h5,h6,ul,ol,dl,dd{margin:0;}
+			ul,ol{padding:0;list-style:none;}
+			body{font-size:12px;font-family:"微软雅黑";}
+			a{text-decoration:none;color:#000;}
+			img,button{border:none;}
+
+			.wrap{
+				width:302px;
+				height:340px;
+				margin:50px auto 0;
+				border:1px solid #000;
+			}
+			#list{
+				height:40px;
+			}
+			#list li{
+				float:left;
+				text-align:center;
+				width:100px;
+				height:100%;
+				line-height:40px;
+				font-size:18px;
+				border-right:1px solid #000;
+				background:green;
+				cursor:pointer;
+			}
+			#list li:last-child{ /*IE8不支持:last-child*/
+				border:none;
+			}
+			#list li.cur{
+				background:red;
+			}
+			#box{
+				height:300px;
+				background:#ccc;
+				position:relative;
+			}
+			#box div{
+				position:absolute;
+				left:0;
+				top:0;
+				width:100%;
+				height:100%;
+				font-size:40px;
+				line-height:300px;
+				text-align:center;
+				display:none;
+			}
+		</style>
+	</head>
+<body>
+	<div class="wrap">
+		<ul id="list">
+			<li class="cur">Java</li>
+			<li>JavaScript</li>
+			<li>JSP</li>
+		</ul>
+		<div id="box">
+			<div style="display:block;">Java...</div>
+			<div>JavaScript...</div>
+			<div>JSP...</div>
+		</div>
+	</div>
+</body>
+<script>
+	window.onload = function(){
+		(function(){
+			var oList = document.getElementById('list');
+			var oLis = oList.getElementsByTagName('li');
+			var oDivs = document.getElementById('box').getElementsByTagName('div');
+			for(var i=0; i<oLis.length; ++i){
+				oLis[i].index = i;
+				oLis[i].onclick = function(){
+					if(this.className == 'cur'){
+						return;
+					}
+					for(var j=0; j<oLis.length; ++j){
+						oLis[j].className = '';
+						oDivs[j].style.display = 'none';
+					}
+					this.className = 'cur';
+					oDivs[this.index].style.display = 'block';
+				};
+			}
+
+		})();
+	};
+</script>
+</html>

@@ -1,0 +1,326 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="Keywords" content="">
+		<meta name="Description" content="">
+		<title></title>
+		
+		<style type="text/css">
+			body,div,p,h1,h2,h3,h4,h5,h6,ul,ol,dl,dd,fieldset{margin:0;}
+			ul,ol,input,textarea,th,td,fieldset,legend{padding:0;}
+			li{list-style:none;}
+			body{font:12px "微软雅黑";}
+			a{text-decoration:none;}
+			img,button{border:none;}
+			table{border-collapse:collapse;}
+			.clearfix:after{content:" ";display:block;clear:both;height:0;visibility:hidden;}
+			
+			
+		</style>
+	</head>
+<body>
+	<p id="p1">x</p>
+<script type="text/javascript">
+	/*var arr = new Array(3); //当Array只有一个参数时 表示的是数组的长度
+	console.log(arr.length);
+	console.log(arr[0]);
+	console.log(arr);
+
+	var arr2 = [1,2,3];
+	console.log(arr2); */
+
+	/*var o = {};
+	o[1] = 'aaa';
+	console.log(o[1]);//aaa
+	console.log(o['1']);//aaa */
+
+	/*var arr = [];
+	arr['-1'] = 'aaa'; //创建一个名为-1的属性
+	arr['1.5'] = 'bbb'; //创建一个名为1.5的属性
+	arr['1.0'] = 'ccc'; //创建一个名为1.0的属性
+	arr[1.0] = 'ddd'; //给数组索引为1的元素赋值
+	console.log(arr);
+	console.log(arr.length);
+	console.log(arr[1]); */
+
+	//当把数组的length属性修改为小于当前数组长度时 超出范围的元素会被删除
+	//所以可以通过将length设置为0来清空数组
+	/*var arr = [1,2,3,4];
+	arr.length = 2;
+	console.log(arr); //[1, 2]
+	arr.length = 0;
+	console.log(arr); //[] */
+
+	/*var arr = [1,2,3];
+	Object.defineProperty(arr,'1',{writable:false}); //将arr[1]设置为只读
+	console.log(arr);
+	arr[1] = 222;
+	console.log(arr); */
+
+	/*var arr = [];
+	arr[0] = 1;
+	arr[1] = 2;
+	console.log(arr); //[1, 2]
+	console.log(arr.length); //2
+	console.log(1 in arr); //true
+	delete arr[1]; //删除arr[1] 但delete不会改变数组的长度
+	console.log(arr); //[1]
+	console.log(arr.length); //2
+	console.log(1 in arr); //false */
+
+	/*var arr = [0];
+	arr.push(1); //从后面插入
+	arr.unshift(-1); //从前面插入
+	console.log(arr); //[-1, 0, 1]
+	console.log(arr.pop()); //删除最后一个元素并返回
+	console.log(arr.shift()); //删除第一个元素并返回 */
+
+	//splice方法是一个通用的插入 删除的方法
+	//var arr = [1,2,3,4];
+	//一个参数：删除从指定索引开始直到末尾的元素 并返回删除的元素组成的数组
+	//console.log(arr.splice(1)); //[2,3,4]
+	//console.log(arr); //[1]
+	//两个参数：从指定的索引开始删除指定个数的元素 并返回删除的元素组成的数组
+	//console.log(arr.splice(1,2)); //[2,3]
+	//console.log(arr);//[1,4]
+	//三个及三个以上参数：从指定的索引开始删除指定个数的元素 并在指定的索引处添加指定的元素 返回删除的元素组成的数组
+	//console.log(arr.splice(1,2,100,200));//[2,3]
+	//console.log(arr);//[1, 100, 200, 4]
+
+	//遍历数组
+	//var arr = [1,2,true,,'hello',null];
+	/*for(var i=0,len=arr.length; i<len; ++i){
+		console.log(arr[i]);
+	}*/
+	/*for(var k in arr){
+		console.log(k+'='+arr[k]);
+	}*/
+
+	/*var arr = [];
+	arr[10] = 'ten';
+	//for/in循环的好处是能自动跳过那些稀疏数组中不存在的索引
+	for(var k in arr){
+		console.log(typeof k);//string
+		console.log(k+'='+arr[k]);
+	}*/
+
+	/*var arr = [1,2,3];
+	arr.a = 'aaa';
+	arr.b = 'bbb';
+	//for/in循环的缺点是它会遍历到我们添加的属性
+	for(var k in arr){
+		console.log(k+'='+arr[k]);
+	}*/
+
+	//for循环与in运算符配合可解决上面的问题
+	/*var arr = [1,2,3];
+	delete arr[1];
+	console.log(arr);
+	for(var i=0,len=arr.length; i<len; ++i){
+		if(i in arr){
+			console.log(arr[i]);
+		}
+	}*/
+
+	//数组常用方法
+	//var arr = [1,2,3];
+	//var joinStr = arr.join(); //默认以逗号为分隔符
+	//console.log(joinStr);//1,2,3
+	//console.log(new Array(10).join('-'));
+	
+	//console.log(arr.reverse());//将原数组逆序并返回 
+
+	//var arr = [2,111,3];
+	//console.log(arr.sort()); //[111, 2, 3] 默认按字母表顺序排序
+	/*function f(a,b){
+		if(a<b){
+			return -1;
+		}else if(a>b){
+			return 1;
+		}else{
+			return 0;
+		}
+	}*/
+	/*console.log(arr.sort(f)); //[2, 3, 111] */
+	//如果数组包含undefined 则它们会被排序到数组尾部
+	//console.log([3,1,2,null,undefined,NaN,Infinity].sort(f)); //[null, 1, 2, 3, Infinity, NaN, undefined]
+
+	/*console.log(arr.concat(100,200));
+	console.log(arr.concat([666,888]));
+	console.log(arr.concat([666,888],[44,54]));
+	console.log(arr.concat(100,200,[666,888]));*/
+
+	//var arr = [1,2,3,4];
+	/*console.log(arr.slice(1));//[2, 3, 4]
+	console.log(arr.slice(1,3));//[2, 3]
+	console.log(arr.slice(-3,-1));//[2, 3] */
+
+	//注意数组的unshift方法插入多个参数时的插入顺序
+	//arr.unshift(111,222);
+	//console.log(arr);//[111, 222, 1, 2, 3, 4]
+
+	//ECMAScript5定义了一些遍历数组的新方法 实现数组的遍历 过滤 简化 搜索等
+	//var arr = [1,2,3];
+	
+	/*var sumOfSquares = 0;
+	arr.forEach(function(v,k){
+		sumOfSquares += v*v;
+	});
+	console.log(sumOfSquares); */
+
+	//通常forEach方法不能像for循环那样使用break来终止 但可以通过抛出异常来终止
+	/*function foreach(arr,f){ //自定义的方法
+		try{
+			arr.forEach(f);
+		}catch(e){
+			if(e === foreach.break){
+				return;
+			}else{
+				throw e;
+			}
+		}
+	}
+	foreach.break = new Error("StopIteration");
+	
+	foreach(arr,function(v,k){
+		if(k == 2){
+			throw foreach.break;
+		}
+		console.log(v);
+	});*/
+
+	/*var newArr = arr.map(function(v){
+		return v*v;
+	});
+	console.log(newArr);*/
+
+	/*console.log(arr.filter(function(v){
+		return v<3;
+	})); */
+	//filter会跳过稀疏数组中空缺
+	/*var arr2 = [];
+	arr2[1] = 1;
+	arr2[3] = 5;
+	console.log(arr2.filter(function(){return true;})); //可除去稀疏数组中的空缺 */
+
+	//every 当数组中的所有元素都满足添加时返回true 
+	//var arr = [1,2,3,4,5];
+	/*console.log(arr.every(function(v){
+		return v > 1;
+	})); //false
+	console.log(arr.every(function(v){
+		return v > 0;
+	})); //true */
+
+	//some 当数组有元素满足条件时就返回true
+	/*console.log(arr.some(function(v){
+		return v > 4;
+	})); //true
+	console.log(arr.some(function(v){
+		return v > 5;
+	})); //false */
+
+	//根据数学上的惯例 在空数组上调用every时返回true some返回false
+	/*var arr = [];
+	console.log(arr.every(function(v){
+		return v > 1;
+	})); //true
+	console.log(arr.some(function(v){
+		return v > 1;
+	})); //false */
+
+	//reduce与reduceRight对数组元素进行组合 得到一个结果
+	//var arr = [1,2,3,4,5];
+	/*var sum = arr.reduce(function(x,y,index,arr){
+		console.log('x='+x+',y='+y+',index='+index+',arr='+arr);//x是上次计算的结果 y是当前元素怒
+		return x+y;
+	});
+	console.log(sum);*/
+
+	//reduce的第二个参数是一个可选的初始值 如果省略则将数组的第一个元素作为初始值
+	/*var sum = arr.reduce(function(x,y,index,arr){
+		console.log('x='+x+',y='+y+',index='+index+',arr='+arr);
+		return x+y;
+	},0);
+	console.log(sum); */
+
+	/*var max = arr.reduce(function(x,y){
+		return x>y?x:y;
+	});
+	console.log(max); */
+
+	//reduceRight与reduce相似 只是它从右到左遍历处理数组元素
+	/*console.log(arr.reduceRight(function(x,y){
+		console.log('x='+x+',y='+y);
+		return x/y;
+	}));*/
+
+	/*var arr = [0,'1',1,1,1,2];
+	//indexOf进行的是全等比较
+	console.log(arr.indexOf(1));//2
+	console.log(arr.indexOf(1,1));//2
+	console.log(arr.lastIndexOf(1));//4
+	console.log(arr.lastIndexOf(1,3));//3 */
+
+	//ES5中Array的isArray方法可判断一个对象是否为数组
+	//console.log(Array.isArray({})); //false
+	//console.log(Array.isArray([])); //true
+
+	//自定义的数组检测方法
+	/*function isArray(obj){
+		return typeof obj == 'object' && Object.prototype.toString.call(obj) == '[object Array]';
+	}
+	console.log(isArray({}));
+	console.log(isArray([]));
+	console.log(isArray(new Array())); */
+
+	//类数组对象
+	/*var a = {}; //从一个空对象开始
+	//添加一些属性 作为类数组
+	var i = 0;
+	while(i < 4){
+		a[i] = i*i;
+		i++;
+	}
+	a.length = i;
+	//把a当作数组来遍历
+	for(i=0; i<a.length; ++i){
+		console.log(a[i]);
+	}*/
+	//Arguments对象就是一个类数组对象
+
+	//下面是一个检测类数组对象的方法
+	//字符串和函数有length属性 可以用typeof检测将其排除
+	//在客户端js中 DOM文本节点也有length属性 可以用o.nodeType != 3将其排除
+	/*function isArrayLike(o){
+		return o && typeof o === 'object' && isFinite(o.length) && o.length >= 0 
+		&& o.length === Math.floor(o.length) && o.length < 4294967296 && o.nodeType !== 3;
+	}
+
+	var o = {};
+	console.log(isArrayLike(o));//false
+	o.length = 0;
+	console.log(isArrayLike(o));//true
+	var textNode = document.getElementById('p1').childNodes[0];//false
+	console.log(isArrayLike(textNode));
+	console.log(isArrayLike(document.getElementById('p1').childNodes));//true
+	console.log(isArrayLike(document.getElementsByTagName('p')));//true */
+
+	//将数组的方法运用与类数组对象上
+	var o = {0:'a',1:'b',2:'c',length:3};
+	console.log(o[0]);
+	console.log(Array.prototype.join.call(o,'-'));
+	//有些浏览器将数组的方法也定义为Array的静态方法 FF支持
+	//console.log(Array.slice(o,0));
+	//兼容方案
+	Array.join = Array.join || Array.prototype.join;
+	console.log(Array.join.call(o,'*'));
+
+
+
+
+
+</script>
+</body>
+</html>
